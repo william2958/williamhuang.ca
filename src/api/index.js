@@ -39,11 +39,15 @@ const db = admin.firestore();
 const adminAuth = admin.auth();
 const firebaseAuth = firebase.auth();
 
+const BookReviews = db.collection('bookReviews');
+
 const auth = require('../controllers/auth');
 const bookReview = require('../controllers/bookReview');
 
 const models = {
+    admin,
     db,
+    BookReviews,
     auth: adminAuth,
     firebaseAuth
 };

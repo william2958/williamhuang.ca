@@ -2,19 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="961336fa-d7ec-4cf9-923a-1ea5995f4e03" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.env.local" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/envSetup.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/auth/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/auth/post.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/bookReview/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/bookReview/post.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/middleware/authenticate.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/middleware/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/bookReview/constants.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/bookReview/get/adminBookReviewMethods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/bookReview/get/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/bookReview/get/publicBookReviewMethods.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/bookReview/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/bookReview/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/bookReview/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/bookReview/post.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +55,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1591305427759</updated>
-      <workItem from="1591305429788" duration="5989000" />
+      <workItem from="1591305429788" duration="6661000" />
+      <workItem from="1591396268702" duration="5932000" />
     </task>
     <servers />
   </component>
@@ -76,5 +72,9 @@
       <screen x="0" y="23" width="1920" height="1057" />
     </state>
     <state x="415" y="187" key="SettingsEditor/-1920.23.1920.1057/0.23.1920.1057@0.23.1920.1057" timestamp="1591306344217" />
+    <state x="608" y="281" width="703" height="518" key="find.popup" timestamp="1591409613965">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="608" y="281" width="703" height="518" key="find.popup/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1591409613965" />
   </component>
 </project>
