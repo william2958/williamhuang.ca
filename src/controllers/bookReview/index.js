@@ -13,6 +13,10 @@ const {
     createBookReview
 } = require('./post');
 
+const { updateBookReview } = require('./put');
+
+const { deleteBookReview } = require('./delete');
+
 module.exports = (models, { config }) => {
 
     const api = new router();
@@ -33,6 +37,10 @@ module.exports = (models, { config }) => {
         authenticate(models),
         createBookReview(models)
     );
+
+    api.put('/updateBookReview', authenticate(models), updateBookReview(models));
+
+    api.delete('/deleteBookReview', authenticate(models), deleteBookReview(models));
 
     return api;
 

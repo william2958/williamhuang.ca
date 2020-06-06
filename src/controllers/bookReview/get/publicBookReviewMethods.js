@@ -41,7 +41,8 @@ const getRecentBookReviews = ({ BookReviews }) => async (req, res) => {
             bookReviewsSnapshot = await BookReviews
                 .where('isPublished', '==', true)
                 .orderBy('publishDate', 'desc')
-                .limit(LIMIT_PER_PAGE)
+                // + 1 to determine if there's another page
+                .limit(LIMIT_PER_PAGE + 1)
                 .get();
         } else {
 
@@ -56,7 +57,8 @@ const getRecentBookReviews = ({ BookReviews }) => async (req, res) => {
                 .where('isPublished', '==', true)
                 .orderBy('publishDate', 'desc')
                 .startAfter(mostRecentBook)
-                .limit(LIMIT_PER_PAGE)
+                // + 1 to determine if there's another page
+                .limit(LIMIT_PER_PAGE + 1)
                 .get();
 
         }
@@ -67,8 +69,17 @@ const getRecentBookReviews = ({ BookReviews }) => async (req, res) => {
                 id: doc.id
             });
         });
+
+        let anotherPage = false;
+        if (allReviews.length > LIMIT_PER_PAGE) {
+            // There is another page
+            anotherPage = true;
+            allReviews.pop();
+        }
+
         res.status(200).send({
-            allReviews
+            allReviews,
+            anotherPage
         })
     } catch (e) {
         console.error('Error filtering book reviews: ', e);

@@ -1,19 +1,37 @@
 const createBookReview = ({ BookReviews, admin }) => async (req, res) => {
 
+    const {
+        category,
+        content,
+        contentPreview,
+        title,
+        isPublished,
+        coverURL,
+        rating,
+        recommended
+    } = req.body;
+
     try {
-        let setBookReview = await BookReviews.doc().set(
-            {
-                ...req.body,
-                publishDate: admin.firestore.Timestamp.now(),
-                isPublished: req.body.isPublished === 'true'
-            },
-            {
-                merge: true
-            }
+        const reviewData = {
+            category,
+            content,
+            contentPreview,
+            title,
+            coverURL,
+            rating,
+            isPublished: isPublished === 'true',
+            recommended: recommended === 'true'
+        };
+
+        if (isPublished === 'true') {
+            reviewData.publishDate = admin.firestore.Timestamp.now();
+        }
+        let setBookReview = await BookReviews.add(
+            reviewData
         );
 
         return res.status(200).send({
-            bookReview: setBookReview
+            bookReview: setBookReview.id
         })
     } catch (e) {
 
