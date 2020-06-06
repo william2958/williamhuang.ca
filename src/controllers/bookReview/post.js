@@ -31,10 +31,11 @@ const createBookReview = ({ BookReviews, admin }) => async (req, res) => {
         );
 
         return res.status(200).send({
-            bookReview: setBookReview.id
+            bookReviewId: setBookReview.id
         })
     } catch (e) {
 
+        console.error('There was an error creating this book review: ', e);
         return res.status(400).send({
             message: "Could not create book review"
         });
