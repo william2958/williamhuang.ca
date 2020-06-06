@@ -43,6 +43,13 @@ const createBookReview = ({ BookReviews, admin }) => async (req, res) => {
 
 };
 
+const addBookImage = (req, res) => {
+    res.status(200).send({
+        imageURL: req.imageURL
+    })
+};
+
 module.exports = {
-    createBookReview
+    createBookReview,
+    addBookImage
 };

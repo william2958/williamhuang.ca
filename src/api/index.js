@@ -15,7 +15,8 @@ if (process.env.NODE_ENV === 'local') {
 try {
     admin.initializeApp({
         credential: admin.credential.applicationDefault(),
-        databaseURL: 'https://personal-website-master.firebaseio.com'
+        databaseURL: 'https://personal-website-master.firebaseio.com',
+        storageBucket: "personal-website-master.appspot.com",
     });
 } catch (e) {
     console.error('Could not initialize: ', e);
@@ -36,6 +37,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const db = admin.firestore();
+const bucket = admin.storage().bucket();
 const adminAuth = admin.auth();
 const firebaseAuth = firebase.auth();
 
@@ -47,6 +49,7 @@ const bookReview = require('../controllers/bookReview');
 const models = {
     admin,
     db,
+    bucket,
     BookReviews,
     auth: adminAuth,
     firebaseAuth

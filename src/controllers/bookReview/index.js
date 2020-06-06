@@ -1,3 +1,6 @@
+const {uploadImage, multer} = require("../../middleware");
+const {addBookImage} = require("./post");
+
 const { Router: router } = require('express');
 
 const { authenticate } = require('../../middleware');
@@ -36,6 +39,13 @@ module.exports = (models, { config }) => {
         '/createBookReview',
         authenticate(models),
         createBookReview(models)
+    );
+
+    api.post(
+        '/uploadBookImage',
+        multer.single('file'),
+        uploadImage(models),
+        addBookImage
     );
 
     api.put('/updateBookReview', authenticate(models), updateBookReview(models));

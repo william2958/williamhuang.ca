@@ -1,5 +1,9 @@
 const { Router: router } = require('express');
 
+const { authenticate } = require('../../middleware');
+
+const { getAdmin } = require('./get');
+
 const {
     adminSignIn,
     adminSignUp
@@ -8,6 +12,12 @@ const {
 module.exports = (models, { config }) => {
 
     const api = new router();
+
+    api.get(
+        '/getAdmin',
+        authenticate(models),
+        getAdmin(models)
+    );
 
     api.post(
         '/adminSignIn',

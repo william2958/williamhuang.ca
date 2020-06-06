@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="961336fa-d7ec-4cf9-923a-1ea5995f4e03" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/controllers/bookReview/delete.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/bookReview/put.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/bookReview/get/publicBookReviewMethods.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/bookReview/get/publicBookReviewMethods.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/bookReview/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/bookReview/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/bookReview/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/bookReview/post.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +49,7 @@
       <option name="presentableId" value="Default" />
       <updated>1591305427759</updated>
       <workItem from="1591305429788" duration="6661000" />
-      <workItem from="1591396268702" duration="8613000" />
+      <workItem from="1591396268702" duration="9002000" />
     </task>
     <servers />
   </component>

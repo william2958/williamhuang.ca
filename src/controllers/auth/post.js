@@ -42,6 +42,7 @@ const adminSignIn = ({ firebaseAuth, auth }) => async (req, res) => {
         const token = await auth.createCustomToken(user.uid);
 
         res.status(200).send({
+            user,
             token
         })
     } catch (e) {

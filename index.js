@@ -1,6 +1,7 @@
 require ('./envSetup');
 
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const config = require('./config');
 const api = require('./src/api');
@@ -10,7 +11,27 @@ const cors = require('cors');
 
 const port = 8000;
 
-app.use(express.json());
+// Use the json middleware
+app.use(
+    bodyParser.json({
+        // Because Stripe needs the raw body, we compute it but only when hitting the Stripe callback URL.
+        verify: function(req, res, buf) {
+            const url = req.originalUrl;
+            if (url.includes('/v1/stripe_hooks')) {
+                req.rawBody = buf.toString();
+            }
+        },
+        limit: '15MB',
+    }),
+);
+
+app.use(
+    bodyParser.urlencoded({
+        limit: '15MB',
+        extended: true,
+        parameterLimit: 1500000,
+    }),
+);
 
 app.use(cors());
 
