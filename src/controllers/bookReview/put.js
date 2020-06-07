@@ -35,7 +35,7 @@ const updateBookReview = ({ BookReviews, admin }) => async (req, res) => {
         );
 
         return res.status(200).send({
-            bookReview: setBookReview.id
+            bookReview: setBookReview
         })
     } catch (e) {
 
