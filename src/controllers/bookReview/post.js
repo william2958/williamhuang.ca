@@ -19,11 +19,11 @@ const createBookReview = ({ BookReviews, admin }) => async (req, res) => {
             title,
             coverURL,
             rating,
-            isPublished: isPublished === 'true',
-            recommended: recommended === 'true'
+            isPublished,
+            recommended
         };
 
-        if (isPublished === 'true') {
+        if (isPublished) {
             reviewData.publishDate = admin.firestore.Timestamp.now();
         }
         let setBookReview = await BookReviews.add(

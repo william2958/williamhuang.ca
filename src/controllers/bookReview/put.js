@@ -20,11 +20,11 @@ const updateBookReview = ({ BookReviews, admin }) => async (req, res) => {
             ...(title && { title }),
             ...(coverURL && { coverURL }),
             ...(rating && { rating }),
-            ...(isPublished && { isPublished: isPublished === 'true' }),
-            ...(recommended && { recommended: recommended === 'true' })
+            ...(isPublished && { isPublished }),
+            ...(recommended && { recommended })
         };
 
-        if (isPublished === 'true') {
+        if (isPublished) {
             updateData.publishDate = admin.firestore.Timestamp.now();
         }
         let setBookReview = await BookReviews.doc(bookReviewId).set(
