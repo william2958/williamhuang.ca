@@ -9,7 +9,8 @@ const updateBookReview = ({ BookReviews, admin }) => async (req, res) => {
         coverURL,
         rating,
         bookReviewId,
-        recommended
+        recommended,
+        author
     } = req.body;
 
     try {
@@ -21,7 +22,8 @@ const updateBookReview = ({ BookReviews, admin }) => async (req, res) => {
             ...(coverURL && { coverURL }),
             ...(rating && { rating }),
             ...(isPublished && { isPublished }),
-            ...(recommended && { recommended })
+            ...(recommended && { recommended }),
+            ...(author && { author })
         };
 
         if (isPublished) {

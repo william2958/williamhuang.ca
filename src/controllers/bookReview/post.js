@@ -8,7 +8,8 @@ const createBookReview = ({ BookReviews, admin }) => async (req, res) => {
         isPublished,
         coverURL,
         rating,
-        recommended
+        recommended,
+        author
     } = req.body;
 
     try {
@@ -20,7 +21,8 @@ const createBookReview = ({ BookReviews, admin }) => async (req, res) => {
             coverURL,
             rating,
             isPublished,
-            recommended
+            recommended,
+            author
         };
 
         if (isPublished) {
@@ -46,7 +48,7 @@ const createBookReview = ({ BookReviews, admin }) => async (req, res) => {
 
 const addBookImage = (req, res) => {
     res.status(200).send({
-        imageURL: req.imageURL
+        coverURL: req.imageURL
     })
 };
 
