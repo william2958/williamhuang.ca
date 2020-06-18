@@ -29,6 +29,44 @@ const getBookReview = ({ BookReviews }) => async (req, res) => {
 
 };
 
+const getNumRecentBookReviews = ({ BookReviews }) => async (req, res) => {
+    const {
+        numReviews
+    } = req.query;
+
+    try {
+        if (!numReviews || isNaN(numReviews)) {
+            return res.status(400).send({
+                message: "Please include how many items to return."
+            })
+        }
+        let bookReviewsSnapshot;
+        bookReviewsSnapshot = await BookReviews
+            .where('isPublished', '==', true)
+            .orderBy('publishDate', 'desc')
+            .limit(parseInt(numReviews))
+            .get();
+
+        const allReviews = [];
+        bookReviewsSnapshot.forEach((doc) => {
+            allReviews.push({
+                ...doc.data(),
+                content: null,
+                id: doc.id
+            });
+        });
+
+        res.status(200).send({
+            allReviews
+        })
+    } catch (e) {
+        console.error('Error getting num recent book reviews: ', e);
+        return res.status(400).send({
+            message: "There was an error getting the book reviews."
+        })
+    }
+};
+
 const getRecentBookReviews = ({ BookReviews }) => async (req, res) => {
 
     const {
@@ -66,6 +104,7 @@ const getRecentBookReviews = ({ BookReviews }) => async (req, res) => {
         bookReviewsSnapshot.forEach((doc) => {
             allReviews.push({
                 ...doc.data(),
+                content: null,
                 id: doc.id
             });
         });
@@ -112,6 +151,7 @@ const getFilteredBookReviews = ({ BookReviews }) => async (req, res) => {
         bookReviewsSnapshot.forEach((doc) => {
             allReviews.push({
                 ...doc.data(),
+                content: null,
                 id: doc.id
             });
         });
@@ -130,5 +170,6 @@ const getFilteredBookReviews = ({ BookReviews }) => async (req, res) => {
 module.exports = {
     getBookReview,
     getFilteredBookReviews,
-    getRecentBookReviews
+    getRecentBookReviews,
+    getNumRecentBookReviews
 };
