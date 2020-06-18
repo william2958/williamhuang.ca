@@ -1,19 +1,22 @@
 
-const getBookReviewDrafts = ({ BookReviews }) => async (req, res) => {
+const getBookReviewAdmin = ({ BookReviews }) => async (req, res) => {
 
     try {
+
+        const { isPublished } = req.query;
+
         let bookReviewsSnapshot = await BookReviews
-            .where('isPublished', '==', false)
+            .where('isPublished', '==', isPublished === 'true')
             .get();
-        const allDrafts = [];
+        const bookReviews = [];
         bookReviewsSnapshot.forEach((doc) => {
-            allDrafts.push({
+            bookReviews.push({
                 ...doc.data(),
                 id: doc.id
             });
         });
         res.status(200).send({
-            allDrafts
+            bookReviews
         })
     } catch (e) {
         return res.status(400).send({
@@ -21,9 +24,8 @@ const getBookReviewDrafts = ({ BookReviews }) => async (req, res) => {
         })
     }
 
-
 };
 
 module.exports = {
-    getBookReviewDrafts
+    getBookReviewAdmin
 };

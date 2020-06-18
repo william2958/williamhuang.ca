@@ -5,12 +5,12 @@ const {
 } = require('./publicBookReviewMethods');
 
 const {
-    getBookReviewDrafts
+    getBookReviewAdmin
 } = require('./adminBookReviewMethods');
 
 module.exports = {
     getBookReview,
     getFilteredBookReviews,
     getRecentBookReviews,
-    getBookReviewDrafts
+    getBookReviewAdmin
 };

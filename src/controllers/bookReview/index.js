@@ -9,7 +9,7 @@ const {
     getBookReview,
     getFilteredBookReviews,
     getRecentBookReviews,
-    getBookReviewDrafts
+    getBookReviewAdmin
 } = require('./get');
 
 const {
@@ -33,7 +33,7 @@ module.exports = (models, { config }) => {
 
     api.get('/getRecentBookReviews', getRecentBookReviews(models));
 
-    api.get('/getBookReviewDrafts', authenticate(models), getBookReviewDrafts(models));
+    api.get('/getBookReviewAdmin', authenticate(models), getBookReviewAdmin(models));
 
     api.post(
         '/createBookReview',
