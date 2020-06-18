@@ -5,11 +5,23 @@ const bodyParser = require('body-parser');
 
 const config = require('./config');
 const api = require('./src/api');
+const { passport } = require('./src/passport');
+const { mongoManager } = require('./src/mongo');
 
 const app = express();
 const cors = require('cors');
 
-const port = 8000;
+const port = process.env.PORT || 8000;
+
+// Connect to the mongodb
+mongoManager
+    .connect()
+    .then(() => {
+        console.log('successfully connected to mongodb');
+    })
+    .catch(e => {
+        console.error('connection error', e);
+    });
 
 // Use the json middleware
 app.use(
@@ -34,6 +46,8 @@ app.use(
 );
 
 app.use(cors());
+
+app.use(passport.init());
 
 app.use('/', api(config));
 

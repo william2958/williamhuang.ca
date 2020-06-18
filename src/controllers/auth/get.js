@@ -1,9 +1,21 @@
-const getAdmin = ({ }) => async (req, res) => {
+const getAdmin = ({ User }) => async (req, res) => {
 
-    return res.status(200).send({
-        ...req.user
-    })
+    if (!req.user) {
+        res.status(404).send({
+            message: 'Could not find user',
+        });
+    }
+    try {
+        const user = await User.findById(req.user.id);
 
+        res.status(200).send({
+            user,
+        });
+    } catch (e) {
+        res.status(401).send({
+            message: 'User not found',
+        });
+    }
 };
 
 module.exports = {

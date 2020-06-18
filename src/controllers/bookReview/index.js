@@ -35,11 +35,11 @@ module.exports = (models, { config }) => {
     api.get('/getNumRecentBookReviews', getNumRecentBookReviews(models));
     api.get('/getRecentBookReviews', getRecentBookReviews(models));
 
-    api.get('/getBookReviewAdmin', authenticate(models), getBookReviewAdmin(models));
+    api.get('/getBookReviewAdmin', authenticate, getBookReviewAdmin(models));
 
     api.post(
         '/createBookReview',
-        authenticate(models),
+        authenticate,
         createBookReview(models)
     );
 
@@ -50,9 +50,9 @@ module.exports = (models, { config }) => {
         addBookImage
     );
 
-    api.put('/updateBookReview', authenticate(models), updateBookReview(models));
+    api.put('/updateBookReview', authenticate, updateBookReview(models));
 
-    api.delete('/deleteBookReview', authenticate(models), deleteBookReview(models));
+    api.delete('/deleteBookReview', authenticate, deleteBookReview(models));
 
     return api;
 
