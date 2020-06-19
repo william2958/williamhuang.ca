@@ -1,4 +1,4 @@
-const createBookReview = ({ BookReviews, admin }) => async (req, res) => {
+const createBookReview = ({ BookReview }) => async (req, res) => {
 
     const {
         category,
@@ -22,18 +22,20 @@ const createBookReview = ({ BookReviews, admin }) => async (req, res) => {
             rating,
             isPublished,
             recommended,
-            author
+            author,
+            owner: req.user.id
         };
 
         if (isPublished) {
-            reviewData.publishDate = admin.firestore.Timestamp.now();
+            reviewData.publishDate = new Date()
         }
-        let setBookReview = await BookReviews.add(
+        let setBookReview = new BookReview(
             reviewData
         );
+        await setBookReview.save();
 
         return res.status(200).send({
-            bookReviewId: setBookReview.id
+            bookReviewId: setBookReview._id
         })
     } catch (e) {
 

@@ -1,4 +1,4 @@
-const deleteBookReview = ({ BookReviews }) => async (req, res) => {
+const deleteBookReview = ({ BookReview }) => async (req, res) => {
 
     const {
         bookReviewId
@@ -11,7 +11,9 @@ const deleteBookReview = ({ BookReviews }) => async (req, res) => {
     }
 
     try {
-        const deletedReview = await BookReviews.doc(bookReviewId).delete();
+        const deletedReview = await BookReview.findOneAndDelete({
+            _id: bookReviewId
+        });
 
         return res.status(200).send({
             deletedReview

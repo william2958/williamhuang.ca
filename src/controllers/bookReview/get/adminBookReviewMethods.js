@@ -1,20 +1,27 @@
+const { propertiesToProject } = require('../constants');
 
-const getBookReviewAdmin = ({ BookReviews }) => async (req, res) => {
+const getBookReviewAdmin = ({ BookReview }) => async (req, res) => {
 
     try {
 
         const { isPublished } = req.query;
 
-        let bookReviewsSnapshot = await BookReviews
-            .where('isPublished', '==', isPublished === 'true')
-            .get();
-        const bookReviews = [];
-        bookReviewsSnapshot.forEach((doc) => {
-            bookReviews.push({
-                ...doc.data(),
-                id: doc.id
-            });
-        });
+        let bookReviews = await BookReview.aggregate([
+            {
+                $match: {
+                    isPublished: isPublished === 'true'
+                }
+            },
+            {
+                $sort: {
+                    created: -1
+                }
+            },
+            {
+                $project: propertiesToProject
+            }
+        ]);
+
         res.status(200).send({
             bookReviews
         })

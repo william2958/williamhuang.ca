@@ -1,4 +1,4 @@
-const updateBookReview = ({ BookReviews, admin }) => async (req, res) => {
+const updateBookReview = ({ BookReview }) => async (req, res) => {
 
     const {
         category,
@@ -14,6 +14,9 @@ const updateBookReview = ({ BookReviews, admin }) => async (req, res) => {
     } = req.body;
 
     try {
+
+        const prevBookReview = await BookReview.findOne({ _id: bookReviewId });
+
         const updateData = {
             ...(category && { category }),
             ...(content && { content }),
@@ -26,13 +29,16 @@ const updateBookReview = ({ BookReviews, admin }) => async (req, res) => {
             ...(author && { author })
         };
 
-        if (isPublished) {
-            updateData.publishDate = admin.firestore.Timestamp.now();
+        if (isPublished && !prevBookReview.isPublished) {
+            updateData.publishDate = new Date();
         }
-        let setBookReview = await BookReviews.doc(bookReviewId).set(
-            updateData,
+        let setBookReview = await BookReview.findOneAndUpdate(
+            { _id: bookReviewId},
             {
-                merge: true
+                $set: updateData
+            },
+            {
+                new: true,
             }
         );
 
