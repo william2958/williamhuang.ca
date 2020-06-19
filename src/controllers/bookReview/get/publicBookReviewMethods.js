@@ -71,7 +71,8 @@ const getNumRecentBookReviews = ({ BookReview }) => async (req, res) => {
 const getRecentBookReviews = ({ BookReview }) => async (req, res) => {
 
     const {
-        numSkip
+        numSkip,
+        category
     } = req.query;
 
     try {
@@ -82,7 +83,8 @@ const getRecentBookReviews = ({ BookReview }) => async (req, res) => {
             allReviews = await BookReview.aggregate([
                 {
                     $match: {
-                        isPublished: true
+                        isPublished: true,
+                        ...(category && { category })
                     }
                 },
                 {
@@ -103,7 +105,8 @@ const getRecentBookReviews = ({ BookReview }) => async (req, res) => {
             allReviews = await BookReview.aggregate([
                 {
                     $match: {
-                        isPublished: true
+                        isPublished: true,
+                        ...(category && { category })
                     }
                 },
                 {
@@ -163,7 +166,8 @@ const getFilteredBookReviews = ({ BookReview }) => async (req, res) => {
         const allReviews = await BookReview.aggregate([
             {
                 $match: {
-                    isPublished: true
+                    isPublished: true,
+                    category
                 }
             },
             {
