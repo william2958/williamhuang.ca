@@ -46,7 +46,7 @@ module.exports = (models, { config }) => {
     api.post(
         '/uploadBookImage',
         multer.single('file'),
-        uploadImage(models),
+        uploadImage(models, config),
         addBookImage
     );
 

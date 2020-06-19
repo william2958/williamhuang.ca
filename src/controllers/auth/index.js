@@ -6,9 +6,9 @@ const { authenticate, generateAccessToken } = require('../../middleware');
 const { getAdmin } = require('./get');
 const signIn = require('./sign-in');
 
-const {
-    adminSignUp
-} = require('./post');
+// const {
+//     adminSignUp
+// } = require('./post');
 
 module.exports = (models, { config }) => {
 
@@ -27,13 +27,14 @@ module.exports = (models, { config }) => {
         signIn
     );
 
-    api.post(
-        '/adminSignUp',
-        adminSignUp(models),
-        passport.authenticate('local', { session: false, scope: [] }),
-        generateAccessToken,
-        signIn,
-    );
+    // Prevent sign ups - only 1 admin
+    // api.post(
+    //     '/adminSignUp',
+    //     adminSignUp(models),
+    //     passport.authenticate('local', { session: false, scope: [] }),
+    //     generateAccessToken,
+    //     signIn,
+    // );
 
     return api;
 

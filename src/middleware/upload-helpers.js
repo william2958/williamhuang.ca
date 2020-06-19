@@ -1,4 +1,4 @@
-const uploadImage = ({ bucket }) => async (req, res, next) => {
+const uploadImage = ({ }, { bucket }) => async (req, res, next) => {
 
     // Make sure there's a file included
     if (!req.file) {

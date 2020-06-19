@@ -49,6 +49,10 @@ app.use(cors());
 
 app.use(passport.init());
 
-app.use('/', api(config));
+app.use('/api/', api(config));
+
+app.get('/api/', (req, res) => {
+    res.send('Successfully hit endpoint.');
+});
 
 app.listen(port, () => console.log(`App is listening on ${port}`));
