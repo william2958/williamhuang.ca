@@ -2,6 +2,19 @@ const { authenticate } = require('../../middleware');
 
 const { Router: router } = require('express');
 
+const {
+	getProject,
+	getRecentProjects,
+	getNumRecentProjects,
+	getProjectAdmin
+} = require('./get');
+
+const { createProject } = require('./post');
+
+const { updateProject } = require('./put');
+
+const { deleteProject } = require('./delete');
+
 module.exports = (models, { config }) => {
 
 	const api = new router();
@@ -17,7 +30,7 @@ module.exports = (models, { config }) => {
 	api.get('/getRecentProjects', getRecentProjects(models));
 
 	// Get either published projects or drafts
-	api.get('/getProjectsAdmin', authenticate, getProjectAdmin(models));
+	api.get('/getProjectAdmin', authenticate, getProjectAdmin(models));
 
 
 	api.post(
