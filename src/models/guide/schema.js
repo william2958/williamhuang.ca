@@ -15,17 +15,12 @@ const schema = new Schema({
 	},
 
 	title: String,
-	author: String,
-	category: String,
-	coverURL: String,
+	contentPreview: String,
+	technology: String,
 
-	rating: {
-		type: String,
-	},
+	previewImageURL: String,
 
-	contentPreview: {
-		type: String
-	},
+	// DraftJS content saved as string json
 	content: {
 		type: String
 	},

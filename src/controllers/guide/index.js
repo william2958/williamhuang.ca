@@ -1,0 +1,35 @@
+const { authenticate } = require('../../middleware');
+
+const { Router: router } = require('express');
+
+module.exports = (models, { config }) => {
+
+	const api = new router();
+
+	api.get(
+		'/getGuide',
+		getGuide(models)
+	);
+
+	// Get certain number of book reviews
+	api.get('/getNumRecentGuides', getNumRecentGuides(models));
+	// Based on num skip and category
+	api.get('/getRecentGuides', getRecentGuides(models));
+
+	// Get either published projects or drafts
+	api.get('/getGuidesAdmin', authenticate, getGuideAdmin(models));
+
+
+	api.post(
+		'/createGuide',
+		authenticate,
+		createGuide(models)
+	);
+
+	api.put('/updateGuide', authenticate, updateGuide(models));
+
+	api.delete('/deleteGuide', authenticate, deleteGuide(models));
+
+	return api;
+
+};

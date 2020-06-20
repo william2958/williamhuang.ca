@@ -32,7 +32,9 @@ module.exports = (models, { config }) => {
 
     api.get('/getFilteredBookReviews', getFilteredBookReviews(models));
 
+    // Get a certain number of book reviews
     api.get('/getNumRecentBookReviews', getNumRecentBookReviews(models));
+    // This is to get book reviews based on skipNum and category
     api.get('/getRecentBookReviews', getRecentBookReviews(models));
 
     api.get('/getBookReviewAdmin', authenticate, getBookReviewAdmin(models));
@@ -45,6 +47,7 @@ module.exports = (models, { config }) => {
 
     api.post(
         '/uploadBookImage',
+        authenticate,
         multer.single('file'),
         uploadImage(models, config),
         addBookImage
