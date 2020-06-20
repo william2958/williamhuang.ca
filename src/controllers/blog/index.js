@@ -25,7 +25,7 @@ module.exports = (models, { config }) => {
 	api.get('/getRecentBlogs', getRecentBlogs(models));
 
 	// Get either published projects or drafts
-	api.get('/getBlogsAdmin', authenticate, getBlogAdmin(models));
+	api.get('/getBlogAdmin', authenticate, getBlogAdmin(models));
 
 
 	api.post(

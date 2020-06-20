@@ -25,7 +25,7 @@ module.exports = (models, { config }) => {
 	api.get('/getRecentGuides', getRecentGuides(models));
 
 	// Get either published projects or drafts
-	api.get('/getGuidesAdmin', authenticate, getGuideAdmin(models));
+	api.get('/getGuideAdmin', authenticate, getGuideAdmin(models));
 
 
 	api.post(

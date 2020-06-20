@@ -25,7 +25,7 @@ module.exports = (models, { config }) => {
 	api.get('/getRecentMonthlyFives', getRecentMonthlyFives(models));
 
 	// Get either published projects or drafts
-	api.get('/getMonthlyFivesAdmin', authenticate, getMonthlyFiveAdmin(models));
+	api.get('/getMonthlyFiveAdmin', authenticate, getMonthlyFiveAdmin(models));
 
 
 	api.post(
