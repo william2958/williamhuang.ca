@@ -8,6 +8,7 @@ const updateGuide = ({ Guide }) => async (req, res) => {
 		content,
 		isPublished,
 
+		iconURL,
 		previewImageURL,
 
 		guideId
@@ -26,6 +27,7 @@ const updateGuide = ({ Guide }) => async (req, res) => {
 			...(content && { content }),
 			...(isPublished && { isPublished }),
 
+			...(iconURL && { iconURL }),
 			...(previewImageURL && { previewImageURL })
 		};
 

@@ -8,6 +8,7 @@ const createGuide = ({ Guide }) => async (req, res) => {
 		content,
 		isPublished,
 
+		iconURL,
 		previewImageURL
 	} = req.body;
 
@@ -20,6 +21,7 @@ const createGuide = ({ Guide }) => async (req, res) => {
 			content,
 			isPublished,
 
+			iconURL,
 			previewImageURL,
 			owner: req.user.id
 		};

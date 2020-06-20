@@ -8,6 +8,7 @@ module.exports = {
 		contentPreview: 1,
 		technology: 1,
 
+		iconURL: 1,
 		previewImageURL: 1,
 		isPublished: 1,
 		publishDate: 1
