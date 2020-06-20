@@ -2,6 +2,14 @@ const { authenticate } = require('../../middleware');
 
 const { Router: router } = require('express');
 
+const { getNumRecentMonthlyFives, getRecentMonthlyFives, getMonthlyFiveAdmin, getMonthlyFive } = require('./get');
+
+const { createMonthlyFive } = require('./post');
+
+const { updateMonthlyFive } = require('./put');
+
+const { deleteMonthlyFive } = require('./delete');
+
 module.exports = (models, { config }) => {
 
 	const api = new router();

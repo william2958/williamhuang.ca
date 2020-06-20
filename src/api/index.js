@@ -9,6 +9,7 @@ const { Guide } = require('../models/guide');
 const express = require('express');
 
 const auth = require('../controllers/auth');
+const core = require('../controllers/core');
 const bookReview = require('../controllers/bookReview');
 const project = require('../controllers/projects');
 
@@ -27,6 +28,7 @@ const routersInit = config => {
     const router = express();
 
     router.use('/auth', auth(models, { ...config }));
+    router.use('/core', core(models, { ...config }));
     router.use('/bookReview', bookReview(models, { ...config }));
     router.use('/project', project(models, { ...config }));
 

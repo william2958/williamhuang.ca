@@ -9,8 +9,7 @@ const createProject = ({ Project }) => async (req, res) => {
 		techStack,
 		liveLink,
 		heroURL,
-		previewImageURL,
-		author
+		previewImageURL
 	} = req.body;
 
 	try {
@@ -24,7 +23,6 @@ const createProject = ({ Project }) => async (req, res) => {
 			heroURL,
 			previewImageURL,
 			isPublished,
-			author,
 			owner: req.user.id
 		};
 

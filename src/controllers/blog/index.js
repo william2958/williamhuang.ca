@@ -2,6 +2,14 @@ const { authenticate } = require('../../middleware');
 
 const { Router: router } = require('express');
 
+const { getNumRecentBlogs, getRecentBlogs, getBlogAdmin, getBlog } = require('./get');
+
+const { createBlog } = require('./post');
+
+const { updateBlog } = require('./put');
+
+const { deleteBlog } = require('./delete');
+
 module.exports = (models, { config }) => {
 
 	const api = new router();

@@ -2,6 +2,14 @@ const { authenticate } = require('../../middleware');
 
 const { Router: router } = require('express');
 
+const { getNumRecentGuides, getRecentGuides, getGuideAdmin, getGuide } = require('./get');
+
+const { createGuide } = require('./post');
+
+const { updateGuide } = require('./put');
+
+const { deleteGuide } = require('./delete');
+
 module.exports = (models, { config }) => {
 
 	const api = new router();

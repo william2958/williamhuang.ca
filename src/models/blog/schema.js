@@ -20,7 +20,6 @@ const schema = new Schema({
 	heroURL: String,
 	previewImageURL: String,
 
-
 	// DraftJS content saved as string json
 	content: {
 		type: String
