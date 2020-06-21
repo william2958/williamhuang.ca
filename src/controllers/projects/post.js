@@ -10,6 +10,7 @@ const createProject = ({ Project }) => async (req, res) => {
 		liveLink,
 		spotlight,
 		heroURL,
+		urlString,
 		previewImageURL
 	} = req.body;
 
@@ -23,6 +24,7 @@ const createProject = ({ Project }) => async (req, res) => {
 			liveLink,
 			heroURL,
 			spotlight,
+			urlString: urlString || title.replace(/ /g, '-'),
 			previewImageURL,
 			isPublished,
 			owner: req.user.id

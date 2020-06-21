@@ -6,6 +6,7 @@ const createBlog = ({ Blog }) => async (req, res) => {
 
 		content,
 		isPublished,
+		urlString,
 
 		heroURL,
 		previewImageURL
@@ -18,6 +19,7 @@ const createBlog = ({ Blog }) => async (req, res) => {
 
 			content,
 			isPublished,
+			urlString: urlString || title.replace(/ /g, '-'),
 
 			heroURL,
 			previewImageURL,

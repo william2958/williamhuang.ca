@@ -61,6 +61,30 @@ const getGuide = ({ Guide }) => async (req, res) => {
 
 };
 
+const getGuideFromString = ({ Guide }) => async (req, res) => {
+
+	const { urlString } = req.query;
+
+	try {
+		const guide = await Guide.findOne({ urlString });
+
+		if (guide) {
+			return res.status(200).send({
+				guide
+			});
+		} else {
+			return res.status(401).send({
+				message: "There is no book review with that id."
+			})
+		}
+	} catch (e) {
+		return res.status(400).send({
+			message: "There was an error getting the book review."
+		})
+	}
+
+};
+
 const getNumRecentGuides = ({ Guide }) => async (req, res) => {
 	const {
 		numGuides
@@ -186,5 +210,6 @@ module.exports = {
 	getGuideAdmin,
 	getGuide,
 	getNumRecentGuides,
-	getRecentGuides
+	getRecentGuides,
+	getGuideFromString
 };

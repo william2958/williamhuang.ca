@@ -2,7 +2,8 @@ const {
     getBookReview,
     getFilteredBookReviews,
     getRecentBookReviews,
-    getNumRecentBookReviews
+    getNumRecentBookReviews,
+    getBookReviewFromString
 } = require('./publicBookReviewMethods');
 
 const {
@@ -14,5 +15,6 @@ module.exports = {
     getFilteredBookReviews,
     getRecentBookReviews,
     getBookReviewAdmin,
-    getNumRecentBookReviews
+    getNumRecentBookReviews,
+    getBookReviewFromString
 };

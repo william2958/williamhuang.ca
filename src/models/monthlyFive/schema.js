@@ -14,6 +14,11 @@ const schema = new Schema({
 		default: Date.now
 	},
 
+	urlString: {
+		type: String,
+		required: true
+	},
+
 	title: String,
 	contentPreview: String,
 

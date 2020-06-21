@@ -16,8 +16,16 @@ const schema = new Schema({
 
 	title: String,
 	author: String,
+	recommended: {
+		type: Boolean,
+		default: false
+	},
 	category: String,
 	coverURL: String,
+	urlString: {
+		type: String,
+		required: true
+	},
 
 	rating: {
 		type: String,

@@ -9,8 +9,10 @@ module.exports = {
         category: 1,
         rating: 1,
         contentPreview: 1,
+        urlString: 1,
         isPublished: 1,
         publishDate: 1,
-        coverURL: 1
+        coverURL: 1,
+        recommended: 1
     }
 };

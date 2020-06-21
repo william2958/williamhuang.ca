@@ -18,7 +18,30 @@ const getBookReview = ({ BookReview }) => async (req, res) => {
         }
 
     } catch (e) {
-        console.error('Error on getting book reviews: ', e);
+        return res.status(400).send({
+            message: "There was an error getting the book review."
+        })
+    }
+
+};
+
+const getBookReviewFromString = ({ BookReview }) => async (req, res) => {
+
+    const { urlString } = req.query;
+
+    try {
+        const bookReview = await BookReview.findOne({ urlString });
+
+        if (bookReview) {
+            return res.status(200).send({
+                bookReview
+            });
+        } else {
+            return res.status(401).send({
+                message: "There is no book review with that id."
+            })
+        }
+    } catch (e) {
         return res.status(400).send({
             message: "There was an error getting the book review."
         })
@@ -61,7 +84,6 @@ const getNumRecentBookReviews = ({ BookReview }) => async (req, res) => {
             allReviews
         })
     } catch (e) {
-        console.error('Error getting num recent book reviews: ', e);
         return res.status(400).send({
             message: "There was an error getting the book reviews."
         })
@@ -142,7 +164,6 @@ const getRecentBookReviews = ({ BookReview }) => async (req, res) => {
             numToSkip
         })
     } catch (e) {
-        console.error('Error filtering book reviews: ', e);
         return res.status(400).send({
             message: "There was an error getting the book reviews."
         })
@@ -183,7 +204,6 @@ const getFilteredBookReviews = ({ BookReview }) => async (req, res) => {
             allReviews
         })
     } catch (e) {
-        console.error('Error filtering book reviews: ', e);
         return res.status(400).send({
             message: "There was an error getting the book reviews."
         })
@@ -195,5 +215,6 @@ module.exports = {
     getBookReview,
     getFilteredBookReviews,
     getRecentBookReviews,
-    getNumRecentBookReviews
+    getNumRecentBookReviews,
+    getBookReviewFromString
 };

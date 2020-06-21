@@ -1,3 +1,19 @@
+const MONTHS = [
+	"",
+	"January",
+	"February",
+	"March",
+	"April",
+	"May",
+	"June",
+	"July",
+	"August",
+	"September",
+	"October",
+	"November",
+	"December"
+];
+
 const createMonthlyFive = ({ MonthlyFive }) => async (req, res) => {
 
 	const {
@@ -21,6 +37,7 @@ const createMonthlyFive = ({ MonthlyFive }) => async (req, res) => {
 
 			month,
 			year,
+			urlString: `${MONTHS[month]}-${year}`,
 
 			content,
 			isPublished,

@@ -12,6 +12,7 @@ const updateProject = ({ Project }) => async (req, res) => {
 		spotlight,
 		heroURL,
 		previewImageURL,
+		urlString,
 		author
 	} = req.body;
 
@@ -29,6 +30,7 @@ const updateProject = ({ Project }) => async (req, res) => {
 			...(typeof spotlight !== 'undefined' && { spotlight }),
 			...(heroURL && { heroURL }),
 			...(previewImageURL && { previewImageURL }),
+			...(urlString && { urlString }),
 			...(typeof isPublished !== 'undefined' && { isPublished }),
 			...(author && { author })
 		};

@@ -9,6 +9,7 @@ const updateBlog = ({ Blog }) => async (req, res) => {
 
 		heroURL,
 		previewImageURL,
+		urlString,
 
 		blogId
 	} = req.body;
@@ -23,6 +24,7 @@ const updateBlog = ({ Blog }) => async (req, res) => {
 
 			...(content && { content }),
 			...(typeof isPublished !== 'undefined' && { isPublished }),
+			...(urlString && { urlString }),
 
 			...(heroURL && { heroURL }),
 			...(previewImageURL && { previewImageURL })

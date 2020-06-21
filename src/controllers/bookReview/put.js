@@ -10,6 +10,7 @@ const updateBookReview = ({ BookReview }) => async (req, res) => {
         rating,
         bookReviewId,
         recommended,
+        urlString,
         author
     } = req.body;
 
@@ -25,7 +26,8 @@ const updateBookReview = ({ BookReview }) => async (req, res) => {
             ...(coverURL && { coverURL }),
             ...(rating && { rating }),
             ...(typeof isPublished !== 'undefined' && { isPublished }),
-            ...(recommended && { recommended }),
+            ...(typeof recommended !== 'undefined' && { recommended }),
+            ...(urlString && { urlString }),
             ...(author && { author })
         };
 

@@ -24,6 +24,10 @@ const schema = new Schema({
 		type: Boolean,
 		default: false
 	},
+	urlString: {
+		type: String,
+		required: true
+	},
 
 	heroURL: String,
 	previewImageURL: String,

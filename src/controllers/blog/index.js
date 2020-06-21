@@ -2,7 +2,13 @@ const { authenticate } = require('../../middleware');
 
 const { Router: router } = require('express');
 
-const { getNumRecentBlogs, getRecentBlogs, getBlogAdmin, getBlog } = require('./get');
+const {
+	getNumRecentBlogs,
+	getRecentBlogs,
+	getBlogAdmin,
+	getBlog,
+	getBlogFromString
+} = require('./get');
 
 const { createBlog } = require('./post');
 
@@ -17,6 +23,11 @@ module.exports = (models, { config }) => {
 	api.get(
 		'/getBlog',
 		getBlog(models)
+	);
+
+	api.get(
+		'/getBlogFromString',
+		getBlogFromString(models)
 	);
 
 	// Get certain number of book reviews

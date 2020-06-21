@@ -61,6 +61,30 @@ const getMonthlyFive = ({ MonthlyFive }) => async (req, res) => {
 
 };
 
+const getMonthlyFiveFromString = ({ MonthlyFive }) => async (req, res) => {
+
+	const { urlString } = req.query;
+
+	try {
+		const monthlyFive = await MonthlyFive.findOne({ urlString });
+
+		if (monthlyFive) {
+			return res.status(200).send({
+				monthlyFive
+			});
+		} else {
+			return res.status(401).send({
+				message: "There is no book review with that id."
+			})
+		}
+	} catch (e) {
+		return res.status(400).send({
+			message: "There was an error getting the book review."
+		})
+	}
+
+};
+
 const getNumRecentMonthlyFives = ({ MonthlyFive }) => async (req, res) => {
 	const {
 		numMonthlyFives
@@ -81,7 +105,8 @@ const getNumRecentMonthlyFives = ({ MonthlyFive }) => async (req, res) => {
 			},
 			{
 				$sort: {
-					publishDate: -1
+					year: -1,
+					month: -1
 				}
 			},
 			{
@@ -106,72 +131,39 @@ const getNumRecentMonthlyFives = ({ MonthlyFive }) => async (req, res) => {
 const getRecentMonthlyFives = ({ MonthlyFive }) => async (req, res) => {
 
 	const {
-		numSkip
+		year
 	} = req.query;
 
 	try {
 		let allMonthlyFives;
-		let numToSkip;
-		if (!numSkip || isNaN(numSkip)) {
-			// First page, don't skip any
-			allMonthlyFives = await MonthlyFive.aggregate([
-				{
-					$match: {
-						isPublished: true
-					}
-				},
-				{
-					$sort: {
-						publishDate: -1
-					}
-				},
-				{
-					$limit: LIMIT_PER_PAGE + 1
-				},
-				{
-					$project: propertiesToProject
-				}
-			]);
-			numToSkip = LIMIT_PER_PAGE;
+		if (!year || isNaN(year)) {
+			// Invalid input
+			return res.status(400).send({
+				message: 'Incorrectly formatted year.'
+			})
 		} else {
 
 			allMonthlyFives = await MonthlyFive.aggregate([
 				{
 					$match: {
-						isPublished: true
+						isPublished: true,
+						year: parseInt(year)
 					}
 				},
 				{
 					$sort: {
-						publishDate: -1
+						month: -1
 					}
-				},
-				{
-					$skip: parseInt(numSkip)
-				},
-				{
-					$limit: LIMIT_PER_PAGE + 1
 				},
 				{
 					$project: propertiesToProject
 				}
 			]);
 
-			numToSkip = parseInt(numSkip) + LIMIT_PER_PAGE;
-
-		}
-
-		let anotherPage = false;
-		if (allMonthlyFives.length > LIMIT_PER_PAGE) {
-			// There is another page
-			anotherPage = true;
-			allMonthlyFives.pop();
 		}
 
 		res.status(200).send({
-			allMonthlyFives,
-			anotherPage,
-			numToSkip
+			allMonthlyFives
 		})
 	} catch (e) {
 		console.error('Error filtering monthlyFives: ', e);
@@ -186,5 +178,6 @@ module.exports = {
 	getMonthlyFiveAdmin,
 	getMonthlyFive,
 	getNumRecentMonthlyFives,
-	getRecentMonthlyFives
+	getRecentMonthlyFives,
+	getMonthlyFiveFromString
 };

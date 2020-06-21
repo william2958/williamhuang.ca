@@ -19,6 +19,10 @@ const schema = new Schema({
 
 	heroURL: String,
 	previewImageURL: String,
+	urlString: {
+		type: String,
+		required: true
+	},
 
 	// DraftJS content saved as string json
 	content: {

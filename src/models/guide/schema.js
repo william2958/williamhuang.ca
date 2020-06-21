@@ -16,7 +16,11 @@ const schema = new Schema({
 
 	title: String,
 	contentPreview: String,
-	technology: String,
+	technology: [String],
+	urlString: {
+		type: String,
+		required: true
+	},
 
 	iconURL: String,
 	previewImageURL: String,

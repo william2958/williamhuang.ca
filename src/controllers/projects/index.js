@@ -7,7 +7,8 @@ const {
 	getRecentProjects,
 	getNumRecentProjects,
 	getProjectAdmin,
-	getSpotlightProject
+	getSpotlightProject,
+	getProjectFromString
 } = require('./get');
 
 const { createProject } = require('./post');
@@ -23,6 +24,11 @@ module.exports = (models, { config }) => {
 	api.get(
 		'/getProject',
 		getProject(models)
+	);
+
+	api.get(
+		'/getProjectFromString',
+		getProjectFromString(models)
 	);
 
 	// Get certain number of book reviews

@@ -61,6 +61,30 @@ const getProject = ({ Project }) => async (req, res) => {
 
 };
 
+const getProjectFromString = ({ Project }) => async (req, res) => {
+
+	const { urlString } = req.query;
+
+	try {
+		const project = await Project.findOne({ urlString });
+
+		if (project) {
+			return res.status(200).send({
+				project
+			});
+		} else {
+			return res.status(401).send({
+				message: "There is no book review with that id."
+			})
+		}
+	} catch (e) {
+		return res.status(400).send({
+			message: "There was an error getting the book review."
+		})
+	}
+
+};
+
 const getNumRecentProjects = ({ Project }) => async (req, res) => {
 	const {
 		numProjects
@@ -269,5 +293,6 @@ module.exports = {
 	getNumRecentProjects,
 	getRecentProjects,
 	getFilteredProjects,
-	getSpotlightProject
+	getSpotlightProject,
+	getProjectFromString
 };

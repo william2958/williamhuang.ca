@@ -49,7 +49,6 @@ const uploadImage = ({ }, { bucket }) => async (req, res, next) => {
 
         blobStream.end(req.file.buffer);
     } catch (e) {
-        console.log('error when uploading file: ', e);
         res.status(400).send({
             message: 'There was an error uploading that file',
             error: e,

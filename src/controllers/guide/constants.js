@@ -7,6 +7,7 @@ module.exports = {
 		title: 1,
 		contentPreview: 1,
 		technology: 1,
+		urlString: 1,
 
 		iconURL: 1,
 		previewImageURL: 1,

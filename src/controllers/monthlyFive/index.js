@@ -2,7 +2,13 @@ const { authenticate } = require('../../middleware');
 
 const { Router: router } = require('express');
 
-const { getNumRecentMonthlyFives, getRecentMonthlyFives, getMonthlyFiveAdmin, getMonthlyFive } = require('./get');
+const {
+	getNumRecentMonthlyFives,
+	getRecentMonthlyFives,
+	getMonthlyFiveAdmin,
+	getMonthlyFive,
+	getMonthlyFiveFromString
+} = require('./get');
 
 const { createMonthlyFive } = require('./post');
 
@@ -17,6 +23,11 @@ module.exports = (models, { config }) => {
 	api.get(
 		'/getMonthlyFive',
 		getMonthlyFive(models)
+	);
+
+	api.get(
+		'/getMonthlyFiveFromString',
+		getMonthlyFiveFromString(models)
 	);
 
 	// Get certain number of book reviews

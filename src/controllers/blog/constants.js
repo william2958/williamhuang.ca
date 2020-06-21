@@ -6,6 +6,7 @@ module.exports = {
 		created: 1,
 		title: 1,
 		contentPreview: 1,
+		urlString: 1,
 
 		heroURL: 1,
 		previewImageURL: 1,

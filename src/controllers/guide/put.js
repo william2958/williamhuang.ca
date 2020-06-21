@@ -7,6 +7,7 @@ const updateGuide = ({ Guide }) => async (req, res) => {
 
 		content,
 		isPublished,
+		urlString,
 
 		iconURL,
 		previewImageURL,
@@ -14,7 +15,6 @@ const updateGuide = ({ Guide }) => async (req, res) => {
 		guideId
 	} = req.body;
 
-	console.log('icon url: ', iconURL);
 	try {
 
 		const prevGuide = await Guide.findOne({ _id: guideId });
@@ -27,6 +27,7 @@ const updateGuide = ({ Guide }) => async (req, res) => {
 
 			...(content && { content }),
 			...(typeof isPublished !== 'undefined' && { isPublished }),
+			...(urlString && { urlString }),
 
 			...(iconURL && { iconURL }),
 			...(previewImageURL && { previewImageURL })

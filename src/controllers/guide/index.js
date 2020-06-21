@@ -2,7 +2,13 @@ const { authenticate } = require('../../middleware');
 
 const { Router: router } = require('express');
 
-const { getNumRecentGuides, getRecentGuides, getGuideAdmin, getGuide } = require('./get');
+const {
+	getNumRecentGuides,
+	getRecentGuides,
+	getGuideAdmin,
+	getGuide,
+	getGuideFromString
+} = require('./get');
 
 const { createGuide } = require('./post');
 
@@ -17,6 +23,11 @@ module.exports = (models, { config }) => {
 	api.get(
 		'/getGuide',
 		getGuide(models)
+	);
+
+	api.get(
+		'/getGuideFromString',
+		getGuideFromString(models)
 	);
 
 	// Get certain number of book reviews

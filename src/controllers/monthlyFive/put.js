@@ -6,6 +6,7 @@ const updateMonthlyFive = ({ MonthlyFive }) => async (req, res) => {
 
 		month,
 		year,
+		urlString,
 
 		content,
 		isPublished,
@@ -26,6 +27,7 @@ const updateMonthlyFive = ({ MonthlyFive }) => async (req, res) => {
 
 			...(month && { month }),
 			...(year && { year }),
+			...(urlString && { urlString }),
 
 			...(content && { content }),
 			...(typeof isPublished !== 'undefined' && { isPublished }),

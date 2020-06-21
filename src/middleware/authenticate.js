@@ -22,7 +22,6 @@ const authenticate = ({ firebaseAuth }) => async (req, res, next) => {
         req.user = await firebaseAuth.signInWithCustomToken(authToken);
         return next();
     } catch (e) {
-        console.log('error verifying token: ', e);
         return res.status(401).send({
             message: "You are not authorized to make this request."
         })

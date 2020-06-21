@@ -10,7 +10,8 @@ const {
     getFilteredBookReviews,
     getRecentBookReviews,
     getBookReviewAdmin,
-    getNumRecentBookReviews
+    getNumRecentBookReviews,
+    getBookReviewFromString
 } = require('./get');
 
 const {
@@ -24,6 +25,11 @@ const { deleteBookReview } = require('./delete');
 module.exports = (models, { config }) => {
 
     const api = new router();
+
+    api.get(
+        '/getBookReviewFromString',
+        getBookReviewFromString(models)
+    );
 
     api.get(
         '/getBookReview',

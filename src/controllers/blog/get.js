@@ -61,6 +61,30 @@ const getBlog = ({ Blog }) => async (req, res) => {
 
 };
 
+const getBlogFromString = ({ Blog }) => async (req, res) => {
+
+	const { urlString } = req.query;
+
+	try {
+		const blog = await Blog.findOne({ urlString });
+
+		if (blog) {
+			return res.status(200).send({
+				blog
+			});
+		} else {
+			return res.status(401).send({
+				message: "There is no book review with that id."
+			})
+		}
+	} catch (e) {
+		return res.status(400).send({
+			message: "There was an error getting the book review."
+		})
+	}
+
+};
+
 const getNumRecentBlogs = ({ Blog }) => async (req, res) => {
 	const {
 		numBlogs
@@ -186,5 +210,6 @@ module.exports = {
 	getBlogAdmin,
 	getBlog,
 	getNumRecentBlogs,
-	getRecentBlogs
+	getRecentBlogs,
+	getBlogFromString
 };

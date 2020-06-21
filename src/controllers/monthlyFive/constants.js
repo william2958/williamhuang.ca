@@ -11,6 +11,7 @@ module.exports = {
 		heroURL: 1,
 		previewImageURL: 1,
 		isPublished: 1,
+		urlString: 1,
 		publishDate: 1
 	}
 };
