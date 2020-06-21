@@ -28,7 +28,7 @@ const updateMonthlyFive = ({ MonthlyFive }) => async (req, res) => {
 			...(year && { year }),
 
 			...(content && { content }),
-			...(isPublished && { isPublished }),
+			...(typeof isPublished !== 'undefined' && { isPublished }),
 
 			...(heroURL && { heroURL }),
 			...(previewImageURL && { previewImageURL })

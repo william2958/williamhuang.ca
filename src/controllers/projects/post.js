@@ -8,6 +8,7 @@ const createProject = ({ Project }) => async (req, res) => {
 		isPublished,
 		techStack,
 		liveLink,
+		spotlight,
 		heroURL,
 		previewImageURL
 	} = req.body;
@@ -21,6 +22,7 @@ const createProject = ({ Project }) => async (req, res) => {
 			techStack,
 			liveLink,
 			heroURL,
+			spotlight,
 			previewImageURL,
 			isPublished,
 			owner: req.user.id

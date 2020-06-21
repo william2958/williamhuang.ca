@@ -24,7 +24,7 @@ const updateBookReview = ({ BookReview }) => async (req, res) => {
             ...(title && { title }),
             ...(coverURL && { coverURL }),
             ...(rating && { rating }),
-            ...(isPublished && { isPublished }),
+            ...(typeof isPublished !== 'undefined' && { isPublished }),
             ...(recommended && { recommended }),
             ...(author && { author })
         };

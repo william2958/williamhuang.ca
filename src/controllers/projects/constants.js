@@ -9,6 +9,7 @@ module.exports = {
 		category: 1,
 		techStack: 1,
 		liveLink: 1,
+		spotlight: 1,
 		heroURL: 1,
 		previewImageURL: 1,
 		isPublished: 1,

@@ -9,6 +9,7 @@ const updateProject = ({ Project }) => async (req, res) => {
 		isPublished,
 		techStack,
 		liveLink,
+		spotlight,
 		heroURL,
 		previewImageURL,
 		author
@@ -25,9 +26,10 @@ const updateProject = ({ Project }) => async (req, res) => {
 			...(title && { title }),
 			...(techStack && { techStack }),
 			...(liveLink && { liveLink }),
+			...(typeof spotlight !== 'undefined' && { spotlight }),
 			...(heroURL && { heroURL }),
 			...(previewImageURL && { previewImageURL }),
-			...(isPublished && { isPublished }),
+			...(typeof isPublished !== 'undefined' && { isPublished }),
 			...(author && { author })
 		};
 

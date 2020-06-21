@@ -25,7 +25,7 @@ const updateGuide = ({ Guide }) => async (req, res) => {
 			...(technology && { technology }),
 
 			...(content && { content }),
-			...(isPublished && { isPublished }),
+			...(typeof isPublished !== 'undefined' && { isPublished }),
 
 			...(iconURL && { iconURL }),
 			...(previewImageURL && { previewImageURL })

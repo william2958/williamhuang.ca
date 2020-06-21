@@ -22,7 +22,7 @@ const updateBlog = ({ Blog }) => async (req, res) => {
 			...(contentPreview && { contentPreview }),
 
 			...(content && { content }),
-			...(isPublished && { isPublished }),
+			...(typeof isPublished !== 'undefined' && { isPublished }),
 
 			...(heroURL && { heroURL }),
 			...(previewImageURL && { previewImageURL })

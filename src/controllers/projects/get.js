@@ -226,10 +226,48 @@ const getFilteredProjects = ({ Project }) => async (req, res) => {
 
 };
 
+const getSpotlightProject = ({ Project }) => async (req, res) => {
+
+	try {
+
+		let mostRecentSpotlight = await Project.aggregate([
+			{
+				$match: {
+					isPublished: true,
+					spotlight: true
+				}
+			},
+			{
+				$sort: {
+					publishDate: -1
+				}
+			},
+			{
+				$limit: 1
+			},
+			{
+				$project: propertiesToProject
+			}
+		]);
+
+		res.status(200).send({
+			spotlightProject: mostRecentSpotlight.length ? mostRecentSpotlight[0] : null
+		})
+
+	} catch (e) {
+		console.error('Error getting the spotlight: ', e);
+		return res.status(400).send({
+			message: "There was an error getting the project spotlight."
+		})
+	}
+
+};
+
 module.exports = {
 	getProjectAdmin,
 	getProject,
 	getNumRecentProjects,
 	getRecentProjects,
-	getFilteredProjects
+	getFilteredProjects,
+	getSpotlightProject
 };

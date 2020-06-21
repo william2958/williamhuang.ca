@@ -20,6 +20,10 @@ const schema = new Schema({
 	category: String,
 	techStack: [String],
 	liveLink: String,
+	spotlight: {
+		type: Boolean,
+		default: false
+	},
 
 	heroURL: String,
 	previewImageURL: String,

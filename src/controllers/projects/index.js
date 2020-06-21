@@ -6,7 +6,8 @@ const {
 	getProject,
 	getRecentProjects,
 	getNumRecentProjects,
-	getProjectAdmin
+	getProjectAdmin,
+	getSpotlightProject
 } = require('./get');
 
 const { createProject } = require('./post');
@@ -28,6 +29,8 @@ module.exports = (models, { config }) => {
 	api.get('/getNumRecentProjects', getNumRecentProjects(models));
 	// Based on num skip and category
 	api.get('/getRecentProjects', getRecentProjects(models));
+
+	api.get('/getSpotlightProject', getSpotlightProject(models));
 
 	// Get either published projects or drafts
 	api.get('/getProjectAdmin', authenticate, getProjectAdmin(models));
