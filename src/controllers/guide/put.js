@@ -14,6 +14,7 @@ const updateGuide = ({ Guide }) => async (req, res) => {
 		guideId
 	} = req.body;
 
+	console.log('icon url: ', iconURL);
 	try {
 
 		const prevGuide = await Guide.findOne({ _id: guideId });

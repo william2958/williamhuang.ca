@@ -18,6 +18,7 @@ const schema = new Schema({
 	contentPreview: String,
 	technology: String,
 
+	iconURL: String,
 	previewImageURL: String,
 
 	// DraftJS content saved as string json
