@@ -1,3 +1,3 @@
 module.exports = {
-	GLOBAL_LIMIT_PER_PAGE: 2
+	GLOBAL_LIMIT_PER_PAGE: 12
 };
