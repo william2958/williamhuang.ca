@@ -21,7 +21,7 @@ const createGuide = ({ Guide }) => async (req, res) => {
 
 			content,
 			isPublished,
-			urlString: urlString || title.replace(/ /g, '-'),
+			urlString: urlString || title.replace(/ /g, '-').toLowerCase(),
 
 			iconURL,
 			previewImageURL,

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production node index.js",
     "local": "NODE_ENV=local nodemon index.js",
-    "deploy": "gcloud app deploy --promote --stop-previous-version"
+    "deploy": "gcloud app deploy --promote --version=production"
   },
   "keywords": [],
   "author": "",

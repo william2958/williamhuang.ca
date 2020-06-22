@@ -23,7 +23,7 @@ const createBookReview = ({ BookReview }) => async (req, res) => {
             rating,
             isPublished,
             recommended,
-            urlString: urlString || title.replace(/ /g, '-'),
+            urlString: urlString || title.replace(/ /g, '-').toLowerCase(),
             author,
             owner: req.user.id
         };

@@ -19,7 +19,7 @@ const createBlog = ({ Blog }) => async (req, res) => {
 
 			content,
 			isPublished,
-			urlString: urlString || title.replace(/ /g, '-'),
+			urlString: urlString || title.replace(/ /g, '-').toLowerCase(),
 
 			heroURL,
 			previewImageURL,

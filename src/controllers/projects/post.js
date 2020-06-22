@@ -24,7 +24,7 @@ const createProject = ({ Project }) => async (req, res) => {
 			liveLink,
 			heroURL,
 			spotlight,
-			urlString: urlString || title.replace(/ /g, '-'),
+			urlString: urlString || title.replace(/ /g, '-').toLowerCase(),
 			previewImageURL,
 			isPublished,
 			owner: req.user.id
