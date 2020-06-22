@@ -55,4 +55,16 @@ app.get('/api/', (req, res) => {
     res.send('Successfully hit endpoint.');
 });
 
+app.get('/', (req, res) => {
+    res.status(200).send('DEFAULT ENDPOINT');
+});
+
+app.get('/_ah/stop', (req, res) => {
+    res.status(200).send();
+});
+
+app.get('/_ah/start', (req, res) => {
+    res.status(200).send()
+});
+
 app.listen(port, () => console.log(`App is listening on ${port}`));
