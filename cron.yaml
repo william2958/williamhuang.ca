@@ -1,0 +1,5 @@
+cron:
+- description: "Keep primary instance running"
+  url: /
+  target: default
+  schedule: every 5 mins

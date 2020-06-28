@@ -15,8 +15,15 @@ const uploadImage = ({ }, { bucket }) => async (req, res, next) => {
 
     try {
         // Get a reference to the bucket file, and make sure to save in the right directory
+        const formattedPath = req.body.path.replace(/ /g, '_');
+        let formattedName;
+        if (req.file.originalname) {
+            formattedName = req.file.originalname.replace(/ /g, '_');
+        } else {
+            formattedName = 'unnamed_file'
+        }
         const blob = bucket.file(
-            req.body.path + req.file.originalname + '-' + Date.now(),
+            formattedPath + Date.now() + '_' + formattedName,
         );
         // Start the upload
         const blobStream = await blob.createWriteStream({

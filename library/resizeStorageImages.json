@@ -1,0 +1,10 @@
+{
+  "name": "sample-http",
+  "version": "0.0.1",
+  "dependencies": {
+    "@google-cloud/storage": "^1.6.0",
+    "os": "^0.1.1",
+    "path": "^0.12.7",
+    "sharp": "^0.25.4"
+  }
+}
