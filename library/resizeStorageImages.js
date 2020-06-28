@@ -20,12 +20,8 @@ exports.compressUploadedImages = async (event, context) => {
 
 	const destBucket = gcs.bucket(bucket);
 	const tmpFilePath = path.join(os.tmpdir(), path.basename(filePath));
-	const metadata = {
-		contentType: contentType,
-		//'Cache-Control': 'public,max-age=3600',
-	};
 
-	if (fileName.includes('resize') || !imageObject.contentType.includes('image')) {
+	if (fileName.includes('resize') || !contentType.includes('image')) {
 		return;
 	}
 

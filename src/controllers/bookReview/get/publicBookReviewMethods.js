@@ -97,6 +97,16 @@ const getRecentBookReviews = ({ BookReview }) => async (req, res) => {
         category
     } = req.query;
 
+    const options = {
+        isPublished: true
+    };
+
+    if (category === 'recommended') {
+        options.recommended = true;
+    } else if (category) {
+        options.category = category;
+    }
+
     try {
         let allReviews;
         let numToSkip;
@@ -104,10 +114,7 @@ const getRecentBookReviews = ({ BookReview }) => async (req, res) => {
             // First page, don't skip any
             allReviews = await BookReview.aggregate([
                 {
-                    $match: {
-                        isPublished: true,
-                        ...(category && { category })
-                    }
+                    $match: options
                 },
                 {
                     $sort: {
