@@ -42,7 +42,8 @@ exports.compressUploadedImages = async (event, context) => {
 
 		await sharp(tmpFilePath)
 			.resize(size, size, {
-				withoutEnlargement: true
+				withoutEnlargement: true,
+				fit: sharp.fit.inside
 			})
 			.toFile(resizePath);
 
