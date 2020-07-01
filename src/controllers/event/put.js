@@ -9,6 +9,7 @@ const updateEvent = ({ Event }) => async (req, res) => {
 		recap,
 		isPublished,
 		urlString,
+		keyInfo,
 
 		heroURL,
 
@@ -26,6 +27,7 @@ const updateEvent = ({ Event }) => async (req, res) => {
 
 			...(content && { content }),
 			...(recap && { recap }),
+			...(keyInfo && { keyInfo }),
 			...(typeof isPublished !== 'undefined' && { isPublished }),
 			...(urlString && { urlString }),
 

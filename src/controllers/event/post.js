@@ -8,6 +8,7 @@ const createEvent = ({ Event }) => async (req, res) => {
 		heroURL,
 		content,
 		recap,
+		keyInfo,
 
 		urlString,
 		isPublished
@@ -21,6 +22,7 @@ const createEvent = ({ Event }) => async (req, res) => {
 
 			content,
 			recap,
+			keyInfo,
 			isPublished,
 			urlString: urlString || title.replace(/ /g, '-').toLowerCase(),
 

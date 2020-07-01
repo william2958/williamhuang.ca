@@ -18,6 +18,7 @@ const schema = new Schema({
 	title: String,
 	contentPreview: String,
 	eventDate: Date,
+	keyInfo: [String],
 
 	urlString: {
 		type: String,

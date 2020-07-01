@@ -8,6 +8,7 @@ module.exports = {
 		contentPreview: 1,
 		eventDate: 1,
 		urlString: 1,
+		keyInfo: 1,
 
 		heroURL: 1,
 		isPublished: 1,
