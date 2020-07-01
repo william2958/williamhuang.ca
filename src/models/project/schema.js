@@ -26,7 +26,8 @@ const schema = new Schema({
 	},
 	urlString: {
 		type: String,
-		required: true
+		required: true,
+		index: true
 	},
 
 	heroURL: String,

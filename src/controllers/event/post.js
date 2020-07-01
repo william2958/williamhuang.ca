@@ -1,48 +1,50 @@
-const createGuide = ({ Guide }) => async (req, res) => {
+const createEvent = ({ Event }) => async (req, res) => {
 
 	const {
 		title,
 		contentPreview,
-		technology,
+		eventDate,
 
+		heroURL,
 		content,
-		isPublished,
-		urlString,
+		recap,
 
-		iconURL,
-		previewImageURL
+		urlString,
+		isPublished
 	} = req.body;
 
 	try {
-		const reviewData = {
+		const eventData = {
 			title,
 			contentPreview,
-			technology,
+			eventDate,
 
 			content,
+			recap,
 			isPublished,
 			urlString: urlString || title.replace(/ /g, '-').toLowerCase(),
 
-			iconURL,
-			previewImageURL,
+			heroURL,
 			owner: req.user.id
 		};
 
 		if (isPublished) {
-			reviewData.publishDate = new Date()
+			eventData.publishDate = new Date();
 		}
-		let setGuide = new Guide(
-			reviewData
+		let setEvent = new Event(
+			eventData
 		);
-		await setGuide.save();
+
+		await setEvent.save();
 
 		return res.status(200).send({
-			guideId: setGuide._id
+			eventId: setEvent._id
 		})
+
 	} catch (e) {
 
 		return res.status(400).send({
-			message: "Could not create guide"
+			message: "Could not create event"
 		});
 
 	}
@@ -50,5 +52,5 @@ const createGuide = ({ Guide }) => async (req, res) => {
 };
 
 module.exports = {
-	createGuide
+	createEvent
 };

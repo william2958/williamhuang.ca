@@ -24,7 +24,8 @@ const schema = new Schema({
 	coverURL: String,
 	urlString: {
 		type: String,
-		required: true
+		required: true,
+		index: true
 	},
 
 	rating: {

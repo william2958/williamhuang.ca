@@ -47,7 +47,7 @@ const getGuide = ({ Guide }) => async (req, res) => {
 				guide
 			});
 		} else {
-			return res.status(401).send({
+			return res.status(404).send({
 				message: "There is no Guide with that id."
 			})
 		}
@@ -73,13 +73,13 @@ const getGuideFromString = ({ Guide }) => async (req, res) => {
 				guide
 			});
 		} else {
-			return res.status(401).send({
-				message: "There is no book review with that id."
+			return res.status(404).send({
+				message: "There is no guide with that id."
 			})
 		}
 	} catch (e) {
 		return res.status(400).send({
-			message: "There was an error getting the book review."
+			message: "There was an error getting the guide."
 		})
 	}
 

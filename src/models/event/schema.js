@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
 const schema = new Schema({
+
 	owner: {
 		type: ObjectId,
 		ref: 'User',
@@ -14,23 +15,23 @@ const schema = new Schema({
 		default: Date.now
 	},
 
+	title: String,
+	contentPreview: String,
+	eventDate: Date,
+
 	urlString: {
 		type: String,
 		required: true,
 		index: true
 	},
 
-	title: String,
-	contentPreview: String,
-
-	month: Number,
-	year: Number,
-
 	heroURL: String,
-	previewImageURL: String,
 
-	// DraftJS content saved as string json
 	content: {
+		type: String
+	},
+
+	recap: {
 		type: String
 	},
 

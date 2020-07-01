@@ -19,7 +19,12 @@ const schema = new Schema({
 	technology: [String],
 	urlString: {
 		type: String,
-		required: true
+		required: true,
+		index: true
+	},
+
+	social: {
+		facebook: String,
 	},
 
 	iconURL: String,

@@ -21,7 +21,8 @@ const schema = new Schema({
 	previewImageURL: String,
 	urlString: {
 		type: String,
-		required: true
+		required: true,
+		index: true
 	},
 
 	// DraftJS content saved as string json

@@ -5,6 +5,7 @@ const { Blog } = require('../models/blog');
 const { Project } = require('../models/project');
 const { MonthlyFive } = require('../models/monthlyFive');
 const { Guide } = require('../models/guide');
+const { Event } = require('../models/event');
 
 const express = require('express');
 
@@ -15,6 +16,7 @@ const project = require('../controllers/projects');
 const blog = require('../controllers/blog');
 const guide = require('../controllers/guide');
 const monthlyFive = require('../controllers/monthlyFive');
+const event = require('../controllers/event');
 
 const models = {
     User,
@@ -23,7 +25,8 @@ const models = {
     Blog,
     Project,
     MonthlyFive,
-    Guide
+    Guide,
+    Event
 };
 
 const routersInit = config => {
@@ -37,6 +40,7 @@ const routersInit = config => {
     router.use('/blog', blog(models, { ...config }));
     router.use('/guide', guide(models, { ...config }));
     router.use('/monthlyFive', monthlyFive(models, { ...config }));
+    router.use('/event', event(models, { ...config }));
 
     return router;
 
