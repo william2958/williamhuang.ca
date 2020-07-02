@@ -6,6 +6,7 @@ const { Project } = require('../models/project');
 const { MonthlyFive } = require('../models/monthlyFive');
 const { Guide } = require('../models/guide');
 const { Event } = require('../models/event');
+const { Highlight } = require('../models/highlight');
 
 const express = require('express');
 
@@ -17,6 +18,7 @@ const blog = require('../controllers/blog');
 const guide = require('../controllers/guide');
 const monthlyFive = require('../controllers/monthlyFive');
 const event = require('../controllers/event');
+const highlight = require('../controllers/highlight');
 
 const models = {
     User,
@@ -26,7 +28,8 @@ const models = {
     Project,
     MonthlyFive,
     Guide,
-    Event
+    Event,
+    Highlight
 };
 
 const routersInit = config => {
@@ -41,6 +44,7 @@ const routersInit = config => {
     router.use('/guide', guide(models, { ...config }));
     router.use('/monthlyFive', monthlyFive(models, { ...config }));
     router.use('/event', event(models, { ...config }));
+    router.use('/highlight', highlight(models, { ...config }));
 
     return router;
 
