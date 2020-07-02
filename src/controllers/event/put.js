@@ -1,3 +1,38 @@
+const setEventUpdated = ({ Event }) => async (req, res) => {
+
+	const {
+		eventId
+	} = req.body;
+
+	try {
+		const newDate = new Date();
+		const newEvent = await Event.findOneAndUpdate(
+			{ _id: eventId},
+			{
+				$set: {
+					lastUpdated: newDate
+				}
+			},
+			{
+				new: true,
+			}
+		);
+
+		console.log('event id: ', eventId);
+
+		return res.status(200).send({
+			event: newEvent
+		})
+	} catch (e) {
+
+		return res.status(400).send({
+			message: "Could not update event"
+		});
+
+	}
+
+};
+
 const updateEvent = ({ Event }) => async (req, res) => {
 
 	const {
@@ -61,5 +96,6 @@ const updateEvent = ({ Event }) => async (req, res) => {
 };
 
 module.exports = {
-	updateEvent
+	updateEvent,
+	setEventUpdated
 };

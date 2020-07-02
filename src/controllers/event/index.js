@@ -11,7 +11,7 @@ const {
 
 const { createEvent } = require('./post');
 
-const { updateEvent } = require('./put');
+const { updateEvent, setEventUpdated } = require('./put');
 
 module.exports = (models, { config }) => {
 
@@ -40,6 +40,7 @@ module.exports = (models, { config }) => {
 	);
 
 	api.put('/updateEvent', authenticate, updateEvent(models));
+	api.put('/setEventUpdated', authenticate, setEventUpdated(models));
 
 	return api;
 

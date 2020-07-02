@@ -12,6 +12,7 @@ module.exports = {
 
 		heroURL: 1,
 		isPublished: 1,
-		publishDate: 1
+		publishDate: 1,
+		lastUpdated: 1
 	}
 };

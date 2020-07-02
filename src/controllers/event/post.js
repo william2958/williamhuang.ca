@@ -33,6 +33,7 @@ const createEvent = ({ Event }) => async (req, res) => {
 		if (isPublished) {
 			eventData.publishDate = new Date();
 		}
+		eventData.lastUpdated = new Date();
 		let setEvent = new Event(
 			eventData
 		);

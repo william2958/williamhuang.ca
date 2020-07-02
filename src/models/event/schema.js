@@ -39,6 +39,9 @@ const schema = new Schema({
 		type: String
 	},
 
+	lastUpdated: {
+		type: Date
+	},
 	isPublished: {
 		type: Boolean,
 		default: false
