@@ -18,7 +18,10 @@ const schema = new Schema({
 	title: String,
 	contentPreview: String,
 	eventDate: Date,
-	keyInfo: [String],
+	keyInfo: {
+		type: [String],
+		default: []
+	},
 
 	urlString: {
 		type: String,
