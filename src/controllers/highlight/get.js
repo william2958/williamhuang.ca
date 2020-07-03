@@ -44,6 +44,8 @@ const getHighlight = ({ Highlight, Event, MonthlyFive, Project }) => async (req,
 					]);
 					break;
 			}
+			if (highlightObject && highlightObject.length)
+				highlightObject = highlightObject[0];
 			return res.status(200).send({
 				highlight,
 				highlightObject
