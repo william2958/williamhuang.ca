@@ -5,209 +5,16 @@
       <change afterPath="$PROJECT_DIR$/../client/.idea/client.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../client/.idea/misc.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../client/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/williamhuang.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/App.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/Routes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/actions/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/actions/types.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/images/backgrounds/homeBG.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/images/backgrounds/library.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/images/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/headerTitle.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/labels/Atom.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/labels/Dragon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/labels/Fingerprint.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/labels/SelfHelp.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/socialMedia/AngelList.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/socialMedia/Email.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/socialMedia/Github.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/socialMedia/Instagram.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/socialMedia/LinkedIn.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/socialMedia/Medium.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/socialMedia/Twitter.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/socialMedia/Youtube.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/ui/AlignCenter.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/ui/AlignLeft.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/ui/AlignRight.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/ui/BackCaret.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/ui/Camera.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/ui/Close.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/ui/DownCaret.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/ui/OpenInNew.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/ui/Search.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/svgs/ui/Star.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/auth/userActions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Dropdown/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Dropdown/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Footer/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Footer/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Header/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Header/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/RichTextEditor/BlockStyleControls.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/RichTextEditor/InlineStyleControls.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/RichTextEditor/RichTextEditorStyles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/RichTextEditor/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/RichTextEditor/linkDecorator.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/RichTextEditor/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/SvgIcon/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/TypeLabel/TypeLabel.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/TypeLabel/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/TypeLabel/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Button/components/BaseButton.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Button/components/ButtonContainer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Button/components/PrimaryButton/PrimaryButtonContainer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Button/components/PrimaryButton/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Button/components/SecondaryButton/SecondaryButtonContainer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Button/components/SecondaryButton/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Button/components/TertiaryButton.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Button/components/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Button/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Button/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Checkbox/CheckboxSimple.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Checkbox/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Checkbox/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Divider/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Divider/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Inputs/FileInput/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Inputs/LocationInput/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Inputs/LocationSearchInput.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Inputs/TextBox/TextboxSimple.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Inputs/TextBox/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Inputs/TextInput/InputPrimary.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Inputs/TextInput/InputSimple.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Inputs/TimeInput/TimeInputWrapper.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Inputs/TimeInput/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Inputs/bindControl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Inputs/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Link/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Link/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Radio/RadioSimple.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Radio/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/Radio/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/dropdowns/SimpleDropdown/DropdownSimple.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/dropdowns/SimpleDropdown/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/dropdowns/SimpleDropdown/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/constants/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Admin.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/AdminHome.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/AdminLogin.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Blogs/BlogEditor.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Blogs/DraftBlogs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Blogs/EditBlog.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Blogs/NewBlog.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Blogs/PublishedBlogs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Blogs/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/BookReviews/AdminDrafts.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/BookReviews/AdminPublished.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/BookReviews/BookReviewEditor.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/BookReviews/EditBookReview.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/BookReviews/NewBookReview.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/BookReviews/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Events/DraftEvents.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Events/EditEvent.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Events/EventEditor.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Events/NewEvent.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Events/PublishedEvents.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Events/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Guides/DraftGuides.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Guides/EditGuide.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Guides/GuideEditor.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Guides/NewGuide.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Guides/PublishedGuides.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Guides/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/MonthlyFives/DraftMonthlyFives.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/MonthlyFives/EditMonthlyFive.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/MonthlyFives/MonthlyFiveEditor.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/MonthlyFives/NewMonthlyFive.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/MonthlyFives/PublishedMonthlyFives.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/MonthlyFives/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Projects/DraftProjects.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Projects/EditProject.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Projects/NewProject.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Projects/ProjectEditor.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Projects/PublishedProjects.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/Projects/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/components/AdminHeader/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/components/AdminHeader/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Admin/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/BookReviews/BookReviewDetail/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/BookReviews/BookReviewDetail/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/BookReviews/BookReviewPreview/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/BookReviews/BookReviewPreview/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/BookReviews/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/BookReviews/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Events/EventDetail/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Events/EventDetail/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Events/EventHero/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Events/EventHero/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Events/EventPreview/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Events/EventPreview/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Events/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Events/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Guides/GuideDetail/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Guides/GuideDetail/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Guides/GuidePreview/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Guides/GuidePreview/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Guides/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Guides/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/HomePage/components/HomePageBanner/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/HomePage/components/HomePageBanner/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/HomePage/components/RecentBookReviews/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/HomePage/components/RecentGuides/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/HomePage/components/RecentMonthlyFive/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/HomePage/components/RecentMonthlyFive/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/HomePage/components/RecentProjects/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/HomePage/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/HomePage/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/MonthlyFives/MonthlyFiveDetail/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/MonthlyFives/MonthlyFiveDetail/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/MonthlyFives/MonthlyFiveHero/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/MonthlyFives/MonthlyFiveHero/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/MonthlyFives/MonthlyFivePreview/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/MonthlyFives/MonthlyFivePreview/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/MonthlyFives/helpers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/MonthlyFives/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/MonthlyFives/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Projects/ProjectDetail/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Projects/ProjectDetail/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Projects/ProjectHero/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Projects/ProjectHero/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Projects/ProjectPreview/ProjectCategoryTag.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Projects/ProjectPreview/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Projects/ProjectPreview/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Projects/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/containers/Projects/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/reducers/bookReviewReducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/reducers/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/styles/appStyles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/styles/colors.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/styles/globalStyles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/styles/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/styles/mainTheme.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/styles/typography/Headers/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/styles/typography/P/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/styles/typography/Text/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/styles/typography/special/SmallTag/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/styles/typography/special/SpecialTitle/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/styles/typography/special/Subtitle/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/utils/axios.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/utils/getImageUrl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/utils/isValidJSON.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/helpers/createStore.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/helpers/renderer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webpack.base.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webpack.client.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webpack.server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/containers/PublicWrapper/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/Routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/Routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SvgIcon/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SvgIcon/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.client.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +22,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../client" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1cs7Q7UxtF4BjDljbDvDUgrdQEu" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -257,7 +64,7 @@
       <updated>1591305427759</updated>
       <workItem from="1591305429788" duration="6661000" />
       <workItem from="1591396268702" duration="9002000" />
-      <workItem from="1593894014533" duration="5896000" />
+      <workItem from="1593894014533" duration="7181000" />
     </task>
     <servers />
   </component>
@@ -282,5 +89,9 @@
     </state>
     <state x="608" y="281" width="703" height="518" key="find.popup/-1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1591409613965" />
     <state x="608" y="281" width="835" height="518" key="find.popup/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593899218020" />
+    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup" timestamp="1593900852897">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="625" y="241" width="670" height="676" key="search.everywhere.popup/0.0.1920.1080/-1920.0.1920.1080@0.0.1920.1080" timestamp="1593900852897" />
   </component>
 </project>

@@ -1,9 +1,15 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import _ from 'lodash';
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled, { css } from 'styled-components';
 
 import * as ICONS from '../../assets/svgs';
+import { AngelList } from '../../assets/svgs';
+
+console.log('icons: ', ICONS);
+console.log('ICONs: ', ICONS.AngelList);
+console.log('angellist: ', AngelList);
 
 export const SvgIconContainer = styled.span`
   color: ${({ color }) => color || 'inherit'};
@@ -47,5 +53,17 @@ function SvgIcon({ icon, ...props }) {
 		</SvgIconContainer>
 	);
 }
+
+SvgIcon.propTypes = {
+	icon: PropTypes.elementType,
+	size: PropTypes.number,
+	height: PropTypes.number,
+	width: PropTypes.number,
+	color: PropTypes.string,
+};
+
+SvgIcon.defaultProps = {
+	size: 16,
+};
 
 export default SvgIcon;
