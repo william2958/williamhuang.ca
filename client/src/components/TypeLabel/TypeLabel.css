@@ -1,0 +1,33 @@
+.typeLabel {
+    border-radius: 8px;
+    height: 16px;
+    width: fit-content;
+    padding: 4px 0 4px 6px;
+
+    display: flex;
+    align-items: center;
+}
+
+.typeName {
+    text-transform: uppercase;
+    font-family: Montserrat, sans-serif;
+    color: #fff;
+    font-size: 9px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 0;
+    margin-top: -1px;
+}
+
+.typeIconWrapper {
+    height: 16px;
+    width: 16px;
+    border-radius: 100%;
+    margin-left: 4px;
+
+    color: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

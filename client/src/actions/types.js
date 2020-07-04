@@ -1,0 +1,3 @@
+
+// Book Review Types
+export const GET_FIRST_PAGE_BOOK_REVIEWS = 'GET_FIRST_PAGE_BOOK_REVIEWS';
