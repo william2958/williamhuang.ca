@@ -2,6 +2,7 @@ require ('./envSetup');
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 const config = require('./config');
 const api = require('./src/api');
@@ -48,6 +49,8 @@ app.use(
 app.use(cors());
 
 app.use(passport.init());
+
+app.use(cookieParser());
 
 app.use('/api/', api(config));
 

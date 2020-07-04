@@ -3,9 +3,10 @@ const expressJwt = require('express-jwt');
 const { config } = require('../../config');
 
 const authenticate = (req, res, next) => {
-  req.headers.authorization =
-    req.headers.authorization || `Bearer ${req.query.access_token}`;
-  return expressJwt({ secret: config.passport.secretAuthToken })(
+  return expressJwt({
+    secret: config.passport.secretAuthToken,
+    getToken: req => req.cookies.token
+  })(
     req,
     res,
     next,
@@ -19,7 +20,7 @@ const generateAccessToken = (req, res, next) => {
     });
   }
   req.token = req.token || {};
-  req.token = jwt.sign(
+  const token = jwt.sign(
     {
       id: req.user.id,
     },
@@ -28,6 +29,10 @@ const generateAccessToken = (req, res, next) => {
       expiresIn: config.passport.tokenTime,
     },
   );
+
+  req.token = token;
+  res.cookie('token', token, { httpOnly: true });
+
   next();
 };
 
