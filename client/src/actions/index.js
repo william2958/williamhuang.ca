@@ -23,6 +23,7 @@ export const getFirstPageBookReviews = (option) => async (dispatch) => {
 		})
 	} catch (error) {
 		toast.error('There was an error getting the first page.')
+		console.error('There was an error getting the first page of books: ', error)
 	}
 
 };

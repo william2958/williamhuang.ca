@@ -34,8 +34,6 @@ const HomePageBanner = () => {
 
 	let heroToRender = null;
 	if (type && highlight) {
-		console.log('type: ', type);
-		console.log('highlight: ', highlight);
 		switch (type) {
 			case 'event':
 				heroToRender = <EventHero event={highlight} fit />;

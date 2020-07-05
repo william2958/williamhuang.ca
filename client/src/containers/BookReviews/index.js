@@ -67,8 +67,6 @@ class BookReviews extends Component {
         const { filterCategory } = this.state;
         const { anotherPage, bookReviews } = this.props;
 
-        console.log('book reviews: ', bookReviews);
-
         return (
             <BookReviewsWrapper className="container">
                 <div className="bookReviewHeader row">

@@ -3,6 +3,10 @@ import {Link} from "react-router-dom";
 import downCaret from "../../assets/svgs/ui/DownCaret.svg";
 import {sizes} from "../../styles";
 
+export const NavbarContainer = styled.div`
+	background-color: #000 !important;
+`;
+
 export const HeaderWrapper = styled.div`
 	
 	position: relative;
@@ -44,9 +48,9 @@ export const NavBarLink = styled(Link)`
 
 	font-weight: 600;
     font-size: 13px;
-    color: #fff;
-    text-decoration: none;
-    text-transform: uppercase;
+    color: #fff !important;
+    text-decoration: none !important;
+    text-transform: uppercase !important;
     border-bottom: 2px solid transparent;
     border-top: 2px solid transparent;
 	padding: 0.5rem 1rem;

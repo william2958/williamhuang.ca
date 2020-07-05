@@ -4,17 +4,20 @@ import {ToastContainer, Zoom} from "react-toastify";
 import theme from "./src/styles/mainTheme";
 import {ThemeProvider} from "styled-components";
 
+import './App.css';
+
 const App = ({ route }) => {
 	return (
 		<ThemeProvider theme={theme}>
-			{/*<Header />*/}
-			<h1>App</h1>
-			{renderRoutes(route.routes)}
-			<ToastContainer
-				pauseOnFocusLoss={false}
-				autoClose={1000}
-				transition={Zoom}
-			/>
+			{/*<IndexStyles>*/}
+				{/*<Header />*/}
+				{renderRoutes(route.routes)}
+				<ToastContainer
+					pauseOnFocusLoss={false}
+					autoClose={1000}
+					transition={Zoom}
+				/>
+			{/*</IndexStyles>*/}
 		</ThemeProvider>
 	)
 };

@@ -23,7 +23,7 @@ const config = {
 			},
 			{
 				test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf)(\?[a-z0-9=.]+)?$/,
-				loader: 'url-loader?limit=100000'
+				loader: 'file-loader?name=[name].[ext]'
 			},
 			{
 				test: /\.svg$/,
@@ -39,7 +39,7 @@ const config = {
 		]
 	},
 
-	// Tell webpack teh root file of our server application
+	// Tell webpack teh root file of our client application
 	entry: './client/index.js',
 	// entry: ['babel-polyfill', './test.js'],
 

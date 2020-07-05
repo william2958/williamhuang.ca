@@ -1,5 +1,10 @@
 // Startup point for the client side application
 import 'babel-polyfill';
+import '../public/favicon-16x16.png';
+import '../public/favicon-32x32.png';
+import '../public/apple-touch-icon.png';
+import './index.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';

@@ -40,7 +40,6 @@ class EventsPage extends React.Component {
 				} else {
 					pastEvents.push(event)
 				}
-				console.log('event: ', event);
 			}
 
 			this.setState({

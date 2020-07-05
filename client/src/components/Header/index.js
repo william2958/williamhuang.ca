@@ -1,10 +1,10 @@
 import React from 'react';
-import {HeaderWrapper, NavBarLink} from "./styles";
+import {HeaderWrapper, NavbarContainer, NavBarLink} from "./styles";
 
 const Header = ({ sticky }) => {
 
 	return (
-		<nav className={
+		<NavbarContainer className={
 			"navbar navbar-expand-md navbar-dark bg-dark" +
 			(sticky ? " sticky-top" : ' fixed-top')
 		}>
@@ -41,7 +41,7 @@ const Header = ({ sticky }) => {
 					</ul>
 				</div>
 			</HeaderWrapper>
-		</nav>
+		</NavbarContainer>
 	)
 
 };
