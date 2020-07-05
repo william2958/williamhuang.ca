@@ -7,7 +7,7 @@ import {
 } from "./types";
 import moment from "moment";
 import {IsValidJSONString} from "../utils/isValidJSON";
-import {convertFromRaw, EditorState} from "draft-js";
+import {convertFromRaw, convertToRaw, EditorState} from "draft-js";
 import {decoratorLink} from "../components/RichTextEditor/linkDecorator";
 
 export const getFirstPageBookReviews = (option) => async (dispatch) => {
@@ -51,20 +51,21 @@ export const getBookReviewDetails = (id, isId) => async (dispatch) => {
 			coverURL,
 			rating,
 			publishDate,
-			recommended
+			recommended,
+			content
 		} = bookReview;
 
 		const formattedDate = publishDate ? moment(publishDate).format('MMMM Do YYYY') : null;
 
-		let contentToFill;
-		if (IsValidJSONString(bookReview.content)) {
-
-			const dbEditorState = convertFromRaw(JSON.parse(bookReview.content));
-			contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
-
-		} else {
-			contentToFill = EditorState.createEmpty(decoratorLink)
-		}
+		// let contentToFill;
+		// if (IsValidJSONString(bookReview.content)) {
+		//
+		// 	const dbEditorState = convertFromRaw(JSON.parse(bookReview.content));
+		// 	contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
+		//
+		// } else {
+		// 	contentToFill = EditorState.createEmpty(decoratorLink)
+		// }
 
 		const bookReviewDetail = {
 			title,
@@ -73,7 +74,7 @@ export const getBookReviewDetails = (id, isId) => async (dispatch) => {
 			coverURL,
 			rating,
 			publishDate: formattedDate,
-			content: contentToFill,
+			content,
 			recommended
 		};
 
@@ -83,6 +84,6 @@ export const getBookReviewDetails = (id, isId) => async (dispatch) => {
 		})
 
 	} catch (err) {
-		// console.error('There was an error fetching that book detail: ', err);
+		console.error('There was an error fetching that book detail: ', err);
 	}
 };

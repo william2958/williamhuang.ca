@@ -11,11 +11,17 @@ const config = {
 				loader: 'babel-loader',
 				exclude: /node_modules/,
 				options: {
+					plugins: [
+						[
+							'babel-plugin-styled-components',
+							{ "ssr": true, "displayName": true, "preprocess": false }
+						]
+					],
 					presets: [
 						'react',
 						'stage-0',
 						['env', { targets: { browsers: ['last 2 versions'] }}]
-					]
+					],
 				}
 			},
 			{

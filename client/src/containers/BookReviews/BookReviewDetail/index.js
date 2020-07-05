@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { EditorState } from "draft-js";
+import { EditorState, convertFromRaw } from "draft-js";
 import RichTextEditor from "../../../components/RichTextEditor";
 
 import TypeLabel from "../../../components/TypeLabel";
@@ -20,6 +20,7 @@ import Button from "../../../components/UI/Button";
 import {Helmet} from "react-helmet";
 import {getBookReviewDetails} from "../../../actions";
 import {withRouter} from "react-router-dom";
+import {IsValidJSONString} from "../../../utils/isValidJSON";
 
 class BookReviewDetail extends React.Component {
 
@@ -29,17 +30,35 @@ class BookReviewDetail extends React.Component {
             title: '',
             content: EditorState.createEmpty(decoratorLink)
         };
+
+        this.goBack = this.goBack.bind(this);
     }
 
     componentDidMount() {
         const id = this.props.match.params.id;
         const searchableId = id || this.props.match.params.urlString;
-        this.props.bookReviewDetails(searchableId, !!id);
+        this.props.getBookReviewDetails(searchableId, !!id);
         if (typeof window !== 'undefined') window.scrollTo(0, 0);
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.bookReviewDetails.content !== this.props.bookReviewDetails.content) {
+            let contentToFill;
+            if (IsValidJSONString(this.props.bookReviewDetails.content)) {
+
+            	const dbEditorState = convertFromRaw(JSON.parse(this.props.bookReviewDetails.content));
+            	contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
+
+            } else {
+            	contentToFill = EditorState.createEmpty(decoratorLink)
+            }
+            this.setState({
+                content: contentToFill
+            })
+        }
+    }
+
     goBack() {
-        console.log('going back; ', this.props.history);
         this.props.history.push('/bookReviews')
     };
 
@@ -55,15 +74,10 @@ class BookReviewDetail extends React.Component {
             publishDate,
             coverURL,
             recommended,
-            category,
-            content
+            category
         } = this.props.bookReviewDetails;
 
-        if (!title) {
-            return (
-                <div style={{minHeight: '100vh'}}>Loading...</div>
-            )
-        }
+        const { content } = this.state;
 
         return (
             <BookReviewDetailWrapper>

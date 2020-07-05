@@ -1,10 +1,13 @@
+import _ from 'lodash';
+import { EditorState } from 'draft-js';
 import {GET_BOOK_REVIEW_DETAILS, GET_FIRST_PAGE_BOOK_REVIEWS} from "../actions/types";
+import {decoratorLink} from "../components/RichTextEditor/linkDecorator";
 
 const INITIAL_STATE = {
 	bookReviews: [],
 	anotherPage: false,
 	numToSkip: 0,
-	bookReviewDetails: null
+	bookReviewDetails: EditorState.createEmpty(decoratorLink)
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -18,7 +21,7 @@ export default (state = INITIAL_STATE, action) => {
 		case GET_BOOK_REVIEW_DETAILS:
 			return {
 				...state,
-				bookReviewDetails: action.payload
+				bookReviewDetails: _.cloneDeep(action.payload)
 			};
 		default:
 			return state;

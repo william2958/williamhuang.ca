@@ -299,7 +299,7 @@ const RichTextEditor = ({ editorState, changeEditorState = () => {}, readOnly = 
             <EditorWrapper hidePlaceholder={hidePlaceholder} onClick={focus}>
                 <Editor
                     editorState={editorState}
-                    onChange={changeEditorState}
+                    onChange={newEditorState => changeEditorState(newEditorState)}
                     handleKeyCommand={handleKeyCommand}
                     blockStyleFn={getBlockStyle}
                     customStyleMap={styleMap}

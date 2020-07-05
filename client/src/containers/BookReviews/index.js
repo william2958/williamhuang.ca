@@ -21,7 +21,6 @@ class BookReviews extends Component {
             filterCategory: 'all'
         };
 
-        console.log('loaded javascript')
     }
 
     componentDidMount() {

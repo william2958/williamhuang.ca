@@ -10,6 +10,12 @@ const config = {
 				loader: 'babel-loader',
 				exclude: /node_modules/,
 				options: {
+					plugins: [
+						[
+							'babel-plugin-styled-components',
+							{ "ssr": true, "displayName": true, "preprocess": false }
+						]
+					],
 					presets: [
 						'react',
 						'stage-0',
@@ -48,7 +54,7 @@ const config = {
 		filename: 'bundle.js',
 		path: path.resolve(__dirname, 'public')
 	}
-}
+};
 
 // module.exports = merge(baseConfig, config);
 module.exports = config;
