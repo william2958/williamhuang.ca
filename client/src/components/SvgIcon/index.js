@@ -4,17 +4,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import * as ICONS from '../../assets/svgs';
+import ICONS from '../../assets/svgs';
 import { AngelList } from '../../assets/svgs';
-
-console.log('icons: ', ICONS);
-console.log('ICONs: ', ICONS.AngelList);
-console.log('angellist: ', AngelList);
 
 export const SvgIconContainer = styled.span`
   color: ${({ color }) => color || 'inherit'};
 
-  & > svg {
+  & > img {
     display: block;
 
     ${({ size, height = size, width = size }) => css`
@@ -34,22 +30,25 @@ export const SvgIconContainer = styled.span`
   }
 `;
 
+import email from '../../assets/svgs/socialMedia/Email.svg';
 function SvgIcon({ icon, ...props }) {
 	if (!icon) {
 		// return <div style={{ height: props.size || '16px', width: props.size || '16px' }} />;
 		return null;
 	}
 	let IconElement;
-	if (_.isString(icon)) {
-		if (!(icon in ICONS)) return null;
-		IconElement = ICONS[icon];
-	} else {
-		IconElement = icon;
-	}
+	// if (_.isString(icon)) {
+	// 	if (!(icon in ICONS)) return null;
+	// 	IconElement = ICONS[icon];
+	// } else {
+	// 	IconElement = icon;
+	// }
+
+	IconElement = ICONS[icon];
 
 	return (
 		<SvgIconContainer {...props}>
-			<IconElement />
+			<img src={IconElement} alt="" />
 		</SvgIconContainer>
 	);
 }

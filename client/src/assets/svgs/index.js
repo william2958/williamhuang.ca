@@ -1,32 +1,62 @@
 // Social Media Icons
-export { ReactComponent as AngelList } from './socialMedia/AngelList.svg';
-export { ReactComponent as Email } from './socialMedia/Email.svg';
-export { ReactComponent as Github } from './socialMedia/Github.svg';
-export { ReactComponent as Instagram } from './socialMedia/Instagram.svg';
-export { ReactComponent as LinkedIn } from './socialMedia/LinkedIn.svg';
-export { ReactComponent as Medium } from './socialMedia/Medium.svg';
-export { ReactComponent as Twitter } from './socialMedia/Twitter.svg';
-export { ReactComponent as Youtube } from './socialMedia/Youtube.svg';
+import AngelList from './socialMedia/AngelList.svg';
+import Email from './socialMedia/Email.svg';
+import Github from './socialMedia/Github.svg';
+import Instagram from './socialMedia/Instagram.svg';
+import LinkedIn from './socialMedia/LinkedIn.svg';
+import Medium from './socialMedia/Medium.svg';
+import Twitter from './socialMedia/Twitter.svg';
+import Youtube from './socialMedia/Youtube.svg';
 
 // Labels
-export { ReactComponent as Atom } from './labels/Atom.svg';
-export { ReactComponent as Dragon } from './labels/Dragon.svg';
-export { ReactComponent as Fingerprint } from './labels/Fingerprint.svg';
-export { ReactComponent as SelfHelp } from './labels/SelfHelp.svg';
+import Atom from './labels/Atom.svg';
+import Dragon from './labels/Dragon.svg';
+import Fingerprint from './labels/Fingerprint.svg';
+import SelfHelp from './labels/SelfHelp.svg';
 
 // Graphics
-export { ReactComponent as headerTitle } from './headerTitle.svg';
+import headerTitle from './headerTitle.svg';
 
 // alignments
-export { ReactComponent as AlignLeft } from './ui/AlignLeft.svg';
-export { ReactComponent as AlignCenter } from './ui/AlignCenter.svg';
-export { ReactComponent as AlignRight } from './ui/AlignRight.svg';
+import AlignLeft from './ui/AlignLeft.svg';
+import AlignCenter from './ui/AlignCenter.svg';
+import AlignRight from './ui/AlignRight.svg';
 
 // UI
-export { ReactComponent as Camera } from './ui/Camera.svg';
-export { ReactComponent as Search } from './ui/Search.svg';
-export { ReactComponent as Star } from './ui/Star.svg';
-export { ReactComponent as BackCaret } from './ui/BackCaret.svg';
-export { ReactComponent as Close } from './ui/Close.svg';
-export { ReactComponent as OpenInNew } from './ui/OpenInNew.svg';
-export { ReactComponent as DownCaret } from './ui/DownCaret.svg';
+import Camera from './ui/Camera.svg';
+import Search from './ui/Search.svg';
+import Star from './ui/Star.svg';
+import BackCaret from './ui/BackCaret.svg';
+import Close from './ui/Close.svg';
+import OpenInNew from './ui/OpenInNew.svg';
+import DownCaret from './ui/DownCaret.svg';
+
+export default {
+	AngelList,
+	Email,
+	Github,
+	Instagram,
+	LinkedIn,
+	Medium,
+	Twitter,
+	Youtube,
+
+	Atom,
+	Dragon,
+	Fingerprint,
+	SelfHelp,
+
+	headerTitle,
+
+	AlignLeft,
+	AlignCenter,
+	AlignRight,
+
+	Camera,
+	Search,
+	Star,
+	BackCaret,
+	Close,
+	OpenInNew,
+	DownCaret
+}
