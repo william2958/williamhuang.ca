@@ -79,8 +79,8 @@ app.get('*', (req, res) => {
     const store = createStore(req);
 
     // load data to store
-    const promises = matchRoutes(Routes, req.path).map(({ route }) => {
-        return route.loadData ? route.loadData(store) : null;
+    const promises = matchRoutes(Routes, req.path).map(({ route, match }) => {
+        return route.loadData ? route.loadData(store, match) : null;
     }).map(promise => {
         if (promise) {
             return new Promise((resolve, reject) => {

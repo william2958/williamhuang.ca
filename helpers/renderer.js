@@ -11,6 +11,7 @@ import { ServerStyleSheet } from "styled-components";
 const sheet = new ServerStyleSheet();
 
 export default (req, store, context) => {
+	console.log('req.path: ', req.path);
 	const content = renderToString(sheet.collectStyles(
 		<Provider store={store}>
 			<StaticRouter location={req.path} context={context}>

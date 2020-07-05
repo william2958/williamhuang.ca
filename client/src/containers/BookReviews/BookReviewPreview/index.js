@@ -6,22 +6,23 @@ import {H5} from "../../../styles/typography/Headers";
 import {BookPreviewContent, BookPreviewCover, BookPreviewTypeAndRating, BookReviewPreviewWrapper} from "./styles";
 import {BodyParagraph} from "../../../styles/typography/P";
 import {BookReviewRatingWrapper} from "../styles";
+import {withRouter} from "react-router-dom";
 
-const BookReviewPreview = ({bookReview, editable}) => {
+const BookReviewPreview = ({bookReview, editable, history}) => {
 
 	const {title, coverURL, category, contentPreview, author, recommended} = bookReview;
 
 	const goToDetails = () => {
-		// if (editable) {
-		// 	history.push('/admin/bookReview/edit/' + bookReview._id);
-		// } else {
-		//
-		// 	if (bookReview.urlString) {
-		// 		history.push('/bookReviews/' + bookReview.urlString);
-		// 	} else {
-		// 		history.push('/bookReviews/id/' + bookReview._id);
-		// 	}
-		// }
+		if (editable) {
+			history.push('/admin/bookReview/edit/' + bookReview._id);
+		} else {
+
+			if (bookReview.urlString) {
+				history.push('/bookReviews/' + bookReview.urlString);
+			} else {
+				history.push('/bookReviews/id/' + bookReview._id);
+			}
+		}
 	};
 
 	return (
@@ -47,4 +48,4 @@ const BookReviewPreview = ({bookReview, editable}) => {
 
 };
 
-export default BookReviewPreview;
+export default withRouter(BookReviewPreview);

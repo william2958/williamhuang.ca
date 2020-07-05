@@ -13,8 +13,8 @@ import createResizeablePlugin from 'draft-js-resizeable-plugin';
 
 import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
 
-import 'draft-js-alignment-plugin/lib/plugin.css';
-import 'draft-js-image-plugin/lib/plugin.css';
+// import 'draft-js-alignment-plugin/lib/plugin.css';
+// import 'draft-js-image-plugin/lib/plugin.css';
 
 import BlockStyleControls from "./BlockStyleControls";
 import InlineStyleControls from "./InlineStyleControls";

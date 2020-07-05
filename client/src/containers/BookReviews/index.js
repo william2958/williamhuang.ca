@@ -20,6 +20,8 @@ class BookReviews extends Component {
             numToSkip: 0,
             filterCategory: 'all'
         };
+
+        console.log('loaded javascript')
     }
 
     componentDidMount() {

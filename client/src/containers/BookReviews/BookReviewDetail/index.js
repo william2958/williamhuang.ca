@@ -1,13 +1,12 @@
 import React from 'react';
-import moment from 'moment';
-import { convertFromRaw, EditorState } from "draft-js";
-import axios from '../../../utils/axios';
+import { connect } from 'react-redux';
+import { EditorState } from "draft-js";
 import RichTextEditor from "../../../components/RichTextEditor";
 
 import TypeLabel from "../../../components/TypeLabel";
 import SvgIcon from "../../../components/SvgIcon";
 import {decoratorLink} from "../../../components/RichTextEditor/linkDecorator";
-import {IsValidJSONString} from "../../../utils/isValidJSON";
+
 import {
     BookReviewDetailContent,
     BookReviewDetailContentWrapper,
@@ -19,73 +18,37 @@ import {BookReviewRatingWrapper} from "../styles";
 import {BackArrow} from "../../../styles/globalStyles";
 import Button from "../../../components/UI/Button";
 import {Helmet} from "react-helmet";
+import {getBookReviewDetails} from "../../../actions";
+import {withRouter} from "react-router-dom";
 
 class BookReviewDetail extends React.Component {
 
-    state = {
-        title: '',
-        content: EditorState.createEmpty(decoratorLink)
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            title: '',
+            content: EditorState.createEmpty(decoratorLink)
+        };
+    }
 
     componentDidMount() {
         const id = this.props.match.params.id;
         const searchableId = id || this.props.match.params.urlString;
-        this.getBookDetails(searchableId, !!id);
-
-        window.scrollTo(0, 0);
+        this.props.bookReviewDetails(searchableId, !!id);
+        if (typeof window !== 'undefined') window.scrollTo(0, 0);
     }
 
-    getBookDetails = async (id, isId) => {
-        try {
-            const urlString = isId
-                ? `/bookReview/getBookReview?bookReviewId=${id}`
-                : `/bookReview/getBookReviewFromString?urlString=${id}`;
-            const response = (await axios.get(urlString)).data;
-            const bookReview = response.bookReview;
-
-            const {
-                title,
-                author,
-                category,
-                coverURL,
-                rating,
-                publishDate,
-                recommended
-            } = bookReview;
-
-            const formattedDate = publishDate ? moment(publishDate).format('MMMM Do YYYY') : null;
-
-            let contentToFill;
-            if (IsValidJSONString(bookReview.content)) {
-
-                const dbEditorState = convertFromRaw(JSON.parse(bookReview.content));
-                contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
-
-            } else {
-                contentToFill = EditorState.createEmpty(decoratorLink)
-            }
-
-            this.setState({
-                title,
-                author,
-                category,
-                coverURL,
-                rating,
-                publishDate: formattedDate,
-                content: contentToFill,
-                recommended
-            });
-
-        } catch (err) {
-            console.error('There was an error fetching that book detail: ', err);
-        }
-    };
-
-    goBack = () => {
+    goBack() {
+        console.log('going back; ', this.props.history);
         this.props.history.push('/bookReviews')
     };
 
     render() {
+
+        if (!this.props.bookReviewDetails) {
+            return null;
+        }
+
         const {
             title,
             author,
@@ -94,7 +57,7 @@ class BookReviewDetail extends React.Component {
             recommended,
             category,
             content
-        } = this.state;
+        } = this.props.bookReviewDetails;
 
         if (!title) {
             return (
@@ -104,12 +67,11 @@ class BookReviewDetail extends React.Component {
 
         return (
             <BookReviewDetailWrapper>
-                {/* TODO: This wont work without server side rendering */}
                 <Helmet>
                     <meta property="og:title" content={title} />
                     <meta property="og:image" content={coverURL} />
                     {/*<meta property="description" content="Explore my blog, reviews, guides, and more." />*/}
-                    <meta property="og:url" content={window.location.href} />
+                    {/*<meta property="og:url" content={window.location.href} />*/}
                 </Helmet>
                 <div className="container">
                     <BackArrow onClick={this.goBack}>
@@ -149,4 +111,19 @@ class BookReviewDetail extends React.Component {
 
 };
 
-export default BookReviewDetail;
+function mapStateToProps(state) {
+    return {
+        bookReviewDetails: state.bookReviews.bookReviewDetails
+    }
+}
+
+function loadData(store, match) {
+    const id = match.params.id;
+    const searchableId = id || match.params.urlString;
+    return store.dispatch(getBookReviewDetails(searchableId, !!id));
+}
+
+export default {
+    component: connect(mapStateToProps, { getBookReviewDetails })(withRouter(BookReviewDetail)),
+    loadData
+};

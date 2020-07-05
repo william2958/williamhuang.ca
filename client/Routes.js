@@ -2,6 +2,7 @@ import React from 'react';
 
 import App from './App';
 import BookReviews from "./src/containers/BookReviews";
+import BookReviewDetail from './src/containers/BookReviews/BookReviewDetail';
 import PublicWrapper from './src/containers/PublicWrapper';
 
 export default [
@@ -11,6 +12,14 @@ export default [
 			{
 				...PublicWrapper,
 				routes: [
+					{
+						...BookReviewDetail,
+						path: '/bookReviews/id/:id'
+					},
+					{
+						...BookReviewDetail,
+						path: '/bookReviews/:urlString'
+					},
 					{
 						...BookReviews,
 						path: '/bookReviews'
