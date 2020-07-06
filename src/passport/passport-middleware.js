@@ -3,6 +3,7 @@ const expressJwt = require('express-jwt');
 const { config } = require('../../config');
 
 const authenticate = (req, res, next) => {
+  console.log('request cookies: ', req.cookies);
   return expressJwt({
     secret: config.passport.secretAuthToken,
     getToken: req => req.cookies.token

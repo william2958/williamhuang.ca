@@ -5,6 +5,7 @@ import theme from "./src/styles/mainTheme";
 import {ThemeProvider} from "styled-components";
 
 import './App.css';
+import {fetchCurrentUser} from "./src/actions/authActions";
 
 const App = ({ route }) => {
 	return (
@@ -24,5 +25,5 @@ const App = ({ route }) => {
 
 export default {
 	component: App,
-	// loadData: ({ dispatch }) => dispatch(fetchCurrentUser())
+	loadData: ({ dispatch }) => dispatch(fetchCurrentUser())
 };

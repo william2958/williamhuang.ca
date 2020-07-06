@@ -30,6 +30,7 @@ mongoManager
         console.error('connection error', e);
     });
 
+app.use(cookieParser());
 // Use the json middleware
 app.use(
     bodyParser.json({
@@ -56,7 +57,6 @@ app.use(cors());
 
 app.use(passport.init());
 
-app.use(cookieParser());
 
 app.use('/api/', api(config));
 
@@ -72,7 +72,7 @@ app.get('/_ah/start', (req, res) => {
     res.status(200).send()
 });
 
-app.use(express.static('public'));
+app.use(express.static(__dirname + 'public'));
 
 app.get('*', (req, res) => {
     const store = createStore(req);

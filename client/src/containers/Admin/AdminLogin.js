@@ -1,10 +1,11 @@
 import React from 'react';
 import axios from '../../utils/axios';
-import history from '../../history';
 import InputSimple from "../../components/UI/Inputs/TextInput/InputSimple";
 import Button from "../../components/UI/Button";
 import {AdminLoginWrapper} from "./styles";
 import { toast } from 'react-toastify';
+import {setUser} from "../../actions/authActions";
+import {connect} from "react-redux";
 
 class AdminLogin extends React.Component {
 
@@ -31,7 +32,7 @@ class AdminLogin extends React.Component {
             // dispatch(loggedIn(user));
             // dispatch(successAlert('Logged In!'));
 
-            history.push('/admin');
+            this.props.history.push('/admin');
         } catch (err) {
             // dispatch(errorAlert(err.response.data.message));
             toast.error('Incorrrect Credentials!');
@@ -52,4 +53,6 @@ class AdminLogin extends React.Component {
 
 }
 
-export default AdminLogin;
+export default {
+    component: connect(null, { setUser })(AdminLogin)
+};
