@@ -1,5 +1,4 @@
 // Startup point for the client side application
-import 'babel-polyfill';
 import '../public/favicon-16x16.png';
 import '../public/favicon-32x32.png';
 import '../public/apple-touch-icon.png';

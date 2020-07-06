@@ -7,26 +7,25 @@ const config = {
 	module: {
 		rules: [
 			{
-				test: /\.js?$/,
-				loader: 'babel-loader',
+				test: /\.(js|jsx)?$/,
 				exclude: /node_modules/,
-				options: {
-					plugins: [
-						[
-							'babel-plugin-styled-components',
-							{ "ssr": true, "displayName": true, "preprocess": false }
+				use: {
+					loader: 'babel-loader',
+					options: {
+						plugins: [
+							[
+								'babel-plugin-styled-components',
+								{ "ssr": true, "displayName": true, "preprocess": false }
+							]
 						]
-					],
-					presets: [
-						'react',
-						'stage-0',
-						['env', { targets: { browsers: ['last 2 versions'] }}]
-					],
-				}
+					}
+				},
 			},
 			{
 				test: /\.css$/,
-				loader: "css-loader"
+				use: {
+					loader: "css-loader"
+				}
 			},
 			{
 				test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf)(\?[a-z0-9=.]+)?$/,
@@ -50,8 +49,8 @@ const config = {
 	target: 'node',
 
 	// Tell webpack teh root file of our server application
-	entry: './index.js',
-	// entry: ['babel-polyfill', './index.js'],
+	// entry: './index.js',
+	entry: ['@babel/polyfill', './index.js'],
 
 	// Tell webpack where to put the output file that's generated
 	output: {

@@ -1,6 +1,5 @@
-import 'babel-polyfill';
 require ('./envSetup');
-
+console.log('booting up application')
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');

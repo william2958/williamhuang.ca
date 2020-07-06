@@ -28,7 +28,7 @@ class BookReviews extends Component {
         // window.scrollTo(0, 0);
     }
 
-    loadNextPage() {
+    loadNextPage = () => {
         // try {
         //     const { bookReviews, numToSkip } = this.state;
         //
