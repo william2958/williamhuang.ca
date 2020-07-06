@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { useCookies } from 'react-cookie';
 import {AdminHeaderWrapper} from "./styles";
 
 function AdminHeader({ logOut }) {
+    const [cookies, setCookie, removeCookie] = useCookies(["token"]);
 
     return (
         <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -94,7 +96,7 @@ function AdminHeader({ logOut }) {
                     </ul>
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <span className="nav-link" onClick={logOut}>Log Out</span>
+                            <span className="nav-link" onClick={() => removeCookie()}>Log Out</span>
                         </li>
                     </ul>
                 </div>

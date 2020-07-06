@@ -5,10 +5,7 @@ const { authenticate, generateAccessToken } = require('../../middleware');
 
 const { getAdmin } = require('./get');
 const signIn = require('./sign-in');
-
-// const {
-//     adminSignUp
-// } = require('./post');
+const signOut = require('./sign-out');
 
 module.exports = (models, { config }) => {
 
@@ -26,6 +23,12 @@ module.exports = (models, { config }) => {
         generateAccessToken,
         signIn
     );
+
+    api.delete(
+        '/adminSignOut',
+        authenticate,
+        signOut
+    )
 
     // Prevent sign ups - only 1 admin
     // api.post(

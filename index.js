@@ -72,7 +72,7 @@ app.get('/_ah/start', (req, res) => {
     res.status(200).send()
 });
 
-app.use(express.static(__dirname + 'public'));
+app.use(express.static('public'));
 
 app.get('*', (req, res) => {
     const store = createStore(req);

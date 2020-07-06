@@ -13,11 +13,11 @@ import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 import Routes from './Routes';
 import reducers from './src/reducers';
-
+import axiosInstance from './src/utils/axios';
 const store = createStore(
 	reducers,
 	window.INITIAL_STATE,
-	applyMiddleware(thunk)
+	applyMiddleware(thunk.withExtraArgument(axiosInstance))
 );
 
 console.log('hydrating...');
