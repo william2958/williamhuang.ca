@@ -2,10 +2,10 @@ import React from 'react';
 import {H5, H6} from "../../../styles/typography/Headers";
 import Button from "../../../components/UI/Button";
 import SvgIcon from "../../../components/SvgIcon";
-import history from '../../../history';
 import {ProjectsPageSpotlight, ProjectsPageSpotlightContent, ProjectsPageSpotlightImage} from "./styles";
+import {withRouter} from "react-router-dom";
 
-const ProjectHero = ({ project, fit, staticHero, editable }) => {
+const ProjectHero = ({ project, fit, staticHero, editable, history }) => {
 
 	const {
 		heroURL,
@@ -66,4 +66,4 @@ const ProjectHero = ({ project, fit, staticHero, editable }) => {
 
 };
 
-export default ProjectHero;
+export default withRouter(ProjectHero);

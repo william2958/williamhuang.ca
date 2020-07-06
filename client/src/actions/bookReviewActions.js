@@ -6,9 +6,6 @@ import {
 	GET_BOOK_REVIEW_DETAILS
 } from "./types";
 import moment from "moment";
-import {IsValidJSONString} from "../utils/isValidJSON";
-import {convertFromRaw, convertToRaw, EditorState} from "draft-js";
-import {decoratorLink} from "../components/RichTextEditor/linkDecorator";
 
 export const getFirstPageBookReviews = (option) => async (dispatch) => {
 
@@ -31,7 +28,6 @@ export const getFirstPageBookReviews = (option) => async (dispatch) => {
 		})
 	} catch (error) {
 		toast.error('There was an error getting the first page.')
-		console.error('There was an error getting the first page of books: ', error)
 	}
 
 };

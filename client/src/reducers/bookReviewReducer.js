@@ -7,7 +7,7 @@ const INITIAL_STATE = {
 	bookReviews: [],
 	anotherPage: false,
 	numToSkip: 0,
-	bookReviewDetails: EditorState.createEmpty(decoratorLink)
+	bookReviewDetails: {}
 };
 
 export default (state = INITIAL_STATE, action) => {

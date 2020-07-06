@@ -1,4 +1,5 @@
 import axios from "../../utils/axios";
+import { connect } from 'react-redux';
 import {toast} from "react-toastify";
 import {H4} from "../../styles/typography/Headers";
 import Dropdown from "../../components/Dropdown";
@@ -13,6 +14,7 @@ import {
 import ProjectPreview from "./ProjectPreview";
 import {GutteredRow, LoadMoreButtonContainer} from "../../styles/globalStyles";
 import ProjectHero from "./ProjectHero";
+import {getFirstPageProjects} from "../../actions";
 
 class ProjectsPage extends React.Component {
 
@@ -25,44 +27,23 @@ class ProjectsPage extends React.Component {
 	};
 
 	componentDidMount() {
-		this.getFirstPage();
+		this.props.getFirstPageProjects('all');
 		this.getSpotlightProject();
 		window.scrollTo(0, 0);
 	}
 
 	getSpotlightProject = async () => {
-		try {
-
-			const response = (await axios.get('/project/getSpotlightProject')).data;
-
-			this.setState({
-				spotlightProject: response.spotlightProject
-			});
-
-		} catch (error) {
-			console.error('Could not get the spotlight project.');
-		}
-	};
-
-	getFirstPage = async (option) => {
-		try {
-
-			let filteredCategory = option || this.state.filterCategory;
-			if (filteredCategory === 'all') {
-				filteredCategory = '';
-			}
-
-			const response = (await axios.get(`/project/getRecentProjects?category=${filteredCategory}`)).data;
-
-			this.setState({
-				projects: response.allProjects,
-				anotherPage: response.anotherPage,
-				numToSkip: response.numToSkip
-			})
-
-		} catch (error) {
-			toast.error('There was an error getting the first page.')
-		}
+		// try {
+		//
+		// 	const response = (await axios.get('/project/getSpotlightProject')).data;
+		//
+		// 	this.setState({
+		// 		spotlightProject: response.spotlightProject
+		// 	});
+		//
+		// } catch (error) {
+		// 	console.error('Could not get the spotlight project.');
+		// }
 	};
 
 	loadNextPage = async () => {
@@ -93,7 +74,7 @@ class ProjectsPage extends React.Component {
 		if (option === this.state.filterCategory) {
 			return;
 		} else {
-			this.getFirstPage(option);
+			this.props.getFirstPageProjects(option);
 		}
 		this.setState({
 			filterCategory: option
@@ -102,7 +83,9 @@ class ProjectsPage extends React.Component {
 
 	render() {
 
-		const {filterCategory, anotherPage, spotlightProject} = this.state;
+		const {filterCategory, spotlightProject} = this.state;
+
+		const { anotherPage, projects } = this.props;
 
 		return (
 			<ProjectsPageWrapper className="container">
@@ -128,7 +111,7 @@ class ProjectsPage extends React.Component {
 				</ProjectsPageHeader>
 				<GutteredRow className="row no-gutters">
 					{
-						this.state.projects.map(project => (
+						projects.map(project => (
 							<ProjectPreview project={project} key={project._id}/>
 						))
 					}
@@ -144,4 +127,18 @@ class ProjectsPage extends React.Component {
 
 }
 
-export default ProjectsPage;
+function mapStateToProps(state) {
+	return {
+		projects: state.projects.projects,
+		anotherPage: state.projects.anotherPage
+	}
+}
+
+function loadData(store) {
+	return store.dispatch(getFirstPageProjects('all'))
+}
+
+export default {
+	component: connect(mapStateToProps, {getFirstPageProjects})(ProjectsPage),
+	loadData
+};

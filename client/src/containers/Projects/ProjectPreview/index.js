@@ -1,9 +1,9 @@
 import React from 'react';
-import history from "../../../history";
 import {ProjectPreviewContent, ProjectPreviewImage, ProjectPreviewTitle, ProjectPreviewWrapper} from "./styles";
 import ProjectCategoryTag from "./ProjectCategoryTag";
+import {withRouter} from "react-router-dom";
 
-const ProjectPreview = ({ project, editable }) => {
+const ProjectPreview = ({ project, editable, history }) => {
 
 	const {
 		title,
@@ -44,4 +44,4 @@ const ProjectPreview = ({ project, editable }) => {
 
 };
 
-export default ProjectPreview;
+export default withRouter(ProjectPreview);

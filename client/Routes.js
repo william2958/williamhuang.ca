@@ -1,8 +1,12 @@
 import React from 'react';
 
 import App from './App';
+
 import BookReviews from "./src/containers/BookReviews";
 import BookReviewDetail from './src/containers/BookReviews/BookReviewDetail';
+
+import Projects from './src/containers/Projects';
+
 import PublicWrapper from './src/containers/PublicWrapper';
 
 export default [
@@ -23,6 +27,11 @@ export default [
 					{
 						...BookReviews,
 						path: '/bookReviews'
+					},
+
+					{
+						...Projects,
+						path: '/projects'
 					}
 				]
 			}
