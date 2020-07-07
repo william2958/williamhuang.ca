@@ -8,10 +8,19 @@ import './react-toast.css';
 import './App.css';
 import {fetchCurrentUser} from "./src/actions/authActions";
 import {BootStrapBasicStyles} from "./BootStrapBasicStyles";
+import {Helmet} from "react-helmet";
 
 const App = ({ route }) => {
 	return (
 		<ThemeProvider theme={theme}>
+
+			<Helmet>
+				<title>{'William Huang'}</title>
+				<meta property="og:title" content="Home | William Huang" />
+				<meta property="og:image" content="https://storage.googleapis.com/global_images/Web_Preview/favicon.png" />
+				<meta property="description" content="Explore my blog, reviews, guides, and more." />
+				<meta property="og:url" content="https://www.williamhuang.ca" />
+			</Helmet>
 			<BootStrapBasicStyles>
 				{/*<Header />*/}
 				{renderRoutes(route.routes)}

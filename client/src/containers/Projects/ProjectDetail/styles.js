@@ -33,7 +33,7 @@ export const ProjectHeroImageWrapper = styled.div`
 export const ProjectDetailContentWrapper = styled.div`
 	font-family: 'Georgia', serif;
     text-align: left;
-    max-width: 780px;
+    max-width: 780px !important;
     margin: 15vh auto 8px;
     padding: 24px;
     

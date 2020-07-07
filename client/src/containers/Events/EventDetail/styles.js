@@ -23,7 +23,7 @@ export const UpcomingEventDetailWrapper = styled.div`
 export const EventDetailContentWrapper = styled.div`
 	font-family: 'Georgia', serif;
     text-align: left;
-    max-width: 780px;
+    max-width: 780px !important;
     margin: 12px auto;
     
     position: relative;
@@ -56,7 +56,7 @@ export const KeyInfoBox = styled.div`
     	position: relative;
     	margin: 0 15px 24px;
     	width: auto;
-    	max-width: 780px;
+    	max-width: 780px !important;
     	left: 50%;
     	transform: translateX(-50%);
     	right: auto;
@@ -68,7 +68,7 @@ export const KeyInfoBox = styled.div`
 export const EventExtraInfo = styled.div`
 	margin: 40px auto 24px;
 	padding: 0 15px;
-    max-width: 780px;
+    max-width: 780px !important;
 `;
 
 export const EventDetailContent = styled.div`

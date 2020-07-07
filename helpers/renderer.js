@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
 import serialize from 'serialize-javascript';
 import Routes from '../client/Routes';
+import { Helmet } from 'react-helmet';
 
 import { ServerStyleSheet } from "styled-components";
 
@@ -57,6 +58,8 @@ export default (req, store, context) => {
 		sheet.seal()
 	}
 
+	const helmet = Helmet.renderStatic();
+
 	return`
     <html>
       <head>
@@ -78,10 +81,8 @@ export default (req, store, context) => {
 	    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
 	    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 	
-	    <meta property="og:title" content="Home | William Huang" />
-	    <meta property="og:image" content="https://storage.googleapis.com/global_images/Web_Preview/favicon.png" />
-	    <meta property="description" content="Explore my blog, reviews, guides, and more." />
-	    <meta property="og:url" content="https://www.williamhuang.ca" />
+		${helmet.title.toString()}
+		${helmet.meta.toString()}
 	    
 	    <style>
 			   ${baseStyles} 

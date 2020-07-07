@@ -32,7 +32,7 @@ export const GuideDetailWrapper = styled.div`
 export const GuideDetailContentWrapper = styled.div`
 	font-family: 'Georgia', serif;
     text-align: left;
-    max-width: 780px;
+    max-width: 780px !important;
     margin: 12px auto 12px;
     
     position: relative;

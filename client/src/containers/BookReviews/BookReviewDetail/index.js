@@ -24,15 +24,6 @@ import {IsValidJSONString} from "../../../utils/isValidJSON";
 
 class BookReviewDetail extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            content: EditorState.createEmpty(decoratorLink)
-        };
-
-        this.goBack = this.goBack.bind(this);
-    }
-
     componentDidMount() {
         const id = this.props.match.params.id;
         const searchableId = id || this.props.match.params.urlString;
@@ -40,24 +31,7 @@ class BookReviewDetail extends React.Component {
         if (typeof window !== 'undefined') window.scrollTo(0, 0);
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.bookReviewDetails.content !== this.props.bookReviewDetails.content) {
-            let contentToFill;
-            if (IsValidJSONString(this.props.bookReviewDetails.content)) {
-
-            	const dbEditorState = convertFromRaw(JSON.parse(this.props.bookReviewDetails.content));
-            	contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
-
-            } else {
-            	contentToFill = EditorState.createEmpty(decoratorLink)
-            }
-            this.setState({
-                content: contentToFill
-            })
-        }
-    }
-
-    goBack() {
+    goBack = () => {
         this.props.history.push('/bookReviews')
     };
 
@@ -73,16 +47,27 @@ class BookReviewDetail extends React.Component {
             publishDate,
             coverURL,
             recommended,
-            category
+            category,
+            contentPreview
         } = this.props.bookReviewDetails;
 
-        const { content } = this.state;
+        let contentToFill;
+        if (IsValidJSONString(this.props.bookReviewDetails.content)) {
+
+            const dbEditorState = convertFromRaw(JSON.parse(this.props.bookReviewDetails.content));
+            contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
+
+        } else {
+            contentToFill = EditorState.createEmpty(decoratorLink)
+        }
 
         return (
             <BookReviewDetailWrapper>
                 <Helmet>
+                    <title>{title + ' | WH'}</title>
                     <meta property="og:title" content={title} />
                     <meta property="og:image" content={coverURL} />
+                    <meta property="description" content={contentPreview} />
                     {/*<meta property="description" content="Explore my blog, reviews, guides, and more." />*/}
                     {/*<meta property="og:url" content={window.location.href} />*/}
                 </Helmet>
@@ -106,7 +91,7 @@ class BookReviewDetail extends React.Component {
                         </div>
                     </BookReviewDetailContent>
                 </BookReviewDetailContentWrapper>
-                <RichTextEditor editorState={content} readOnly={true} />
+                <RichTextEditor editorState={contentToFill} readOnly={true} />
 
                 <Button
                     center

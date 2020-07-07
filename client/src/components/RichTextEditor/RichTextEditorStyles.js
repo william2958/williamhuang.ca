@@ -141,7 +141,7 @@ export const RichTextEditorWrapper = styled.div`
     font-family: 'Georgia', serif;
     font-size: 14px;
 
-    max-width: 780px;
+    max-width: 780px !important;
 
     ${({readOnly}) => !readOnly && css`margin-bottom: 120px;`};
 	

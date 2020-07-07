@@ -1,7 +1,6 @@
 import React from 'react';
 
 import TypeLabel from "../../../components/TypeLabel";
-import SvgIcon from "../../../components/SvgIcon";
 import {H5} from "../../../styles/typography/Headers";
 import {BookPreviewContent, BookPreviewCover, BookPreviewTypeAndRating, BookReviewPreviewWrapper} from "./styles";
 import {BodyParagraph} from "../../../styles/typography/P";

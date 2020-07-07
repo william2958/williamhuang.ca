@@ -10,7 +10,7 @@ export const MonthlyFiveDetailWrapper = styled.div`
 export const MonthlyFiveDetailContentWrapper = styled.div`
 	font-family: 'Georgia', serif;
     text-align: left;
-    max-width: 780px;
+    max-width: 780px !important;
     margin: 12px auto;
     
     position: relative;

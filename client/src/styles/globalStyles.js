@@ -62,7 +62,7 @@ export const BackArrow = styled.div`
 	color: ${({theme}) => theme.secondary};
 	
     display: flex;
-    max-width: 780px;
+    max-width: 780px !important;
     margin: 0 auto;
     font-size: 16px;
     align-items: center;
