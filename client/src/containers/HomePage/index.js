@@ -6,6 +6,8 @@ import RecentBookReviews from "./components/RecentBookReviews";
 import {getNumRecentBookReviews, getNumRecentGuides, getNumRecentProjects} from "../../actions";
 import RecentGuides from "./components/RecentGuides";
 import RecentProjects from "./components/RecentProjects";
+import {getHomeHighlight} from "../../actions/homeActions";
+import HomePageBanner from "./components/HomePageBanner";
 
 class HomePage extends React.Component {
 
@@ -16,6 +18,7 @@ class HomePage extends React.Component {
     render() {
         return (
             <HomePageWrapper>
+                <HomePageBanner />
                 <Header sticky />
                 <RecentProjects />
                 <RecentBookReviews />
@@ -31,7 +34,8 @@ function loadData(store) {
     return Promise.all([
         store.dispatch(getNumRecentBookReviews(4)),
         store.dispatch(getNumRecentGuides(4)),
-        store.dispatch(getNumRecentProjects(3))
+        store.dispatch(getNumRecentProjects(3)),
+        store.dispatch(getHomeHighlight())
     ])
 }
 
@@ -41,7 +45,6 @@ export default {
 };
 
 
-// {/*<HomePageBanner />*/}
 //
 // {/*<HomePageSection className="container">*/}
 // {/*    <H4 left underline>What's new</H4>*/}

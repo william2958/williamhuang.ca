@@ -1,5 +1,4 @@
 import React from 'react';
-import history from '../../../history';
 import {H1, H4} from "../../../styles/typography/Headers";
 import {
 	EventHeroContent,
@@ -7,6 +6,7 @@ import {
 	EventHeroWrapper, EventMobileHeroTime, TimeDisplayUnitWrapper
 } from "./styles";
 import moment from "moment";
+import {withRouter} from "react-router-dom";
 
 const TimeDisplayUnit = ({ unit, value }) => {
 	return (
@@ -17,7 +17,7 @@ const TimeDisplayUnit = ({ unit, value }) => {
 	)
 };
 
-const EventHero = ({ event, editable, fit, staticHero }) => {
+const EventHero = ({ event, editable, fit, staticHero, history }) => {
 
 	const {
 		title,
@@ -83,4 +83,4 @@ const EventHero = ({ event, editable, fit, staticHero }) => {
 
 };
 
-export default EventHero;
+export default withRouter(EventHero);

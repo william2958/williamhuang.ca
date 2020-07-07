@@ -1,13 +1,13 @@
 import React from 'react';
-import history from '../../../history';
 import {H4, H5, H6} from "../../../styles/typography/Headers";
 import {
 	MonthlyFiveHeroWrapper, MonthlyFiveSpotlightContent, MonthlyFiveSpotlightImage,
 } from "./styles";
 
 import {parseMonthAndYear} from "../helpers";
+import {withRouter} from "react-router-dom";
 
-const MonthlyFiveHero = ({ monthlyFive, editable, fit, noTitle }) => {
+const MonthlyFiveHero = ({ monthlyFive, editable, fit, noTitle, history }) => {
 
 	const goToDetails = () => {
 		if (editable) {
@@ -35,4 +35,4 @@ const MonthlyFiveHero = ({ monthlyFive, editable, fit, noTitle }) => {
 
 };
 
-export default MonthlyFiveHero;
+export default withRouter(MonthlyFiveHero);

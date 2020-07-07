@@ -1,38 +1,21 @@
-import React, {useEffect, useState} from "react";
-
-import axios from "../../../../utils/axios";
+import React, {useEffect} from "react";
 import {H5} from "../../../../styles/typography/Headers";
 import {HomePageBannerPlaceholder, HomePageBannerWrapper} from "./styles";
-import {toast} from "react-toastify";
 import EventHero from "../../../Events/EventHero";
 import MonthlyFiveHero from "../../../MonthlyFives/MonthlyFiveHero";
 import ProjectHero from "../../../Projects/ProjectHero";
+import {getHomeHighlight} from "../../../../actions/homeActions";
+import {connect} from "react-redux";
 
-const HomePageBanner = () => {
-
-	const [type, setType] = useState(null);
-	const [highlight, setHighlight] = useState(null);
+const HomePageBanner = ({ type, highlight }) => {
 
 	useEffect(() => {
 
-		async function getHighlight() {
-			try {
-				const response = (await axios.get('/highlight/getHighlight')).data;
-
-				if (response && response.highlightObject) {
-					setType(response.highlight.dataType);
-					setHighlight(response.highlightObject)
-				}
-			} catch (error) {
-				toast.error('Error loading highlight data.')
-			}
-		}
-
-		getHighlight();
+		getHomeHighlight();
 
 	}, []);
 
-	let heroToRender = null;
+	let heroToRender;
 	if (type && highlight) {
 		switch (type) {
 			case 'event':
@@ -62,5 +45,10 @@ const HomePageBanner = () => {
 
 };
 
-export default HomePageBanner;
+const mapStateToProps = (state) => ({
+	type: state.home.type,
+	highlight: state.home.highlight
+})
+
+export default connect(mapStateToProps, { getHomeHighlight })(HomePageBanner);
 
