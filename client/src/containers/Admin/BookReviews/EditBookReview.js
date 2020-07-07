@@ -90,7 +90,7 @@ const mapStateToProps = (state) => ({
 })
 
 function loadData(store, match) {
-    const id = match.params.id;
+    const id = match.params.reviewId;
     return store.dispatch(getBookReviewDetails(id, true, true));
 }
 

@@ -5,24 +5,14 @@ import {HomePageSection, HomePageSectionHeader} from "../../styles";
 import {H4, H5} from "../../../../styles/typography/Headers";
 import ProjectPreview from "../../../Projects/ProjectPreview";
 import {withRouter} from "react-router-dom";
+import {getNumRecentProjects} from "../../../../actions";
+import {connect} from "react-redux";
 
-const RecentProjects = ({ history }) => {
-
-	const [recentProjects, setRecentProjects] = useState([]);
+const RecentProjects = ({ history, getNumRecentProjects, recentProjects }) => {
 
 	useEffect(() => {
 
-		async function getProjects() {
-			try {
-				const response = (await axios.get('/project/getNumRecentProjects?numProjects=3')).data;
-
-				setRecentProjects(response.allProjects);
-			} catch (error) {
-				toast.error('Error loading data.')
-			}
-		}
-
-		getProjects();
+		getNumRecentProjects(3)
 
 	}, []);
 
@@ -48,4 +38,8 @@ const RecentProjects = ({ history }) => {
 
 };
 
-export default withRouter(RecentProjects);
+const mapStateToProps = (state) => ({
+	recentProjects: state.projects.recentProjects
+})
+
+export default connect(mapStateToProps, { getNumRecentProjects })(withRouter(RecentProjects))

@@ -1,7 +1,5 @@
 import React from 'react';
-import moment from 'moment';
 import { convertFromRaw, EditorState } from "draft-js";
-import axios from '../../../utils/axios';
 import RichTextEditor from "../../../components/RichTextEditor";
 
 import SvgIcon from "../../../components/SvgIcon";
@@ -19,73 +17,40 @@ import {H1, H5, H6} from "../../../styles/typography/Headers";
 import Button from "../../../components/UI/Button";
 import {BodyParagraph} from "../../../styles/typography/P";
 import {BackArrow} from "../../../styles/globalStyles";
+import {getProjectDetails} from "../../../actions";
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 class ProjectDetail extends React.Component {
 
 	state = {
-		title: '',
 		content: EditorState.createEmpty(decoratorLink)
 	};
 
 	componentDidMount() {
 		const id = this.props.match.params.id;
 		const searchableId = id || this.props.match.params.urlString;
-		this.getProjectDetails(searchableId, !!id);
+		this.props.getProjectDetails(searchableId, !!id);
 
-		window.scrollTo(0, 0);
+		if (typeof window !== 'undefined') window.scrollTo(0, 0);
 	}
 
-	getProjectDetails = async (id, isId) => {
-		try {
-			const urlString = isId
-				? `/project/getProject?projectId=${id}`
-				: `/project/getProjectFromString?urlString=${id}`;
-			const response = (await axios.get(urlString)).data;
-			const project = response.project;
-
-			const {
-				title,
-				category,
-				techStack,
-				liveLink,
-				contentPreview,
-
-				heroURL,
-				previewImageURL,
-
-				publishDate
-			} = project;
-
-			const formattedDate = publishDate ? moment(publishDate).format('MMMM Do YYYY') : null;
-
+	componentDidUpdate(prevProps, prevState, snapshot) {
+		if (prevProps.projectDetails.content !== this.props.projectDetails.content) {
 			let contentToFill;
-			if (IsValidJSONString(project.content)) {
+			if (IsValidJSONString(this.props.projectDetails.content)) {
 
-				const dbEditorState = convertFromRaw(JSON.parse(project.content));
+				const dbEditorState = convertFromRaw(JSON.parse(this.props.projectDetails.content));
 				contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
 
 			} else {
 				contentToFill = EditorState.createEmpty(decoratorLink)
 			}
-
 			this.setState({
-				title,
-				category,
-				techStack,
-				liveLink,
-				contentPreview,
-
-				publishDate: formattedDate,
-				content: contentToFill,
-
-				heroURL,
-				previewImageURL
-			});
-
-		} catch (err) {
-			console.error('There was an error fetching that book detail: ', err);
+				content: contentToFill
+			})
 		}
-	};
+	}
 
 	goBack = () => {
 		this.props.history.push('/projects');
@@ -100,11 +65,12 @@ class ProjectDetail extends React.Component {
 			liveLink,
 
 			publishDate: formattedDate,
-			content: contentToFill,
 
 			heroURL,
 			previewImageURL
-		} = this.state;
+		} = this.props.projectDetails;
+
+		const { content } = this.state;
 
 		if (!title) {
 			return (
@@ -147,7 +113,7 @@ class ProjectDetail extends React.Component {
 					</div>
 				</ProjectDetailContentWrapper>
 
-				<RichTextEditor editorState={contentToFill} readOnly={true} />
+				<RichTextEditor editorState={content} readOnly={true} />
 
 				<Button
 					center
@@ -166,4 +132,19 @@ class ProjectDetail extends React.Component {
 
 };
 
-export default ProjectDetail;
+function mapStateToProps(state) {
+	return {
+		projectDetails: state.projects.projectDetails
+	}
+}
+
+function loadData(store, match) {
+	const id = match.params.id;
+	const searchableId = id || match.params.urlString;
+	return store.dispatch(getProjectDetails(searchableId, !!id));
+}
+
+export default {
+	component: connect(mapStateToProps, { getProjectDetails })(withRouter(ProjectDetail)),
+	loadData
+};

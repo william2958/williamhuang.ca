@@ -1,26 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import axios from '../../../utils/axios';
-import { toast } from 'react-toastify'
+import React, {useEffect} from 'react';
 import {PublishedProjectsWrapper} from "./styles";
 import ProjectPreview from "../../Projects/ProjectPreview";
+import {getAdminProject} from "../../../actions";
+import {connect} from "react-redux";
 
-const DraftProjects = () => {
-
-	const [draftProjects, setDraftProjects] = useState([]);
+const DraftProjects = ({ draftProjects, getAdminProject }) => {
 
 	useEffect(() => {
-		async function getDraftProjects() {
-			try {
-
-				const response = (await axios.get('/project/getProjectAdmin?isPublished=false')).data;
-
-				setDraftProjects(response.projects);
-
-			} catch (e) {
-				toast.error('Could not find drafts.');
-			}
-		}
-		getDraftProjects();
+		getAdminProject(false);
 	}, []);
 
 	return (
@@ -37,4 +24,11 @@ const DraftProjects = () => {
 
 };
 
-export default DraftProjects;
+const mapStateToProps = (state) => ({
+	draftProjects: state.projects.draftProjects
+})
+
+export default {
+	component: connect(mapStateToProps, { getAdminProject })(DraftProjects),
+	loadData: ({ dispatch }) => dispatch(getAdminProject(false))
+};

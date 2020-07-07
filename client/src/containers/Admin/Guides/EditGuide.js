@@ -76,7 +76,10 @@ class EditGuide extends React.Component {
 		}
 		return (
 			<div>
-				<GuideEditor save={this.saveGuide} delete={this.deleteGuide} guideData={guideDetails} />
+				<GuideEditor
+					save={this.saveGuide}
+					delete={this.deleteGuide}
+					guideData={guideDetails} />
 			</div>
 		)
 	}
@@ -88,7 +91,7 @@ const mapStateToProps = (state) => ({
 })
 
 function loadData(store, match) {
-	const id = match.params.id;
+	const id = match.params.guideId;
 	return store.dispatch(getGuideDetails(id, true, true));
 }
 

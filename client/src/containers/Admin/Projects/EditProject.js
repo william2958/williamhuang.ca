@@ -3,43 +3,42 @@ import { toast } from 'react-toastify';
 import { EditorState, convertFromRaw } from 'draft-js';
 
 import axios from '../../../utils/axios';
-import history from '../../../history';
 import {decoratorLink} from "../../../components/RichTextEditor/linkDecorator";
 import {IsValidJSONString} from "../../../utils/isValidJSON";
 import ProjectEditor from "./ProjectEditor";
+import {getProjectDetails} from "../../../actions";
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 class EditProject extends React.Component {
 
 	state = {
-		projectData: null,
 		editorState: EditorState.createEmpty(decoratorLink)
 	};
 
 	componentDidMount() {
 		const projectId = this.props.match.params.projectId;
 		if (projectId) {
-			axios.get(`/project/getProject?projectId=${projectId}`)
-				.then(({data}) => {
-					const project = data.project;
-					let contentToFill;
-					if (IsValidJSONString(project.content)) {
-
-						const dbEditorState = convertFromRaw(JSON.parse(project.content));
-						contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
-
-					} else {
-						contentToFill = EditorState.createEmpty(decoratorLink)
-					}
-					project.content = contentToFill;
-					this.setState({
-						projectData: project,
-					});
-				})
-				.catch(e => {
-					console.error('Error getting project: ', e)
-				})
+			this.props.getProjectDetails(projectId, true, true);
 		} else {
-			history.push('/admin');
+			this.props.history.push('/admin');
+		}
+	}
+
+	componentDidUpdate(prevProps, prevState, snapshot) {
+		if (prevProps.projectDetails.content !== this.props.projectDetails.content) {
+			let contentToFill;
+			if (IsValidJSONString(this.props.projectDetails.content)) {
+
+				const dbEditorState = convertFromRaw(JSON.parse(this.props.projectDetails.content));
+				contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
+
+			} else {
+				contentToFill = EditorState.createEmpty(decoratorLink)
+			}
+			this.setState({
+				editorState: contentToFill
+			})
 		}
 	}
 
@@ -80,12 +79,16 @@ class EditProject extends React.Component {
 	};
 
 	render() {
+		const projectData = {
+			...this.props.projectDetails,
+			content: this.state.editorState
+		}
 		return (
 			<div>
 				<ProjectEditor
 					save={this.saveProject}
 					delete={this.deleteProject}
-					projectData={this.state.projectData}
+					projectData={projectData}
 					setHighlight={this.setHighlight} />
 			</div>
 		)
@@ -93,4 +96,18 @@ class EditProject extends React.Component {
 
 }
 
-export default EditProject;
+const mapStateToProps = (state) => ({
+	projectDetails: state.projects.editProjectDetails
+})
+
+function loadData(store, match) {
+	const id = match.params.projectId;
+	return store.dispatch(getProjectDetails(id, true, true));
+}
+
+export default {
+	component: connect(mapStateToProps, { getProjectDetails })(withRouter(EditProject)),
+	loadData
+};
+
+

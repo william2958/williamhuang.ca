@@ -42,16 +42,6 @@ export const getGuideDetails = (id, isId, isEdit = false) => async (dispatch) =>
 
 		const formattedDate = guide.publishDate ? moment(guide.publishDate).format('MMMM Do YYYY') : null;
 
-		// let contentToFill;
-		// if (IsValidJSONString(guide.content)) {
-		//
-		// 	const dbEditorState = convertFromRaw(JSON.parse(guide.content));
-		// 	contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
-		//
-		// } else {
-		// 	contentToFill = EditorState.createEmpty(decoratorLink)
-		// }
-
 		const guideDetail = {
 			...guide,
 			publishDate: formattedDate

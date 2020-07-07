@@ -14,14 +14,12 @@ import {
 import ProjectPreview from "./ProjectPreview";
 import {GutteredRow, LoadMoreButtonContainer} from "../../styles/globalStyles";
 import ProjectHero from "./ProjectHero";
-import {getFirstPageProjects} from "../../actions";
+import {getFirstPageProjects, getSpotlightProject} from "../../actions";
+import {NEXT_PAGE_PROJECTS_LOADED} from "../../actions/types";
 
 class ProjectsPage extends React.Component {
 
 	state = {
-		projects: [],
-		anotherPage: false,
-		numToSkip: 0,
 		filterCategory: 'all',
 		spotlightProject: null
 	};
@@ -33,22 +31,12 @@ class ProjectsPage extends React.Component {
 	}
 
 	getSpotlightProject = async () => {
-		// try {
-		//
-		// 	const response = (await axios.get('/project/getSpotlightProject')).data;
-		//
-		// 	this.setState({
-		// 		spotlightProject: response.spotlightProject
-		// 	});
-		//
-		// } catch (error) {
-		// 	console.error('Could not get the spotlight project.');
-		// }
+
 	};
 
 	loadNextPage = async () => {
 		try {
-			const {projects, numToSkip} = this.state;
+			const {projects, numToSkip} = this.props;
 
 			let filteredCategory = this.state.filterCategory;
 			if (filteredCategory === 'all') {
@@ -59,10 +47,13 @@ class ProjectsPage extends React.Component {
 			const response = (await axios.get(`/project/getRecentProjects?numSkip=${numToSkip}&category=${filteredCategory}`)).data;
 			newProjects.push(...response.allProjects);
 
-			this.setState({
-				projects: newProjects,
-				anotherPage: response.anotherPage,
-				numToSkip: response.numToSkip
+			this.props.dispatch({
+				type: NEXT_PAGE_PROJECTS_LOADED,
+				payload: {
+					projects: newProjects,
+					anotherPage: response.anotherPage,
+					numToSkip: response.numToSkip
+				}
 			});
 
 		} catch (error) {
@@ -83,9 +74,9 @@ class ProjectsPage extends React.Component {
 
 	render() {
 
-		const {filterCategory, spotlightProject} = this.state;
+		const {filterCategory} = this.state;
 
-		const { anotherPage, projects } = this.props;
+		const { anotherPage, projects, spotlightProject } = this.props;
 
 		return (
 			<ProjectsPageWrapper className="container">
@@ -130,15 +121,19 @@ class ProjectsPage extends React.Component {
 function mapStateToProps(state) {
 	return {
 		projects: state.projects.projects,
-		anotherPage: state.projects.anotherPage
+		anotherPage: state.projects.anotherPage,
+		spotlightProject: state.projects.spotlight
 	}
 }
 
 function loadData(store) {
-	return store.dispatch(getFirstPageProjects('all'))
+	return Promise.all([
+		store.dispatch(getFirstPageProjects('all')),
+		store.dispatch(getSpotlightProject())
+	])
 }
 
 export default {
-	component: connect(mapStateToProps, {getFirstPageProjects})(ProjectsPage),
+	component: connect(mapStateToProps, {getFirstPageProjects, getSpotlightProject})(ProjectsPage),
 	loadData
 };

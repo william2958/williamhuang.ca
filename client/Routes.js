@@ -25,6 +25,11 @@ import PublishedGuides from "./src/containers/Admin/Guides/PublishedGuides";
 import DraftGuides from "./src/containers/Admin/Guides/DraftGuides";
 import NewGuide from "./src/containers/Admin/Guides/NewGuide";
 import EditGuide from "./src/containers/Admin/Guides/EditGuide";
+import EditProject from "./src/containers/Admin/Projects/EditProject";
+import NewProject from "./src/containers/Admin/Projects/NewProject";
+import DraftProjects from "./src/containers/Admin/Projects/DraftProjects";
+import PublishedProjects from "./src/containers/Admin/Projects/PublishedProjects";
+import ProjectDetail from './src/containers/Projects/ProjectDetail';
 
 export default [
 	{
@@ -71,6 +76,23 @@ export default [
 					{
 						...EditGuide,
 						path: '/admin/guide/edit/:guideId'
+					},
+
+					{
+						...PublishedProjects,
+						path: '/admin/project/published'
+					},
+					{
+						...DraftProjects,
+						path: '/admin/project/drafts'
+					},
+					{
+						...NewProject,
+						path: '/admin/project/new'
+					},
+					{
+						...EditProject,
+						path: '/admin/project/edit/:projectId'
 					}
 				]
 			},
@@ -98,6 +120,14 @@ export default [
 					},
 
 
+					{
+						...ProjectDetail,
+						path: '/projects/id/:id'
+					},
+					{
+						...ProjectDetail,
+						path: '/projects/:urlString'
+					},
 					{
 						...Projects,
 						path: '/projects'

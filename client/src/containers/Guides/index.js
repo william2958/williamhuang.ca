@@ -29,9 +29,11 @@ class GuidesPage extends React.Component {
 
 			this.props.dispatch({
 				type: NEXT_PAGE_GUIDES_LOADED,
-				guides: newGuides,
-				anotherPage: response.anotherPage,
-				numToSkip: response.numToSkip
+				payload: {
+					guides: newGuides,
+					anotherPage: response.anotherPage,
+					numToSkip: response.numToSkip
+				}
 			})
 
 		} catch (error) {

@@ -1,26 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import axios from '../../../utils/axios';
-import { toast } from 'react-toastify'
+import React, {useEffect} from 'react';
 import {PublishedProjectsWrapper} from "./styles";
 import ProjectPreview from "../../Projects/ProjectPreview";
+import {connect} from "react-redux";
+import {getAdminProject} from "../../../actions";
 
-const PublishedProjects = () => {
-
-	const [publishedProjects, setPublishedProjects] = useState([]);
+const PublishedProjects = ({ publishedProjects, getAdminProject }) => {
 
 	useEffect(() => {
-		async function getPublishedProjects() {
-			try {
-
-				const response = (await axios.get('/project/getProjectAdmin?isPublished=true')).data;
-
-				setPublishedProjects(response.projects);
-
-			} catch (e) {
-				toast.error('Could not find published projects.');
-			}
-		}
-		getPublishedProjects();
+		getAdminProject(true);
 	}, []);
 
 	return (
@@ -37,4 +24,11 @@ const PublishedProjects = () => {
 
 };
 
-export default PublishedProjects;
+const mapStateToProps = (state) => ({
+	publishedProjects: state.projects.publishedProjects
+})
+
+export default {
+	component: connect(mapStateToProps, { getAdminProject })(PublishedProjects),
+	loadData: ({ dispatch }) => dispatch(getAdminProject(true))
+};

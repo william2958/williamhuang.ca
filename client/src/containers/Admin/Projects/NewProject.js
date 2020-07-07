@@ -35,4 +35,6 @@ const NewProject = ({ history }) => {
 
 };
 
-export default NewProject;
+export default {
+	component: NewProject
+};
