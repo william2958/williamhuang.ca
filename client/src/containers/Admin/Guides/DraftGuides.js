@@ -1,33 +1,20 @@
-import React, {useEffect, useState} from 'react';
-import axios from '../../../utils/axios';
-import { toast } from 'react-toastify'
+import React, {useEffect} from 'react';
 import {ListGuidesWrapper} from "./styles";
 import GuidePreview from "../../Guides/GuidePreview";
+import {connect} from "react-redux";
+import {getAdminGuide} from "../../../actions";
 
-const DraftGuides = () => {
-
-	const [draftGuides, setDraftGuides] = useState([]);
+const DraftGuides = ({ draft, getAdminGuide }) => {
 
 	useEffect(() => {
-		async function getDraftGuides() {
-			try {
-
-				const response = (await axios.get('/guide/getGuideAdmin?isPublished=false')).data;
-
-				setDraftGuides(response.guides);
-
-			} catch (e) {
-				toast.error('Could not find drafts.');
-			}
-		}
-		getDraftGuides();
+		getAdminGuide(false)
 	}, []);
 
 	return (
 		<ListGuidesWrapper className="container">
 			<div className="row">
 				{
-					draftGuides.map(guide => (
+					draft.map(guide => (
 						<GuidePreview guide={guide} editable key={guide._id} />
 					))
 				}
@@ -37,4 +24,11 @@ const DraftGuides = () => {
 
 };
 
-export default DraftGuides;
+const mapStateToProps = (state) => ({
+	draft: state.guides.draftGuides
+})
+
+export default {
+	component: connect(mapStateToProps, { getAdminGuide })(DraftGuides),
+	loadData: ({ dispatch }) => dispatch(getAdminGuide(false))
+};

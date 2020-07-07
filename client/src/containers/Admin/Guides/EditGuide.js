@@ -3,43 +3,42 @@ import { toast } from 'react-toastify';
 import { EditorState, convertFromRaw } from 'draft-js';
 
 import axios from '../../../utils/axios';
-import history from '../../../history';
 import {decoratorLink} from "../../../components/RichTextEditor/linkDecorator";
 import {IsValidJSONString} from "../../../utils/isValidJSON";
 import GuideEditor from "./GuideEditor";
+import {getGuideDetails} from "../../../actions";
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 class EditGuide extends React.Component {
 
 	state = {
-		guideData: null,
 		editorState: EditorState.createEmpty(decoratorLink)
 	};
+
+	componentDidUpdate(prevProps, prevState, snapshot) {
+		if (prevProps.guideDetails.content !== this.props.guideDetails.content) {
+			let contentToFill;
+			if (IsValidJSONString(this.props.guideDetails.content)) {
+
+				const dbEditorState = convertFromRaw(JSON.parse(this.props.guideDetails.content));
+				contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
+
+			} else {
+				contentToFill = EditorState.createEmpty(decoratorLink)
+			}
+			this.setState({
+				editorState: contentToFill
+			})
+		}
+	}
 
 	componentDidMount() {
 		const guideId = this.props.match.params.guideId;
 		if (guideId) {
-			axios.get(`/guide/getGuide?guideId=${guideId}`)
-				.then(({data}) => {
-					const guide = data.guide;
-					let contentToFill;
-					if (IsValidJSONString(guide.content)) {
-
-						const dbEditorState = convertFromRaw(JSON.parse(guide.content));
-						contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
-
-					} else {
-						contentToFill = EditorState.createEmpty(decoratorLink)
-					}
-					guide.content = contentToFill;
-					this.setState({
-						guideData: guide,
-					});
-				})
-				.catch(e => {
-					console.error('Error getting guide: ', e)
-				})
+			this.props.getGuideDetails(guideId, true, true);
 		} else {
-			history.push('/admin');
+			this.props.history.push('/admin');
 		}
 	}
 
@@ -71,13 +70,30 @@ class EditGuide extends React.Component {
 	};
 
 	render() {
+		const guideDetails = {
+			...this.props.guideDetails,
+			content: this.state.editorState
+		}
 		return (
 			<div>
-				<GuideEditor save={this.saveGuide} delete={this.deleteGuide} guideData={this.state.guideData} />
+				<GuideEditor save={this.saveGuide} delete={this.deleteGuide} guideData={guideDetails} />
 			</div>
 		)
 	}
 
 }
 
-export default EditGuide;
+const mapStateToProps = (state) => ({
+	guideDetails: state.guides.editGuideDetails
+})
+
+function loadData(store, match) {
+	const id = match.params.id;
+	return store.dispatch(getGuideDetails(id, true, true));
+}
+
+export default {
+	component: connect(mapStateToProps, { getGuideDetails })(withRouter(EditGuide)),
+	loadData
+};
+

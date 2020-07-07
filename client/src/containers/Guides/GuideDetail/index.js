@@ -12,70 +12,40 @@ import {H2, H5} from "../../../styles/typography/Headers";
 import {BackArrow} from "../../../styles/globalStyles";
 import {BodyParagraph} from "../../../styles/typography/P";
 import Button from "../../../components/UI/Button";
+import {getGuideDetails} from "../../../actions";
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 class GuideDetail extends React.Component {
 
 	state = {
-		title: '',
 		content: EditorState.createEmpty(decoratorLink)
 	};
 
 	componentDidMount() {
 		const id = this.props.match.params.id;
 		const searchableId = id || this.props.match.params.urlString;
-		this.getGuideDetails(searchableId, !!id);
+		this.props.getGuideDetails(searchableId, !!id);
 
-		window.scrollTo(0, 0);
+		if (typeof window !== 'undefined') window.scrollTo(0, 0);
 	}
 
-	getGuideDetails = async (id, isId) => {
-		const urlString = isId
-			? `/guide/getGuide?guideId=${id}`
-			: `/guide/getGuideFromString?urlString=${id}`;
-		try {
-			const response = (await axios.get(urlString)).data;
-			const guide = response.guide;
-
-			const {
-				title,
-				contentPreview,
-				technology,
-
-				publishDate,
-				content,
-
-				iconURL,
-				previewImageURL
-			} = guide;
-
-			const formattedDate = publishDate ? moment(publishDate).format('MMMM Do YYYY') : null;
-
+	componentDidUpdate(prevProps, prevState, snapshot) {
+		if (prevProps.guideDetails.content !== this.props.guideDetails.content) {
 			let contentToFill;
-			if (IsValidJSONString(content)) {
+			if (IsValidJSONString(this.props.guideDetails.content)) {
 
-				const dbEditorState = convertFromRaw(JSON.parse(content));
+				const dbEditorState = convertFromRaw(JSON.parse(this.props.guideDetails.content));
 				contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
 
 			} else {
 				contentToFill = EditorState.createEmpty(decoratorLink)
 			}
-
 			this.setState({
-				title,
-				contentPreview,
-				technology,
-
-				publishDate: formattedDate,
-				content: contentToFill,
-
-				iconURL,
-				previewImageURL
-			});
-
-		} catch (err) {
-			console.error('There was an error fetching that book detail: ', err);
+				content: contentToFill
+			})
 		}
-	};
+	}
 
 	goBack = () => {
 		this.props.history.push('/guides');
@@ -88,10 +58,11 @@ class GuideDetail extends React.Component {
 			technology,
 
 			publishDate: formattedDate,
-			content: contentToFill,
 
 			iconURL
-		} = this.state;
+		} = this.props.guideDetails;
+
+		const { content } = this.state;
 
 		if (!title) {
 			return (
@@ -120,7 +91,7 @@ class GuideDetail extends React.Component {
 				<div className="container">
 					<BodyParagraph className="mobileMetadata mobileContentPreview">{contentPreview}</BodyParagraph>
 				</div>
-				<RichTextEditor editorState={contentToFill} readOnly={true} />
+				<RichTextEditor editorState={content} readOnly={true} />
 
 				<Button
 					center
@@ -138,4 +109,19 @@ class GuideDetail extends React.Component {
 
 };
 
-export default GuideDetail;
+function mapStateToProps(state) {
+	return {
+		guideDetails: state.guides.guideDetails
+	}
+}
+
+function loadData(store, match) {
+	const id = match.params.id;
+	const searchableId = id || match.params.urlString;
+	return store.dispatch(getGuideDetails(searchableId, !!id));
+}
+
+export default {
+	component: connect(mapStateToProps, { getGuideDetails })(withRouter(GuideDetail)),
+	loadData
+};

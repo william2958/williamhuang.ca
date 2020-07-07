@@ -8,28 +8,28 @@ import {
 } from "./styles";
 import GuidePreview from "./GuidePreview";
 import {LoadMoreButtonContainer} from "../../styles/globalStyles";
+import {getFirstPageGuides} from "../../actions";
+import {connect} from "react-redux";
+import {NEXT_PAGE_GUIDES_LOADED} from "../../actions/types";
 
 class GuidesPage extends React.Component {
 
-	state = {
-		guides: [],
-		anotherPage: false,
-		numToSkip: 0,
-		filterCategory: 'all'
-	};
-
 	componentDidMount() {
-		this.getFirstPage();
-		window.scrollTo(0, 0);
+		this.props.getFirstPageGuides('all');
+		if (typeof window !== 'undefined') window.scrollTo(0, 0);
 	}
 
-	getFirstPage = async () => {
+	loadNextPage = async () => {
 		try {
+			const { guides, numToSkip } = this.props;
 
-			const response = (await axios.get(`/guide/getRecentGuides`)).data;
+			const newGuides = [...guides];
+			const response = (await axios.get(`/guide/getRecentGuides?numSkip=${numToSkip}`)).data;
+			newGuides.push(...response.allGuides);
 
-			this.setState({
-				guides: response.allGuides,
+			this.props.dispatch({
+				type: NEXT_PAGE_GUIDES_LOADED,
+				guides: newGuides,
 				anotherPage: response.anotherPage,
 				numToSkip: response.numToSkip
 			})
@@ -39,28 +39,9 @@ class GuidesPage extends React.Component {
 		}
 	};
 
-	loadNextPage = async () => {
-		try {
-			const { guides, numToSkip } = this.state;
-
-			const newGuides = [...guides];
-			const response = (await axios.get(`/guide/getRecentGuides?numSkip=${numToSkip}`)).data;
-			newGuides.push(...response.allGuides);
-
-			this.setState({
-				guides: newGuides,
-				anotherPage: response.anotherPage,
-				numToSkip: response.numToSkip
-			});
-
-		} catch (error) {
-			toast.error('There was an error getting the first page.')
-		}
-	};
-
 	render() {
 
-		const { anotherPage } = this.state;
+		const { anotherPage, guides } = this.props;
 
 		return (
 			<GuidesPageWrapper className="container">
@@ -72,7 +53,7 @@ class GuidesPage extends React.Component {
 				</GuidesPageHeader>
 				<div className="guidesRow">
 					{
-						this.state.guides.map(guide => (
+						guides.map(guide => (
 							<GuidePreview guide={guide} key={guide._id} />
 						))
 					}
@@ -88,4 +69,19 @@ class GuidesPage extends React.Component {
 
 }
 
-export default GuidesPage;
+function mapStateToProps(state) {
+	return {
+		guides: state.guides.guides,
+		anotherPage: state.guides.anotherPage,
+		numToSkip: state.guides.numToSkip
+	}
+}
+
+function loadData(store) {
+	return store.dispatch(getFirstPageGuides('all'))
+}
+
+export default {
+	component: connect(mapStateToProps, { getFirstPageGuides })(GuidesPage),
+	loadData
+};

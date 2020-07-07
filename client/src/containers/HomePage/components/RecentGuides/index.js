@@ -1,29 +1,16 @@
-import React, {useEffect, useState} from 'react';
-import axios from "../../../../utils/axios";
-import {toast} from "react-toastify";
+import React, {useEffect} from 'react';
 import GuidePreview from "../../../Guides/GuidePreview";
 import {HomePageSection, HomePageSectionHeader} from "../../styles";
 import {H4, H5} from "../../../../styles/typography/Headers";
 import {withRouter} from "react-router-dom";
+import {getNumRecentGuides} from "../../../../actions";
+import {connect} from "react-redux";
 
-const RecentGuides = ({ history }) => {
-
-	const [recentGuides, setRecentGuides] = useState([]);
+const RecentGuides = ({ history, getNumRecentGuides, recentGuides }) => {
 
 	useEffect(() => {
 
-		async function getGuides() {
-			try {
-				const NUM_GUIDES_TO_FETCH = 2;
-				const response = (await axios.get(`/guide/getNumRecentGuides?numGuides=${NUM_GUIDES_TO_FETCH}`)).data;
-
-				setRecentGuides(response.allGuides);
-			} catch (error) {
-				toast.error('Error loading data.')
-			}
-		}
-
-		getGuides();
+		getNumRecentGuides(4)
 
 	}, []);
 
@@ -55,4 +42,8 @@ const RecentGuides = ({ history }) => {
 
 };
 
-export default withRouter(RecentGuides);
+const mapStateToProps = (state) => ({
+	recentGuides: state.guides.recentGuides
+})
+
+export default connect(mapStateToProps, { getNumRecentGuides })(withRouter(RecentGuides));

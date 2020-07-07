@@ -1,11 +1,11 @@
 import React from 'react';
-import history from '../../../history';
 import {H5, H6} from "../../../styles/typography/Headers";
 import {GuidePreviewContent, GuidePreviewIcon, GuidePreviewWrapper} from "./styles";
 import {BodyParagraph} from "../../../styles/typography/P";
 import moment from "moment";
+import {withRouter} from "react-router-dom";
 
-const GuidePreview = ({ guide, editable }) => {
+const GuidePreview = ({ guide, editable, history }) => {
 
 	const {
 		title,
@@ -48,4 +48,4 @@ const GuidePreview = ({ guide, editable }) => {
 
 };
 
-export default GuidePreview;
+export default withRouter(GuidePreview);

@@ -3,7 +3,7 @@ import {
 	ADMIN_BOOK_REVIEW_LOADED,
 	GET_BOOK_REVIEW_DETAILS,
 	GET_EDIT_BOOK_REVIEW_DETAILS,
-	GET_FIRST_PAGE_BOOK_REVIEWS
+	GET_FIRST_PAGE_BOOK_REVIEWS, NUM_RECENT_BOOK_REVIEWS_LOADED
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -13,7 +13,8 @@ const INITIAL_STATE = {
 	bookReviewDetails: {},
 	editBookReviewDetails: {},
 	draftBookReviews: [],
-	publishedBookReviews: []
+	publishedBookReviews: [],
+	recentBookReviews: []
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -45,6 +46,11 @@ export default (state = INITIAL_STATE, action) => {
 					...state,
 					draftBookReviews: _.cloneDeep(action.payload.bookReviews)
 				}
+			}
+		case NUM_RECENT_BOOK_REVIEWS_LOADED:
+			return {
+				...state,
+				recentBookReviews: _.cloneDeep(action.payload)
 			}
 		default:
 			return state;

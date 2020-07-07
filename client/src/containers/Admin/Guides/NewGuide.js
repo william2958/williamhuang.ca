@@ -35,4 +35,6 @@ const NewGuide = ({ history }) => {
 
 };
 
-export default NewGuide;
+export default {
+	component: NewGuide
+};

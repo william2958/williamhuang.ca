@@ -3,9 +3,10 @@ import {toast} from "react-toastify";
 
 import {
 	GET_FIRST_PAGE_BOOK_REVIEWS,
-	GET_BOOK_REVIEW_DETAILS, GET_EDIT_BOOK_REVIEW_DETAILS, ADMIN_BOOK_REVIEW_LOADED
+	GET_BOOK_REVIEW_DETAILS, GET_EDIT_BOOK_REVIEW_DETAILS, ADMIN_BOOK_REVIEW_LOADED, NUM_RECENT_BOOK_REVIEWS_LOADED
 } from "./types";
 import moment from "moment";
+import {sizes} from "../styles";
 
 export const getFirstPageBookReviews = (option) => async (dispatch) => {
 
@@ -89,5 +90,19 @@ export const getAdminBookReview = (isPublished) => async (dispatch) => {
 
 	} catch (e) {
 		toast.error('Could not create published reviews.');
+	}
+}
+
+export const getNumRecentBookReviews = (numRecent) => async (dispatch) => {
+	try {
+		const response = (await axios.get(`/bookReview/getNumRecentBookReviews?numReviews=${numRecent}`)).data;
+
+		dispatch({
+			type: NUM_RECENT_BOOK_REVIEWS_LOADED,
+			payload: response.allReviews
+		})
+
+	} catch (error) {
+		toast.error('Error loading data.')
 	}
 }

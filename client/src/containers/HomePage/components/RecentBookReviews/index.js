@@ -1,43 +1,26 @@
-import React, {useEffect, useState} from 'react';
-import ReactGA from 'react-ga';
-import axios from "../../../../utils/axios";
-import {toast} from "react-toastify";
+import React, {useEffect} from 'react';
+// import ReactGA from 'react-ga';
 import BookReviewPreview from "../../../BookReviews/BookReviewPreview";
 import {HomePageSection, HomePageSectionHeader} from "../../styles";
 import {H4, H5} from "../../../../styles/typography/Headers";
-import {sizes} from "../../../../styles";
 import {withRouter} from "react-router-dom";
+import {getNumRecentBookReviews} from "../../../../actions";
+import {connect} from "react-redux";
 
-const RecentBookReviews = ({ history }) => {
-
-	const [recentBookReviews, setRecentBookReviews] = useState([]);
+const RecentBookReviews = ({ history, getNumRecentBookReviews, recentBookReviews }) => {
 
 	useEffect(() => {
 
-		async function getBookReviews() {
-			try {
-				let numReviews = 4;
-				if (window.innerWidth <= sizes.phone) {
-					numReviews = 2;
-				}
-				const response = (await axios.get(`/bookReview/getNumRecentBookReviews?numReviews=${numReviews}`)).data;
-
-				setRecentBookReviews(response.allReviews);
-			} catch (error) {
-				toast.error('Error loading data.')
-			}
-		}
-
-		getBookReviews();
+		getNumRecentBookReviews(4);
 
 	}, []);
 
 	const viewAllBookReviews = () => {
-		ReactGA.event({
-			category: 'Home',
-			action: 'View All Book Reviews',
-			transport: 'beacon'
-		});
+		// ReactGA.event({
+		// 	category: 'Home',
+		// 	action: 'View All Book Reviews',
+		// 	transport: 'beacon'
+		// });
 		history.push('/bookReviews')
 	};
 
@@ -63,4 +46,8 @@ const RecentBookReviews = ({ history }) => {
 
 };
 
-export default withRouter(RecentBookReviews);
+const mapStateToProps = (state) => ({
+	recentBookReviews: state.bookReviews.recentBookReviews
+})
+
+export default connect(mapStateToProps, { getNumRecentBookReviews })(withRouter(RecentBookReviews));

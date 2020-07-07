@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import { useCookies } from 'react-cookie';
 import {AdminHeaderWrapper} from "./styles";
 
-function AdminHeader({ logOut }) {
+function AdminHeader({ logOut, history }) {
     const [cookies, setCookie, removeCookie] = useCookies(["token"]);
 
     return (
@@ -96,7 +96,7 @@ function AdminHeader({ logOut }) {
                     </ul>
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <span className="nav-link" onClick={() => removeCookie()}>Log Out</span>
+                            <span className="nav-link" onClick={() => history.push('/')}>Log Out</span>
                         </li>
                     </ul>
                 </div>
@@ -106,4 +106,4 @@ function AdminHeader({ logOut }) {
 
 }
 
-export default AdminHeader;
+export default withRouter(AdminHeader);

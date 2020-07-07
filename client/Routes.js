@@ -1,6 +1,7 @@
 import React from 'react';
 
 import App from './App';
+import HomePage from './src/containers/HomePage';
 
 import BookReviews from "./src/containers/BookReviews";
 import BookReviewDetail from './src/containers/BookReviews/BookReviewDetail';
@@ -17,6 +18,13 @@ import BookReviewPublished from "./src/containers/Admin/BookReviews/BookReviewPu
 import BookReviewDrafts from "./src/containers/Admin/BookReviews/BookReviewDrafts";
 import NewBookReview from "./src/containers/Admin/BookReviews/NewBookReview";
 import EditBookReview from "./src/containers/Admin/BookReviews/EditBookReview";
+
+import GuidesPage from './src/containers/Guides';
+import GuideDetail from './src/containers/Guides/GuideDetail';
+import PublishedGuides from "./src/containers/Admin/Guides/PublishedGuides";
+import DraftGuides from "./src/containers/Admin/Guides/DraftGuides";
+import NewGuide from "./src/containers/Admin/Guides/NewGuide";
+import EditGuide from "./src/containers/Admin/Guides/EditGuide";
 
 export default [
 	{
@@ -46,6 +54,23 @@ export default [
 					{
 						...EditBookReview,
 						path: '/admin/bookReview/edit/:reviewId'
+					},
+
+					{
+						...PublishedGuides,
+						path: '/admin/guide/published'
+					},
+					{
+						...DraftGuides,
+						path: '/admin/guide/drafts'
+					},
+					{
+						...NewGuide,
+						path: '/admin/guide/new'
+					},
+					{
+						...EditGuide,
+						path: '/admin/guide/edit/:guideId'
 					}
 				]
 			},
@@ -53,10 +78,12 @@ export default [
 				...PublicWrapper,
 				routes: [
 					{
-						...BookReviews,
+						...HomePage,
 						path: '/',
 						exact: true
 					},
+
+
 					{
 						...BookReviewDetail,
 						path: '/bookReviews/id/:id'
@@ -70,9 +97,24 @@ export default [
 						path: '/bookReviews'
 					},
 
+
 					{
 						...Projects,
 						path: '/projects'
+					},
+
+
+					{
+						...GuideDetail,
+						path: '/guides/id/:id'
+					},
+					{
+						...GuideDetail,
+						path: '/guides/:urlString'
+					},
+					{
+						...GuidesPage,
+						path: '/guides'
 					},
 
 					{

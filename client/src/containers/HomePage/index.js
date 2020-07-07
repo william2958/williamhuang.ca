@@ -3,46 +3,47 @@ import React from 'react';
 import {HomePageWrapper} from "./styles";
 import Header from "../../components/Header";
 import RecentBookReviews from "./components/RecentBookReviews";
-import RecentProjects from "./components/RecentProjects";
+import {getNumRecentBookReviews, getNumRecentGuides} from "../../actions";
 import RecentGuides from "./components/RecentGuides";
-import RecentMonthlyFive from "./components/RecentMonthlyFive";
-import HomePageBanner from "./components/HomePageBanner";
 
-class MainPage extends React.Component {
+class HomePage extends React.Component {
 
-    state = {
-        recentBookReviews: []
-    };
-
-    componentDidMount() {
-        window.scrollTo(0, 0);
-    }
+    // componentDidMount() {
+    //     if (typeof window !== 'undefined') window.scrollTo(0, 0);
+    // }
 
     render() {
         return (
             <HomePageWrapper>
-
-                <HomePageBanner />
-
                 <Header sticky />
-
-                {/*<HomePageSection className="container">*/}
-                {/*    <H4 left underline>What's new</H4>*/}
-                {/*</HomePageSection>*/}
-
-                <RecentMonthlyFive />
-
-                <RecentProjects />
-
-                <RecentGuides />
-
                 <RecentBookReviews />
 
-
+                <RecentGuides />
             </HomePageWrapper>
         )
     }
 
 }
 
-export default MainPage;
+function loadData(store) {
+    return Promise.all([
+        store.dispatch(getNumRecentBookReviews(4)),
+        store.dispatch(getNumRecentGuides(4))
+    ])
+}
+
+export default {
+    component: HomePage,
+    loadData
+};
+
+
+// {/*<HomePageBanner />*/}
+//
+// {/*<HomePageSection className="container">*/}
+// {/*    <H4 left underline>What's new</H4>*/}
+// {/*</HomePageSection>*/}
+//
+// {/*<RecentMonthlyFive />*/}
+//
+// {/*<RecentProjects />*/}

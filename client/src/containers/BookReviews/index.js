@@ -25,7 +25,7 @@ class BookReviews extends Component {
 
     componentDidMount() {
         this.props.getFirstPageBookReviews('all');
-        // window.scrollTo(0, 0);
+        if (typeof window !== 'undefined') window.scrollTo(0, 0);
     }
 
     loadNextPage = () => {
