@@ -3,43 +3,21 @@ import { toast } from 'react-toastify';
 import { EditorState, convertFromRaw } from 'draft-js';
 
 import axios from '../../../utils/axios';
-import history from '../../../history';
 import {decoratorLink} from "../../../components/RichTextEditor/linkDecorator";
 import {IsValidJSONString} from "../../../utils/isValidJSON";
 import MonthlyFiveEditor from "./MonthlyFiveEditor";
+import {getMonthlyFiveDetails} from "../../../actions";
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 class EditMonthlyFive extends React.Component {
-
-	state = {
-		monthlyFiveData: null,
-		editorState: EditorState.createEmpty(decoratorLink)
-	};
 
 	componentDidMount() {
 		const monthlyFiveId = this.props.match.params.monthlyFiveId;
 		if (monthlyFiveId) {
-			axios.get(`/monthlyFive/getMonthlyFive?monthlyFiveId=${monthlyFiveId}`)
-				.then(({data}) => {
-					const monthlyFive = data.monthlyFive;
-					let contentToFill;
-					if (IsValidJSONString(monthlyFive.content)) {
-
-						const dbEditorState = convertFromRaw(JSON.parse(monthlyFive.content));
-						contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
-
-					} else {
-						contentToFill = EditorState.createEmpty(decoratorLink)
-					}
-					monthlyFive.content = contentToFill;
-					this.setState({
-						monthlyFiveData: monthlyFive,
-					});
-				})
-				.catch(e => {
-					console.error('Error getting monthlyFive: ', e)
-				})
+			this.props.getMonthlyFiveDetails(monthlyFiveId, true, true);
 		} else {
-			history.push('/admin');
+			this.props.history.push('/admin');
 		}
 	}
 
@@ -80,17 +58,42 @@ class EditMonthlyFive extends React.Component {
 	};
 
 	render() {
+		let contentToFill;
+		if (IsValidJSONString(this.props.monthlyFiveDetails.content)) {
+
+			const dbEditorState = convertFromRaw(JSON.parse(this.props.monthlyFiveDetails.content));
+			contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
+
+		} else {
+			contentToFill = EditorState.createEmpty(decoratorLink)
+		}
+		const monthlyFiveDetails = {
+			...this.props.monthlyFiveDetails,
+			content: contentToFill
+		}
 		return (
 			<div>
 				<MonthlyFiveEditor
 					setHighlight={this.setHighlight}
 					save={this.saveMonthlyFive}
 					delete={this.deleteMonthlyFive}
-					monthlyFiveData={this.state.monthlyFiveData} />
+					monthlyFiveData={monthlyFiveDetails} />
 			</div>
 		)
 	}
 
 }
 
-export default EditMonthlyFive;
+const mapStateToProps = (state) => ({
+	monthlyFiveDetails: state.monthlyFives.editMonthlyFiveDetails
+})
+
+function loadData(store, match) {
+	const id = match.params.monthlyFiveId;
+	return store.dispatch(getMonthlyFiveDetails(id, true, true));
+}
+
+export default {
+	component: connect(mapStateToProps, { getMonthlyFiveDetails })(withRouter(EditMonthlyFive)),
+	loadData
+};

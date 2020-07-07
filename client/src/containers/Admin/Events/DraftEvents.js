@@ -1,33 +1,20 @@
-import React, {useEffect, useState} from 'react';
-import axios from '../../../utils/axios';
-import { toast } from 'react-toastify'
+import React, {useEffect} from 'react';
 import {ListEventsWrapper} from "./styles";
 import EventPreview from "../../Events/EventPreview";
+import {connect} from "react-redux";
+import {getAdminEvent} from "../../../actions";
 
-const DraftEvents = () => {
-
-	const [draftEvents, setDraftEvents] = useState([]);
+const DraftEvents = ({ draft, getAdminEvent }) => {
 
 	useEffect(() => {
-		async function getDraftEvents() {
-			try {
-
-				const response = (await axios.get('/event/getEventAdmin?isPublished=false')).data;
-
-				setDraftEvents(response.events);
-
-			} catch (e) {
-				toast.error('Could not find drafts.');
-			}
-		}
-		getDraftEvents();
+		getAdminEvent(false)
 	}, []);
 
 	return (
 		<ListEventsWrapper className="container">
 			<div className="row">
 				{
-					draftEvents.map(event => (
+					draft.map(event => (
 						<EventPreview event={event} editable key={event._id} />
 					))
 				}
@@ -37,4 +24,11 @@ const DraftEvents = () => {
 
 };
 
-export default DraftEvents;
+const mapStateToProps = (state) => ({
+	draft: state.events.draftEvents
+})
+
+export default {
+	component: connect(mapStateToProps, { getAdminEvent })(DraftEvents),
+	loadData: ({ dispatch }) => dispatch(getAdminEvent(false))
+};

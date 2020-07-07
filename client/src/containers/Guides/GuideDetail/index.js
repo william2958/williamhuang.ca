@@ -1,7 +1,5 @@
 import React from 'react';
-import moment from 'moment';
 import { convertFromRaw, EditorState } from "draft-js";
-import axios from '../../../utils/axios';
 import RichTextEditor from "../../../components/RichTextEditor";
 
 import SvgIcon from "../../../components/SvgIcon";
@@ -18,10 +16,6 @@ import {withRouter} from "react-router-dom";
 
 class GuideDetail extends React.Component {
 
-	state = {
-		content: EditorState.createEmpty(decoratorLink)
-	};
-
 	componentDidMount() {
 		const id = this.props.match.params.id;
 		const searchableId = id || this.props.match.params.urlString;
@@ -30,44 +24,33 @@ class GuideDetail extends React.Component {
 		if (typeof window !== 'undefined') window.scrollTo(0, 0);
 	}
 
-	componentDidUpdate(prevProps, prevState, snapshot) {
-		if (prevProps.guideDetails.content !== this.props.guideDetails.content) {
-			let contentToFill;
-			if (IsValidJSONString(this.props.guideDetails.content)) {
-
-				const dbEditorState = convertFromRaw(JSON.parse(this.props.guideDetails.content));
-				contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
-
-			} else {
-				contentToFill = EditorState.createEmpty(decoratorLink)
-			}
-			this.setState({
-				content: contentToFill
-			})
-		}
-	}
-
 	goBack = () => {
 		this.props.history.push('/guides');
 	};
 
 	render() {
+
+		if (!this.props.guideDetails)
+			return <GuideDetailWrapper>Loading...</GuideDetailWrapper>;
+
 		const {
 			title,
 			contentPreview,
 			technology,
-
+			content,
 			publishDate: formattedDate,
 
 			iconURL
 		} = this.props.guideDetails;
 
-		const { content } = this.state;
+		let contentToFill;
+		if (IsValidJSONString(content)) {
 
-		if (!title) {
-			return (
-				<div style={{minHeight: '100vh'}}>Loading...</div>
-			)
+			const dbEditorState = convertFromRaw(JSON.parse(content));
+			contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
+
+		} else {
+			contentToFill = EditorState.createEmpty(decoratorLink)
 		}
 
 		return (
@@ -91,7 +74,7 @@ class GuideDetail extends React.Component {
 				<div className="container">
 					<BodyParagraph className="mobileMetadata mobileContentPreview">{contentPreview}</BodyParagraph>
 				</div>
-				<RichTextEditor editorState={content} readOnly={true} />
+				<RichTextEditor editorState={contentToFill} readOnly={true} />
 
 				<Button
 					center

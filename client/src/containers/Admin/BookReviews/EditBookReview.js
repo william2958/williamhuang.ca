@@ -13,27 +13,6 @@ import {connect} from "react-redux";
 
 class EditBookReview extends React.Component {
 
-    state = {
-        editorState: EditorState.createEmpty(decoratorLink)
-    };
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.bookReviewDetails.content !== this.props.bookReviewDetails.content) {
-            let contentToFill;
-            if (IsValidJSONString(this.props.bookReviewDetails.content)) {
-
-                const dbEditorState = convertFromRaw(JSON.parse(this.props.bookReviewDetails.content));
-                contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
-
-            } else {
-                contentToFill = EditorState.createEmpty(decoratorLink)
-            }
-            this.setState({
-                editorState: contentToFill
-            })
-        }
-    }
-
     componentDidMount() {
         const reviewId = this.props.match.params.reviewId;
         if (reviewId) {
@@ -44,7 +23,6 @@ class EditBookReview extends React.Component {
     }
 
     saveBookReview = async (reviewData) => {
-        console.log('saving book review: ', reviewData);
         const dataToUpdate = {
             ...reviewData,
             bookReviewId: reviewData._id
@@ -72,9 +50,20 @@ class EditBookReview extends React.Component {
     };
 
     render() {
+
+        let contentToFill;
+        if (IsValidJSONString(this.props.bookReviewDetails.content)) {
+
+            const dbEditorState = convertFromRaw(JSON.parse(this.props.bookReviewDetails.content));
+            contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
+
+        } else {
+            contentToFill = EditorState.createEmpty(decoratorLink)
+        }
+
         const bookReviewDetails = {
             ...this.props.bookReviewDetails,
-            content: this.state.editorState
+            content: contentToFill
         }
         return (
             <div>

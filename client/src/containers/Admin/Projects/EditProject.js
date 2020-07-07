@@ -12,33 +12,12 @@ import {withRouter} from "react-router-dom";
 
 class EditProject extends React.Component {
 
-	state = {
-		editorState: EditorState.createEmpty(decoratorLink)
-	};
-
 	componentDidMount() {
 		const projectId = this.props.match.params.projectId;
 		if (projectId) {
 			this.props.getProjectDetails(projectId, true, true);
 		} else {
 			this.props.history.push('/admin');
-		}
-	}
-
-	componentDidUpdate(prevProps, prevState, snapshot) {
-		if (prevProps.projectDetails.content !== this.props.projectDetails.content) {
-			let contentToFill;
-			if (IsValidJSONString(this.props.projectDetails.content)) {
-
-				const dbEditorState = convertFromRaw(JSON.parse(this.props.projectDetails.content));
-				contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
-
-			} else {
-				contentToFill = EditorState.createEmpty(decoratorLink)
-			}
-			this.setState({
-				editorState: contentToFill
-			})
 		}
 	}
 
@@ -79,10 +58,22 @@ class EditProject extends React.Component {
 	};
 
 	render() {
+
+		let contentToFill;
+		if (IsValidJSONString(this.props.projectDetails.content)) {
+
+			const dbEditorState = convertFromRaw(JSON.parse(this.props.projectDetails.content));
+			contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
+
+		} else {
+			contentToFill = EditorState.createEmpty(decoratorLink)
+		}
+
 		const projectData = {
 			...this.props.projectDetails,
-			content: this.state.editorState
+			content: contentToFill
 		}
+
 		return (
 			<div>
 				<ProjectEditor

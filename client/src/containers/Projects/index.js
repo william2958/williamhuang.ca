@@ -20,19 +20,14 @@ import {NEXT_PAGE_PROJECTS_LOADED} from "../../actions/types";
 class ProjectsPage extends React.Component {
 
 	state = {
-		filterCategory: 'all',
-		spotlightProject: null
+		filterCategory: 'all'
 	};
 
 	componentDidMount() {
 		this.props.getFirstPageProjects('all');
-		this.getSpotlightProject();
+		this.props.getSpotlightProject();
 		window.scrollTo(0, 0);
 	}
-
-	getSpotlightProject = async () => {
-
-	};
 
 	loadNextPage = async () => {
 		try {

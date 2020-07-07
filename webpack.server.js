@@ -24,7 +24,7 @@ const config = {
 			{
 				test: /\.css$/,
 				use: {
-					loader: "css-loader"
+					loader: "ignore-loader"
 				}
 			},
 			{

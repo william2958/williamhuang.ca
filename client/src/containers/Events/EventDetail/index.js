@@ -1,7 +1,6 @@
 import React from 'react';
 import { convertFromRaw, EditorState } from "draft-js";
 import moment from 'moment';
-import axios from '../../../utils/axios';
 import RichTextEditor from "../../../components/RichTextEditor";
 
 import {decoratorLink} from "../../../components/RichTextEditor/linkDecorator";
@@ -15,118 +14,66 @@ import {H4, H5} from "../../../styles/typography/Headers";
 import Button from "../../../components/UI/Button";
 import EventHero from "../EventHero";
 import {EventRecapToggle} from "../../Admin/Events/styles";
+import {getEventDetails} from "../../../actions";
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 class EventDetail extends React.Component {
 
 	state = {
-		title: '',
-		content: EditorState.createEmpty(decoratorLink),
 		viewingRecap: false
 	};
 
 	componentDidMount() {
 		const id = this.props.match.params.id;
 		const searchableId = id || this.props.match.params.urlString;
-		this.getEventDetails(searchableId, !!id);
+		this.props.getEventDetails(searchableId, !!id);
 
 		window.scrollTo(0, 0);
 	}
 
-	getEventDetails = async (id, isId) => {
-		try {
-			const urlString = isId
-				? `/event/getEvent?eventId=${id}`
-				: `/event/getEventFromString?urlString=${id}`;
-			const response = (await axios.get(urlString)).data;
-			const {event} = response;
-
-			const {
-				title,
-				content,
-				recap,
-				keyInfo,
-				contentPreview,
-				eventDate,
-
-				heroURL,
-				lastUpdated
-
-			} = event;
-
-			let contentToFill;
-			if (IsValidJSONString(content)) {
-
-				const dbEditorState = convertFromRaw(JSON.parse(content));
-				contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
-
-			} else {
-				contentToFill = EditorState.createEmpty(decoratorLink)
-			}
-			let recapToFill;
-			if (IsValidJSONString(recap)) {
-
-				const dbEditorState = convertFromRaw(JSON.parse(recap));
-				recapToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
-
-			} else {
-				recapToFill = EditorState.createEmpty(decoratorLink)
-			}
-
-			const currDate = new Date();
-			const parsedDate = new Date(eventDate);
-			const expiredEvent = currDate > parsedDate;
-
-			this.setState({
-				title,
-				contentPreview,
-
-				content: contentToFill,
-				recap: recapToFill,
-
-				keyInfo,
-				eventDate,
-
-				heroURL,
-				event,
-				lastUpdated,
-
-				expiredEvent,
-				viewingRecap: expiredEvent
-			});
-
-		} catch (err) {
-			console.error('There was an error fetching that book detail: ', err);
-		}
-	};
-
 	render() {
-		const {
-			title,
 
-			content: contentToFill,
-			recap: recapToFill,
+		if (!this.props.eventDetails)
+			return <EventDetailWrapper>Loading...</EventDetailWrapper>;
+
+		const {
+			content,
+			recap,
 
 			keyInfo,
 
-			event,
 			expiredEvent,
 			lastUpdated
-		} = this.state;
-
-		if (!title) {
-			return (
-				<div style={{minHeight: '100vh'}}>Loading...</div>
-			)
-		}
+		} = this.props.eventDetails;
 
 		const formattedDate = moment(lastUpdated).format('h a MMMM D, YYYY')
 
+		let contentToFill;
+		if (IsValidJSONString(content)) {
+
+			const dbEditorState = convertFromRaw(JSON.parse(content));
+			contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
+
+		} else {
+			contentToFill = EditorState.createEmpty(decoratorLink)
+		}
+
+		let recapToFill;
+		if (IsValidJSONString(recap)) {
+
+			const dbEditorState = convertFromRaw(JSON.parse(recap));
+			recapToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
+
+		} else {
+			recapToFill = EditorState.createEmpty(decoratorLink)
+		}
 		return (
 			<EventDetailWrapper>
 
 				<div>
 					<UpcomingEventDetailWrapper>
-						<EventHero event={event} fit staticHero />
+						<EventHero event={this.props.eventDetails} fit staticHero />
 					</UpcomingEventDetailWrapper>
 				</div>
 
@@ -171,4 +118,19 @@ class EventDetail extends React.Component {
 
 };
 
-export default EventDetail;
+function mapStateToProps(state) {
+	return {
+		eventDetails: state.events.eventDetails
+	}
+}
+
+function loadData(store, match) {
+	const id = match.params.id;
+	const searchableId = id || match.params.urlString;
+	return store.dispatch(getEventDetails(searchableId, !!id));
+}
+
+export default {
+	component: connect(mapStateToProps, { getEventDetails })(withRouter(EventDetail)),
+	loadData
+};

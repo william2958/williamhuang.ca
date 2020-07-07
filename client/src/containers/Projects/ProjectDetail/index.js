@@ -57,6 +57,10 @@ class ProjectDetail extends React.Component {
 	};
 
 	render() {
+
+		if (!this.props.projectDetails)
+			return <ProjectDetailWrapper>Loading...</ProjectDetailWrapper>;
+
 		const {
 			title,
 			category,

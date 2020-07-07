@@ -7,7 +7,6 @@ import {ThemeProvider} from "styled-components";
 import './react-toast.css';
 import './App.css';
 import {fetchCurrentUser} from "./src/actions/authActions";
-import {BootStrapBasicStyles} from "./BootStrapBasicStyles";
 import {Helmet} from "react-helmet";
 
 const App = ({ route }) => {
@@ -21,7 +20,7 @@ const App = ({ route }) => {
 				<meta property="description" content="Explore my blog, reviews, guides, and more." />
 				<meta property="og:url" content="https://www.williamhuang.ca" />
 			</Helmet>
-			<BootStrapBasicStyles>
+			<div>
 				{/*<Header />*/}
 				{renderRoutes(route.routes)}
 				<ToastContainer
@@ -29,7 +28,7 @@ const App = ({ route }) => {
 					autoClose={1000}
 					transition={Zoom}
 				/>
-			</BootStrapBasicStyles>
+			</div>
 		</ThemeProvider>
 	)
 };

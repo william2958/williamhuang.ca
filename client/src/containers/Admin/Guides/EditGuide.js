@@ -12,27 +12,6 @@ import {withRouter} from "react-router-dom";
 
 class EditGuide extends React.Component {
 
-	state = {
-		editorState: EditorState.createEmpty(decoratorLink)
-	};
-
-	componentDidUpdate(prevProps, prevState, snapshot) {
-		if (prevProps.guideDetails.content !== this.props.guideDetails.content) {
-			let contentToFill;
-			if (IsValidJSONString(this.props.guideDetails.content)) {
-
-				const dbEditorState = convertFromRaw(JSON.parse(this.props.guideDetails.content));
-				contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
-
-			} else {
-				contentToFill = EditorState.createEmpty(decoratorLink)
-			}
-			this.setState({
-				editorState: contentToFill
-			})
-		}
-	}
-
 	componentDidMount() {
 		const guideId = this.props.match.params.guideId;
 		if (guideId) {
@@ -70,9 +49,18 @@ class EditGuide extends React.Component {
 	};
 
 	render() {
+		let contentToFill;
+		if (IsValidJSONString(this.props.guideDetails.content)) {
+
+			const dbEditorState = convertFromRaw(JSON.parse(this.props.guideDetails.content));
+			contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
+
+		} else {
+			contentToFill = EditorState.createEmpty(decoratorLink)
+		}
 		const guideDetails = {
 			...this.props.guideDetails,
-			content: this.state.editorState
+			content: contentToFill
 		}
 		return (
 			<div>

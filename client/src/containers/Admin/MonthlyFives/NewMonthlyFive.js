@@ -35,4 +35,6 @@ const NewMonthlyFive = ({ history }) => {
 
 };
 
-export default NewMonthlyFive;
+export default {
+	component: NewMonthlyFive
+};

@@ -3,54 +3,21 @@ import { toast } from 'react-toastify';
 import { EditorState, convertFromRaw } from 'draft-js';
 
 import axios from '../../../utils/axios';
-import history from '../../../history';
 import {decoratorLink} from "../../../components/RichTextEditor/linkDecorator";
 import {IsValidJSONString} from "../../../utils/isValidJSON";
 import EventEditor from "./EventEditor";
+import {getEventDetails} from "../../../actions";
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 class EditEvent extends React.Component {
-
-	state = {
-		eventData: null,
-		editorState: EditorState.createEmpty(decoratorLink)
-	};
 
 	componentDidMount() {
 		const eventId = this.props.match.params.eventId;
 		if (eventId) {
-			axios.get(`/event/getEvent?eventId=${eventId}`)
-				.then(({data}) => {
-					const event = data.event;
-					let contentToFill;
-					let recapToFill;
-					if (IsValidJSONString(event.content)) {
-
-						const dbEditorState = convertFromRaw(JSON.parse(event.content));
-						contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
-
-					} else {
-						contentToFill = EditorState.createEmpty(decoratorLink)
-					}
-					if (IsValidJSONString(event.recap)) {
-
-						const dbRecapState = convertFromRaw(JSON.parse(event.recap));
-						recapToFill = EditorState.createWithContent(dbRecapState, decoratorLink)
-
-					} else {
-						recapToFill = EditorState.createEmpty(decoratorLink)
-					}
-					event.content = contentToFill;
-					event.recap = recapToFill;
-					event.eventDate = new Date(event.eventDate);
-					this.setState({
-						eventData: event,
-					});
-				})
-				.catch(e => {
-					console.error('Error getting event: ', e)
-				})
+			this.props.getEventDetails(eventId, true, true);
 		} else {
-			history.push('/admin');
+			this.props.history.push('/admin');
 		}
 	}
 
@@ -103,6 +70,30 @@ class EditEvent extends React.Component {
 	};
 
 	render() {
+		let contentToFill;
+		if (IsValidJSONString(this.props.eventDetails.content)) {
+
+			const dbEditorState = convertFromRaw(JSON.parse(this.props.eventDetails.content));
+			contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
+
+		} else {
+			contentToFill = EditorState.createEmpty(decoratorLink)
+		}
+		let recapToFill;
+		if (IsValidJSONString(this.props.eventDetails.recap)) {
+
+			const dbEditorState = convertFromRaw(JSON.parse(this.props.eventDetails.recap));
+			recapToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
+
+		} else {
+			recapToFill = EditorState.createEmpty(decoratorLink)
+		}
+		const eventDetails = {
+			...this.props.eventDetails,
+			content: contentToFill,
+			recap: recapToFill
+		}
+
 		return (
 			<div>
 				<EventEditor
@@ -110,11 +101,23 @@ class EditEvent extends React.Component {
 					setHighlight={this.setHighlight}
 					save={this.saveEvent}
 					delete={this.deleteEvent}
-					eventData={this.state.eventData} />
+					eventData={eventDetails} />
 			</div>
 		)
 	}
 
 }
 
-export default EditEvent;
+const mapStateToProps = (state) => ({
+	eventDetails: state.events.editEventDetails
+})
+
+function loadData(store, match) {
+	const id = match.params.eventId;
+	return store.dispatch(getEventDetails(id, true, true));
+}
+
+export default {
+	component: connect(mapStateToProps, { getEventDetails })(withRouter(EditEvent)),
+	loadData
+};

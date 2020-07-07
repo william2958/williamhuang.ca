@@ -1,42 +1,29 @@
-import React, {useEffect, useState} from 'react';
-import {toast} from "react-toastify";
-import ReactGA from "react-ga";
+import React, {useEffect} from 'react';
+// import ReactGA from "react-ga";
 import {withRouter} from "react-router-dom";
 
-import axios from "../../../../utils/axios";
 import {HomePageSection, HomePageSectionHeader} from "../../styles";
 import {H4, H5} from "../../../../styles/typography/Headers";
 import MonthlyFiveHero from "../../../MonthlyFives/MonthlyFiveHero";
 import {parseMonthAndYear} from "../../../MonthlyFives/helpers";
 import {HomeMonthlyFiveHeroWrapper} from "./styles";
+import {connect} from "react-redux";
+import {getNumRecentMonthlyFives} from "../../../../actions";
 
-const RecentMonthlyFive = ({ history }) => {
-
-	const [recentMonthlyFive, setRecentMonthlyFive] = useState(null);
+const RecentMonthlyFive = ({ history, getNumRecentMonthlyFives, recentMonthlyFive }) => {
 
 	useEffect(() => {
 
-		async function getMonthlyFive() {
-			try {
-				const response = (await axios.get(`/monthlyFive/getNumRecentMonthlyFives?numMonthlyFives=1`)).data;
-
-				if (response.allMonthlyFives.length)
-					setRecentMonthlyFive(response.allMonthlyFives[0]);
-			} catch (error) {
-				toast.error('Could not load data.')
-			}
-		}
-
-		getMonthlyFive()
+		getNumRecentMonthlyFives()
 
 	}, []);
 
 	const viewAllEvents = () => {
-		ReactGA.event({
-			category: 'Home',
-			action: 'View All Monthly Fives',
-			transport: 'beacon'
-		});
+		// ReactGA.event({
+		// 	category: 'Home',
+		// 	action: 'View All Monthly Fives',
+		// 	transport: 'beacon'
+		// });
 		history.push('/monthlyFives')
 	};
 
@@ -58,4 +45,9 @@ const RecentMonthlyFive = ({ history }) => {
 
 };
 
-export default withRouter(RecentMonthlyFive);
+const mapStateToProps = (state) => ({
+	recentMonthlyFive: state.monthlyFives.recentMonthlyFive
+})
+
+export default connect(mapStateToProps, { getNumRecentMonthlyFives })(withRouter(RecentMonthlyFive));
+

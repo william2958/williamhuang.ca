@@ -7,7 +7,7 @@ import ProjectHero from "../../../Projects/ProjectHero";
 import {getHomeHighlight} from "../../../../actions/homeActions";
 import {connect} from "react-redux";
 
-const HomePageBanner = ({ type, highlight }) => {
+const HomePageBanner = ({ type, highlight, getHomeHighlight }) => {
 
 	useEffect(() => {
 

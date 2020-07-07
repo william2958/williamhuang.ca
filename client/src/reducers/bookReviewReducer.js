@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 	bookReviews: [],
 	anotherPage: false,
 	numToSkip: 0,
-	bookReviewDetails: {},
+	bookReviewDetails: null,
 	editBookReviewDetails: {},
 	draftBookReviews: [],
 	publishedBookReviews: [],

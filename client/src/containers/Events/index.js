@@ -9,68 +9,37 @@ import {
 import EventPreview from "./EventPreview";
 import {GutteredRow, HeroRow, LoadMoreButtonContainer} from "../../styles/globalStyles";
 import EventHero from "./EventHero";
+import {NEXT_PAGE_EVENTS_LOADED} from "../../actions/types";
+import {getFirstPageEvents} from "../../actions";
+import {connect} from "react-redux";
 
 class EventsPage extends React.Component {
 
-	state = {
-		currentEvents: [],
-		pastEvents: [],
-		anotherPage: false,
-		numToSkip: 0,
-	};
-
 	componentDidMount() {
-		this.getFirstPage();
-		window.scrollTo(0, 0);
+		this.props.getFirstPageEvents();
+		if (typeof window !== 'undefined') window.scrollTo(0, 0);
 	}
-
-	getFirstPage = async () => {
-		try {
-
-			const response = (await axios.get(`/event/getRecentEvents`)).data;
-
-			const currentEvents = [];
-			const pastEvents = [];
-
-			const todayDate = new Date();
-			for (let event of response.allEvents) {
-				const parsedDate = new Date(event.eventDate);
-				if (parsedDate > todayDate) {
-					currentEvents.push(event)
-				} else {
-					pastEvents.push(event)
-				}
-			}
-
-			this.setState({
-				currentEvents,
-				pastEvents,
-				anotherPage: response.anotherPage,
-				numToSkip: response.numToSkip
-			})
-
-		} catch (error) {
-			toast.error('There was an error getting the first page.')
-		}
-	};
 
 	loadNextPage = async () => {
 		try {
-			const {pastEvents, numToSkip} = this.state;
+			const {pastEvents, numToSkip} = this.props;
 
-			let filteredCategory = this.state.filterCategory;
-			if (filteredCategory === 'all') {
-				filteredCategory = '';
-			}
+			// let filteredCategory = this.state.filterCategory;
+			// if (filteredCategory === 'all') {
+			// 	filteredCategory = '';
+			// }
 
 			const newEvents = [...pastEvents];
-			const response = (await axios.get(`/event/getRecentEvents?numSkip=${numToSkip}&category=${filteredCategory}`)).data;
+			const response = (await axios.get(`/event/getRecentEvents?numSkip=${numToSkip}&category=`)).data;
 			newEvents.push(...response.allEvents);
 
-			this.setState({
-				pastEvents: newEvents,
-				anotherPage: response.anotherPage,
-				numToSkip: response.numToSkip
+			this.props.dispatch({
+				type: NEXT_PAGE_EVENTS_LOADED,
+				payload: {
+					pastEvents: newEvents,
+					anotherPage: response.anotherPage,
+					numToSkip: response.numToSkip
+				}
 			});
 
 		} catch (error) {
@@ -80,7 +49,7 @@ class EventsPage extends React.Component {
 
 	render() {
 
-		const {anotherPage} = this.state;
+		const {anotherPage, currentEvents, pastEvents} = this.props;
 
 		return (
 			<EventsPageWrapper className="container">
@@ -90,7 +59,7 @@ class EventsPage extends React.Component {
 				</EventsPageHeader>
 				<HeroRow>
 					{
-						this.state.currentEvents.map(event => (
+						currentEvents.map(event => (
 							<UpcomingEventWrapper key={event._id}>
 								<EventHero event={event} fit />
 							</UpcomingEventWrapper>
@@ -103,7 +72,7 @@ class EventsPage extends React.Component {
 				</PastEventsHeader>
 				<GutteredRow className="row no-gutters">
 					{
-						this.state.pastEvents.map(event => (
+						pastEvents.map(event => (
 							<EventPreview event={event} key={event._id}/>
 						))
 					}
@@ -119,4 +88,20 @@ class EventsPage extends React.Component {
 
 }
 
-export default EventsPage;
+function mapStateToProps(state) {
+	return {
+		currentEvents: state.events.currentEvents,
+		pastEvents: state.events.pastEvents,
+		anotherPage: state.events.anotherPage,
+		numToSkip: state.events.numToSkip
+	}
+}
+
+function loadData(store) {
+	return store.dispatch(getFirstPageEvents('all'))
+}
+
+export default {
+	component: connect(mapStateToProps, { getFirstPageEvents })(EventsPage),
+	loadData
+};

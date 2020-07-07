@@ -1,5 +1,4 @@
 import React from 'react';
-import history from '../../../history';
 import {H3, H4, H5} from "../../../styles/typography/Headers";
 import {
 	EventPreviewContent, EventPreviewDate,
@@ -8,8 +7,9 @@ import {
 	EventPreviewWrapper
 } from "./styles";
 import moment from "moment";
+import {withRouter} from "react-router-dom";
 
-const EventPreview = ({ event, editable }) => {
+const EventPreview = ({ event, editable, history }) => {
 
 	const {
 		title,
@@ -58,4 +58,4 @@ const EventPreview = ({ event, editable }) => {
 
 };
 
-export default EventPreview;
+export default withRouter(EventPreview);

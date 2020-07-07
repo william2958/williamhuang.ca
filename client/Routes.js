@@ -30,6 +30,18 @@ import NewProject from "./src/containers/Admin/Projects/NewProject";
 import DraftProjects from "./src/containers/Admin/Projects/DraftProjects";
 import PublishedProjects from "./src/containers/Admin/Projects/PublishedProjects";
 import ProjectDetail from './src/containers/Projects/ProjectDetail';
+import PublishedEvents from "./src/containers/Admin/Events/PublishedEvents";
+import DraftEvents from "./src/containers/Admin/Events/DraftEvents";
+import NewEvent from "./src/containers/Admin/Events/NewEvent";
+import EditEvent from "./src/containers/Admin/Events/EditEvent";
+import PublishedMonthlyFives from "./src/containers/Admin/MonthlyFives/PublishedMonthlyFives";
+import DraftMonthlyFives from "./src/containers/Admin/MonthlyFives/DraftMonthlyFives";
+import NewMonthlyFive from "./src/containers/Admin/MonthlyFives/NewMonthlyFive";
+import EditMonthlyFive from "./src/containers/Admin/MonthlyFives/EditMonthlyFive";
+import EventDetail from './src/containers/Events/EventDetail';
+import EventsPage from './src/containers/Events';
+import MonthlyFiveDetail from './src/containers/MonthlyFives/MonthlyFiveDetail';
+import MonthlyFivesPage from './src/containers/MonthlyFives';
 
 export default [
 	{
@@ -93,6 +105,40 @@ export default [
 					{
 						...EditProject,
 						path: '/admin/project/edit/:projectId'
+					},
+
+					{
+						...PublishedEvents,
+						path: '/admin/event/published'
+					},
+					{
+						...DraftEvents,
+						path: '/admin/event/drafts'
+					},
+					{
+						...NewEvent,
+						path: '/admin/event/new'
+					},
+					{
+						...EditEvent,
+						path: '/admin/event/edit/:eventId'
+					},
+
+					{
+						...PublishedMonthlyFives,
+						path: '/admin/monthlyFive/published'
+					},
+					{
+						...DraftMonthlyFives,
+						path: '/admin/monthlyFive/drafts'
+					},
+					{
+						...NewMonthlyFive,
+						path: '/admin/monthlyFive/new'
+					},
+					{
+						...EditMonthlyFive,
+						path: '/admin/monthlyFive/edit/:monthlyFiveId'
 					}
 				]
 			},
@@ -145,6 +191,34 @@ export default [
 					{
 						...GuidesPage,
 						path: '/guides'
+					},
+
+
+					{
+						...EventDetail,
+						path: '/events/id/:id'
+					},
+					{
+						...EventDetail,
+						path: '/events/:urlString'
+					},
+					{
+						...EventsPage,
+						path: '/events'
+					},
+
+
+					{
+						...MonthlyFiveDetail,
+						path: '/monthlyFives/id/:id'
+					},
+					{
+						...MonthlyFiveDetail,
+						path: '/monthlyFives/:urlString'
+					},
+					{
+						...MonthlyFivesPage,
+						path: '/monthlyFives'
 					},
 
 					{

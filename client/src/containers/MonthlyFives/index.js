@@ -1,5 +1,3 @@
-import axios from "../../utils/axios";
-import {toast} from "react-toastify";
 import {H4, H6} from "../../styles/typography/Headers";
 import React from "react";
 import {
@@ -13,53 +11,33 @@ import {VALID_YEARS} from "../../constants";
 import Dropdown from "../../components/Dropdown";
 import {GutteredRow} from "../../styles/globalStyles";
 import MonthlyFiveHero from "./MonthlyFiveHero";
+import {getYear} from "../../actions";
+import {connect} from "react-redux";
 
 class MonthlyFivesPage extends React.Component {
 
 	state = {
-		monthlyFives: [],
-		mostRecentMonthlyFive: null,
-		filterCategory: 'all',
 		selectedYear: VALID_YEARS[0]
 	};
 
 	componentDidMount() {
-		this.getYear(this.state.selectedYear);
+		this.props.getYear(this.state.selectedYear);
 		window.scrollTo(0, 0);
 	}
 
-	getYear = async (year) => {
-		try {
-
-			const response = (await axios.get(`/monthlyFive/getRecentMonthlyFives?year=${year}`)).data;
-
-			let mostRecentMonthlyFive = null;
-			let monthlyFives = response.allMonthlyFives;
-			if (response.allMonthlyFives.length) {
-				mostRecentMonthlyFive = monthlyFives.shift();
-			}
-
-			this.setState({
-				monthlyFives,
-				mostRecentMonthlyFive
-			})
-
-		} catch (error) {
-			toast.error('There was an error getting the first page.')
-		}
-	};
-
 	selectYear = (year) => {
-		this.getYear(year);
+		this.props.getYear(year);
 	};
 
 	render() {
 
 		const {
-			monthlyFives,
-			mostRecentMonthlyFive,
 			selectedYear
 		} = this.state;
+		const {
+			monthlyFives,
+			mostRecentMonthlyFive
+		} = this.props;
 
 		return (
 			<MonthlyFivesPageWrapper className="container">
@@ -97,4 +75,18 @@ class MonthlyFivesPage extends React.Component {
 
 }
 
-export default MonthlyFivesPage;
+function mapStateToProps(state) {
+	return {
+		monthlyFives: state.monthlyFives.monthlyFives,
+		mostRecentMonthlyFive: state.monthlyFives.mostRecentMonthlyFive
+	}
+}
+
+function loadData(store) {
+	return store.dispatch(getYear(VALID_YEARS[0]))
+}
+
+export default {
+	component: connect(mapStateToProps, { getYear })(MonthlyFivesPage),
+	loadData
+};

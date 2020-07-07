@@ -1,7 +1,7 @@
 import React from 'react';
 import { EditorState, convertToRaw } from 'draft-js';
 import _ from 'lodash';
-import DateTimePicker from "react-datetime-picker";
+// import DateTimePicker from "react-datetime-picker";
 
 import {decoratorLink} from "../../../components/RichTextEditor/linkDecorator";
 import axios from "../../../utils/axios";
@@ -228,10 +228,10 @@ class EventEditor extends React.Component {
 							fullWidth
 						/>
 
-						<DateTimePicker
-							onChange={this.setEventDate}
-							value={eventDate}
-						/>
+						{/*<DateTimePicker*/}
+						{/*	onChange={this.setEventDate}*/}
+						{/*	value={eventDate}*/}
+						{/*/>*/}
 
 						<CheckboxSimple
 							label="Published"

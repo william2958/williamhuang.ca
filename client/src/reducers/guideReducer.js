@@ -11,7 +11,7 @@ const INITIAL_STATE = {
 	guides: [],
 	anotherPage: false,
 	numToSkip: 0,
-	guideDetails: {},
+	guideDetails: null,
 	editGuideDetails: {},
 	draftGuides: [],
 	publishedGuides: [],

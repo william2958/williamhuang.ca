@@ -1,33 +1,20 @@
-import React, {useEffect, useState} from 'react';
-import axios from '../../../utils/axios';
-import { toast } from 'react-toastify'
+import React, {useEffect} from 'react';
 import {ListMonthlyFivesWrapper} from "./styles";
 import MonthlyFivePreview from "../../MonthlyFives/MonthlyFivePreview";
+import {connect} from "react-redux";
+import {getAdminMonthlyFive} from "../../../actions";
 
-const PublishedMonthlyFives = () => {
-
-	const [publishedMonthlyFives, setPublishedMonthlyFives] = useState([]);
+const PublishedMonthlyFives = ({ published, getAdminMonthlyFive }) => {
 
 	useEffect(() => {
-		async function getPublishedMonthlyFives() {
-			try {
-
-				const response = (await axios.get('/monthlyFive/getMonthlyFiveAdmin?isPublished=true')).data;
-
-				setPublishedMonthlyFives(response.monthlyFives);
-
-			} catch (e) {
-				toast.error('Could not find published monthlyFives.');
-			}
-		}
-		getPublishedMonthlyFives();
+		getAdminMonthlyFive(true);
 	}, []);
 
 	return (
 		<ListMonthlyFivesWrapper className="container">
 			<div className="row">
 				{
-					publishedMonthlyFives.map(monthlyFive => (
+					published.map(monthlyFive => (
 						<MonthlyFivePreview key={monthlyFive._id} monthlyFive={monthlyFive} editable />
 					))
 				}
@@ -37,4 +24,11 @@ const PublishedMonthlyFives = () => {
 
 };
 
-export default PublishedMonthlyFives;
+const mapStateToProps = (state) => ({
+	published: state.monthlyFives.publishedMonthlyFives
+})
+
+export default {
+	component: connect(mapStateToProps, { getAdminMonthlyFive })(PublishedMonthlyFives),
+	loadData: ({ dispatch }) => dispatch(getAdminMonthlyFive(true))
+};

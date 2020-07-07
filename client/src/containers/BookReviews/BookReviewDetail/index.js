@@ -21,6 +21,7 @@ import {Helmet} from "react-helmet";
 import {getBookReviewDetails} from "../../../actions";
 import {withRouter} from "react-router-dom";
 import {IsValidJSONString} from "../../../utils/isValidJSON";
+import {getImageUrl} from "../../../utils/getImageUrl";
 
 class BookReviewDetail extends React.Component {
 
@@ -38,7 +39,7 @@ class BookReviewDetail extends React.Component {
     render() {
 
         if (!this.props.bookReviewDetails) {
-            return null;
+            return <BookReviewDetailWrapper>Loading...</BookReviewDetailWrapper>;
         }
 
         const {
@@ -48,13 +49,14 @@ class BookReviewDetail extends React.Component {
             coverURL,
             recommended,
             category,
-            contentPreview
+            contentPreview,
+            content
         } = this.props.bookReviewDetails;
 
         let contentToFill;
-        if (IsValidJSONString(this.props.bookReviewDetails.content)) {
+        if (IsValidJSONString(content)) {
 
-            const dbEditorState = convertFromRaw(JSON.parse(this.props.bookReviewDetails.content));
+            const dbEditorState = convertFromRaw(JSON.parse(content));
             contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
 
         } else {
@@ -66,7 +68,7 @@ class BookReviewDetail extends React.Component {
                 <Helmet>
                     <title>{title + ' | WH'}</title>
                     <meta property="og:title" content={title} />
-                    <meta property="og:image" content={coverURL} />
+                    <meta property="og:image" content={getImageUrl(coverURL, 'small')} />
                     <meta property="description" content={contentPreview} />
                     {/*<meta property="description" content="Explore my blog, reviews, guides, and more." />*/}
                     {/*<meta property="og:url" content={window.location.href} />*/}

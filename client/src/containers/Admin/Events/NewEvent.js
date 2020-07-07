@@ -35,4 +35,6 @@ const NewEvent = ({ history }) => {
 
 };
 
-export default NewEvent;
+export default {
+	component: NewEvent
+};

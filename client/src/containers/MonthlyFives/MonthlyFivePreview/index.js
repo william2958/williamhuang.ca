@@ -1,9 +1,9 @@
 import React from 'react';
-import history from "../../../history";
 import {MonthlyFivePreviewContent, MonthlyFivePreviewImage, MonthlyFivePreviewTitle, MonthlyFivePreviewWrapper} from "./styles";
 import {parseMonthAndYear} from "../helpers";
+import {withRouter} from "react-router-dom";
 
-const MonthlyFivePreview = ({ monthlyFive, editable }) => {
+const MonthlyFivePreview = ({ monthlyFive, editable, history }) => {
 
 	const {
 		title,
@@ -39,4 +39,4 @@ const MonthlyFivePreview = ({ monthlyFive, editable }) => {
 
 };
 
-export default MonthlyFivePreview;
+export default withRouter(MonthlyFivePreview);

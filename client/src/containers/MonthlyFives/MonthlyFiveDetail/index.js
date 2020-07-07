@@ -1,6 +1,5 @@
 import React from 'react';
 import { convertFromRaw, EditorState } from "draft-js";
-import axios from '../../../utils/axios';
 import RichTextEditor from "../../../components/RichTextEditor";
 
 import SvgIcon from "../../../components/SvgIcon";
@@ -12,74 +11,28 @@ import {parseMonthAndYear} from "../helpers";
 import {BackArrow} from "../../../styles/globalStyles";
 import Button from "../../../components/UI/Button";
 import {MonthlyFiveSpotlightImage} from "../MonthlyFiveHero/styles";
+import {getMonthlyFiveDetails} from "../../../actions";
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 class MonthlyFiveDetail extends React.Component {
-
-	state = {
-		title: '',
-		content: EditorState.createEmpty(decoratorLink)
-	};
 
 	componentDidMount() {
 		const id = this.props.match.params.id;
 		const searchableId = id || this.props.match.params.urlString;
-		this.getMonthlyFiveDetails(searchableId, !!id);
-
-		window.scrollTo(0, 0);
+		this.props.getMonthlyFiveDetails(searchableId, !!id);
+		if (typeof window !== 'undefined') window.scrollTo(0, 0);
 	}
-
-	getMonthlyFiveDetails = async (id, isId) => {
-		try {
-			const urlString = isId
-				? `/monthlyFive/getMonthlyFive?monthlyFiveId=${id}`
-				: `/monthlyFive/getMonthlyFiveFromString?urlString=${id}`;
-			const response = (await axios.get(urlString)).data;
-			const {monthlyFive} = response;
-
-			const {
-				title,
-				year,
-				month,
-				contentPreview,
-
-				heroURL,
-				previewImageURL,
-
-			} = monthlyFive;
-
-			let contentToFill;
-			if (IsValidJSONString(monthlyFive.content)) {
-
-				const dbEditorState = convertFromRaw(JSON.parse(monthlyFive.content));
-				contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
-
-			} else {
-				contentToFill = EditorState.createEmpty(decoratorLink)
-			}
-
-			this.setState({
-				title,
-				contentPreview,
-
-				year,
-				month,
-
-				content: contentToFill,
-
-				heroURL,
-				previewImageURL
-			});
-
-		} catch (err) {
-			console.error('There was an error fetching that book detail: ', err);
-		}
-	};
 
 	goBack = () => {
 		this.props.history.push('/monthlyFives');
 	};
 
 	render() {
+
+		if (!this.props.monthlyFiveDetails)
+			return <MonthlyFiveDetailWrapper>Loading...</MonthlyFiveDetailWrapper>;
+
 		const {
 			title,
 			contentPreview,
@@ -87,15 +40,19 @@ class MonthlyFiveDetail extends React.Component {
 			year,
 			month,
 
-			content: contentToFill,
+			content,
 
 			heroURL
-		} = this.state;
+		} = this.props.monthlyFiveDetails;
 
-		if (!title) {
-			return (
-				<div style={{minHeight: '100vh'}}>Loading...</div>
-			)
+		let contentToFill;
+		if (IsValidJSONString(content)) {
+
+			const dbEditorState = convertFromRaw(JSON.parse(content));
+			contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
+
+		} else {
+			contentToFill = EditorState.createEmpty(decoratorLink)
 		}
 
 		return (
@@ -133,4 +90,19 @@ class MonthlyFiveDetail extends React.Component {
 
 };
 
-export default MonthlyFiveDetail;
+function mapStateToProps(state) {
+	return {
+		monthlyFiveDetails: state.monthlyFives.monthlyFiveDetails
+	}
+}
+
+function loadData(store, match) {
+	const id = match.params.id;
+	const searchableId = id || match.params.urlString;
+	return store.dispatch(getMonthlyFiveDetails(searchableId, !!id));
+}
+
+export default {
+	component: connect(mapStateToProps, { getMonthlyFiveDetails })(withRouter(MonthlyFiveDetail)),
+	loadData
+};
