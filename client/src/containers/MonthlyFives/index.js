@@ -13,6 +13,8 @@ import {GutteredRow} from "../../styles/globalStyles";
 import MonthlyFiveHero from "./MonthlyFiveHero";
 import {getYear} from "../../actions";
 import {connect} from "react-redux";
+import {Helmet} from "react-helmet";
+import {BookReviewsWrapper} from "../BookReviews/styles";
 
 class MonthlyFivesPage extends React.Component {
 
@@ -41,6 +43,13 @@ class MonthlyFivesPage extends React.Component {
 
 		return (
 			<MonthlyFivesPageWrapper className="container">
+				<Helmet>
+					<title>{`Monthly Fives | WH`}</title>
+					<meta property="og:title" content={`Monthly Fives | WH`} />
+					<meta property="og:image" content="https://storage.googleapis.com/global_images/Web_Preview/favicon.png" />
+					<meta property="description" content="Explore my blog, reviews, guides, and more." />
+					<meta property="og:url" content={`https://williamhuang.ca/monthlyFives`} />
+				</Helmet>
 
 				{mostRecentMonthlyFive ? (
 					<MostRecentMonthlyFiveWrapper>

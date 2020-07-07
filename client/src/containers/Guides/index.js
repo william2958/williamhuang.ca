@@ -11,6 +11,8 @@ import {LoadMoreButtonContainer} from "../../styles/globalStyles";
 import {getFirstPageGuides} from "../../actions";
 import {connect} from "react-redux";
 import {NEXT_PAGE_GUIDES_LOADED} from "../../actions/types";
+import {Helmet} from "react-helmet";
+import {ProjectsPageWrapper} from "../Projects/styles";
 
 class GuidesPage extends React.Component {
 
@@ -47,6 +49,14 @@ class GuidesPage extends React.Component {
 
 		return (
 			<GuidesPageWrapper className="container">
+
+				<Helmet>
+					<title>{`Guides | WH`}</title>
+					<meta property="og:title" content={`Guides | WH`} />
+					<meta property="og:image" content="https://storage.googleapis.com/global_images/Web_Preview/favicon.png" />
+					<meta property="description" content="Explore my blog, reviews, guides, and more." />
+					<meta property="og:url" content={`https://williamhuang.ca/guides`} />
+				</Helmet>
 
 				<GuidesPageHeader className="row">
 					<div className="col-sm-6">

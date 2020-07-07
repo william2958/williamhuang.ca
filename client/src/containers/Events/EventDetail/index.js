@@ -17,6 +17,9 @@ import {EventRecapToggle} from "../../Admin/Events/styles";
 import {getEventDetails} from "../../../actions";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import {Helmet} from "react-helmet";
+import {getImageUrl} from "../../../utils/getImageUrl";
+import {BookReviewDetailWrapper} from "../../BookReviews/BookReviewDetail/styles";
 
 class EventDetail extends React.Component {
 
@@ -42,9 +45,12 @@ class EventDetail extends React.Component {
 			recap,
 
 			keyInfo,
-
+			title,
 			expiredEvent,
-			lastUpdated
+			lastUpdated,
+			heroURL,
+			contentPreview,
+			urlString
 		} = this.props.eventDetails;
 
 		const formattedDate = moment(lastUpdated).format('h a MMMM D, YYYY')
@@ -70,6 +76,14 @@ class EventDetail extends React.Component {
 		}
 		return (
 			<EventDetailWrapper>
+
+				<Helmet>
+					<title>{`${title} | WH Events`}</title>
+					<meta property="og:title" content={title} />
+					<meta property="og:image" content={getImageUrl(heroURL, 'small')} />
+					<meta property="description" content={contentPreview} />
+					<meta property="og:url" content={`https://williamhuang.ca/events/${urlString}`} />
+				</Helmet>
 
 				<div>
 					<UpcomingEventDetailWrapper>

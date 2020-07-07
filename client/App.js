@@ -15,10 +15,10 @@ const App = ({ route }) => {
 
 			<Helmet>
 				<title>{'William Huang'}</title>
-				<meta property="og:title" content="Home | William Huang" />
+				<meta property="og:title" content="William Huang's Website" />
 				<meta property="og:image" content="https://storage.googleapis.com/global_images/Web_Preview/favicon.png" />
 				<meta property="description" content="Explore my blog, reviews, guides, and more." />
-				<meta property="og:url" content="https://www.williamhuang.ca" />
+				<meta property="og:url" content={`https://williamhuang.ca`} />
 			</Helmet>
 			<div>
 				{/*<Header />*/}

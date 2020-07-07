@@ -14,6 +14,8 @@ import {MonthlyFiveSpotlightImage} from "../MonthlyFiveHero/styles";
 import {getMonthlyFiveDetails} from "../../../actions";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import {Helmet} from "react-helmet";
+import {getImageUrl} from "../../../utils/getImageUrl";
 
 class MonthlyFiveDetail extends React.Component {
 
@@ -42,7 +44,8 @@ class MonthlyFiveDetail extends React.Component {
 
 			content,
 
-			heroURL
+			heroURL,
+			urlString
 		} = this.props.monthlyFiveDetails;
 
 		let contentToFill;
@@ -57,6 +60,15 @@ class MonthlyFiveDetail extends React.Component {
 
 		return (
 			<MonthlyFiveDetailWrapper>
+
+				<Helmet>
+					<title>{`${title} | WH Monthly Fives`}</title>
+					<meta property="og:title" content={title} />
+					<meta property="og:image" content={getImageUrl(heroURL, 'small')} />
+					<meta property="description" content={contentPreview} />
+					<meta property="og:url" content={`https://williamhuang.ca/monthlyFives/${urlString}`} />
+				</Helmet>
+
 				<div className="container">
 					<BackArrow onClick={this.goBack}>
 						<SvgIcon icon="BackCaret" />

@@ -3,7 +3,7 @@ import {
 	ADMIN_BOOK_REVIEW_LOADED,
 	GET_BOOK_REVIEW_DETAILS,
 	GET_EDIT_BOOK_REVIEW_DETAILS,
-	GET_FIRST_PAGE_BOOK_REVIEWS, NUM_RECENT_BOOK_REVIEWS_LOADED
+	GET_FIRST_PAGE_BOOK_REVIEWS, NEXT_PAGE_BOOK_REVIEWS_LOADED, NUM_RECENT_BOOK_REVIEWS_LOADED
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -25,6 +25,11 @@ export default (state = INITIAL_STATE, action) => {
 				...state,
 				...action.payload
 			};
+		case NEXT_PAGE_BOOK_REVIEWS_LOADED:
+			return {
+				...state,
+				...action.payload
+			}
 		case GET_BOOK_REVIEW_DETAILS:
 			return {
 				...state,

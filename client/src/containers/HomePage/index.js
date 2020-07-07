@@ -14,6 +14,8 @@ import RecentProjects from "./components/RecentProjects";
 import {getHomeHighlight} from "../../actions/homeActions";
 import HomePageBanner from "./components/HomePageBanner";
 import RecentMonthlyFive from "./components/RecentMonthlyFive";
+import {Helmet} from "react-helmet";
+import {ThemeProvider} from "styled-components";
 
 class HomePage extends React.Component {
 
@@ -24,6 +26,14 @@ class HomePage extends React.Component {
     render() {
         return (
             <HomePageWrapper>
+                <Helmet>
+                    <title>{"Home | WH"}</title>
+                    <meta property="og:title" content="Home | williamhuang.ca" />
+                    <meta property="og:image" content="https://storage.googleapis.com/global_images/Web_Preview/favicon.png" />
+                    <meta property="description" content="Explore my blog, reviews, guides, and more." />
+                    <meta property="og:url" content="https://williamhuang.ca" />
+                </Helmet>
+
                 <HomePageBanner />
                 <Header sticky />
                 <RecentProjects />

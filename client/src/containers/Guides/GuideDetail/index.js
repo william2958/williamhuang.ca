@@ -13,6 +13,9 @@ import Button from "../../../components/UI/Button";
 import {getGuideDetails} from "../../../actions";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import {Helmet} from "react-helmet";
+import {getImageUrl} from "../../../utils/getImageUrl";
+import {BookReviewDetailWrapper} from "../../BookReviews/BookReviewDetail/styles";
 
 class GuideDetail extends React.Component {
 
@@ -40,7 +43,8 @@ class GuideDetail extends React.Component {
 			content,
 			publishDate: formattedDate,
 
-			iconURL
+			iconURL,
+			urlString
 		} = this.props.guideDetails;
 
 		let contentToFill;
@@ -55,6 +59,15 @@ class GuideDetail extends React.Component {
 
 		return (
 			<GuideDetailWrapper>
+
+				<Helmet>
+					<title>{`${title} | WH Guides`}</title>
+					<meta property="og:title" content={title} />
+					<meta property="og:image" content={getImageUrl(iconURL, 'small')} />
+					<meta property="description" content={contentPreview} />
+					<meta property="og:url" content={`https://williamhuang.ca/guides/${urlString}`} />
+				</Helmet>
+
 				<div className="container">
 					<BackArrow onClick={this.goBack}>
 						<SvgIcon icon="BackCaret" />

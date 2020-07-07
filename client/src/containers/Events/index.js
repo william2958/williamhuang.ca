@@ -12,6 +12,8 @@ import EventHero from "./EventHero";
 import {NEXT_PAGE_EVENTS_LOADED} from "../../actions/types";
 import {getFirstPageEvents} from "../../actions";
 import {connect} from "react-redux";
+import {Helmet} from "react-helmet";
+import {GuidesPageWrapper} from "../Guides/styles";
 
 class EventsPage extends React.Component {
 
@@ -53,6 +55,14 @@ class EventsPage extends React.Component {
 
 		return (
 			<EventsPageWrapper className="container">
+
+				<Helmet>
+					<title>{`Events | WH`}</title>
+					<meta property="og:title" content={`Events | WH`} />
+					<meta property="og:image" content="https://storage.googleapis.com/global_images/Web_Preview/favicon.png" />
+					<meta property="description" content="Explore my blog, reviews, guides, and more." />
+					<meta property="og:url" content={`https://williamhuang.ca/events`} />
+				</Helmet>
 
 				<EventsPageHeader className="row">
 					<H4>Upcoming Events:</H4>

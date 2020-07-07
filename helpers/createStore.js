@@ -8,7 +8,7 @@ export default (req) => {
 
 	const axiosInstance = axios.create({
 		baseURL: process.env.NODE_ENV === 'production'
-			? 'https://williamhuang.uc.r.appspot.com/api'
+			? 'https://williamhuang.ca/api'
 			: 'http://localhost:8000/api/',
 		headers: { cookie: req.get('cookie') || '' }
 	})

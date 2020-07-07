@@ -22,9 +22,9 @@ const Footer = ({ history }) => {
 							         onClick={() => window.open("https://github.com/william2958", "_blank")}/>
 							{/*<SvgIcon size={24} icon='Twitter' />*/}
 							{/*<SvgIcon size={24} icon='Medium' />*/}
-							<SvgIcon size={24} icon='AngelList'
+							<SvgIcon size={24} icon='AngelList' hover
 							         onClick={() => window.open("https://angel.co/u/william-huang-18")}/>
-							<SvgIcon size={24} icon='LinkedIn'
+							<SvgIcon size={24} icon='LinkedIn' hover
 							         onClick={() => window.open("https://www.linkedin.com/in/william-h-902213139/")}/>
 						</FooterSocialIcons>
 					</div>

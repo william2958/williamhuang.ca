@@ -5,6 +5,7 @@ import {sizes} from "../../styles";
 
 export const NavbarContainer = styled.div`
 
+  background-color: #000 !important;
 	//ul {
 	//	margin-top: 0;
 	//	margin-bottom: 1rem;

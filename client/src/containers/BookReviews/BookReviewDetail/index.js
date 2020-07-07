@@ -50,7 +50,8 @@ class BookReviewDetail extends React.Component {
             recommended,
             category,
             contentPreview,
-            content
+            content,
+            urlString
         } = this.props.bookReviewDetails;
 
         let contentToFill;
@@ -66,12 +67,11 @@ class BookReviewDetail extends React.Component {
         return (
             <BookReviewDetailWrapper>
                 <Helmet>
-                    <title>{title + ' | WH'}</title>
+                    <title>{`${title} | WH Book Reviews`}</title>
                     <meta property="og:title" content={title} />
                     <meta property="og:image" content={getImageUrl(coverURL, 'small')} />
                     <meta property="description" content={contentPreview} />
-                    {/*<meta property="description" content="Explore my blog, reviews, guides, and more." />*/}
-                    {/*<meta property="og:url" content={window.location.href} />*/}
+                    <meta property="og:url" content={`https://williamhuang.ca/bookReviews/${urlString}`} />
                 </Helmet>
                 <div className="container">
                     <BackArrow onClick={this.goBack}>

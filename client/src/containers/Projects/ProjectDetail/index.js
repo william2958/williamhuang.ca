@@ -20,12 +20,11 @@ import {BackArrow} from "../../../styles/globalStyles";
 import {getProjectDetails} from "../../../actions";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import {Helmet} from "react-helmet";
+import {getImageUrl} from "../../../utils/getImageUrl";
+import {BookReviewDetailWrapper} from "../../BookReviews/BookReviewDetail/styles";
 
 class ProjectDetail extends React.Component {
-
-	state = {
-		content: EditorState.createEmpty(decoratorLink)
-	};
 
 	componentDidMount() {
 		const id = this.props.match.params.id;
@@ -33,23 +32,6 @@ class ProjectDetail extends React.Component {
 		this.props.getProjectDetails(searchableId, !!id);
 
 		if (typeof window !== 'undefined') window.scrollTo(0, 0);
-	}
-
-	componentDidUpdate(prevProps, prevState, snapshot) {
-		if (prevProps.projectDetails.content !== this.props.projectDetails.content) {
-			let contentToFill;
-			if (IsValidJSONString(this.props.projectDetails.content)) {
-
-				const dbEditorState = convertFromRaw(JSON.parse(this.props.projectDetails.content));
-				contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
-
-			} else {
-				contentToFill = EditorState.createEmpty(decoratorLink)
-			}
-			this.setState({
-				content: contentToFill
-			})
-		}
 	}
 
 	goBack = () => {
@@ -67,14 +49,24 @@ class ProjectDetail extends React.Component {
 			contentPreview,
 			techStack,
 			liveLink,
+			content,
 
 			publishDate: formattedDate,
 
 			heroURL,
-			previewImageURL
+			previewImageURL,
+			urlString
 		} = this.props.projectDetails;
 
-		const { content } = this.state;
+		let contentToFill;
+		if (IsValidJSONString(content)) {
+
+			const dbEditorState = convertFromRaw(JSON.parse(content));
+			contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
+
+		} else {
+			contentToFill = EditorState.createEmpty(decoratorLink)
+		}
 
 		if (!title) {
 			return (
@@ -84,6 +76,15 @@ class ProjectDetail extends React.Component {
 
 		return (
 			<ProjectDetailWrapper>
+
+				<Helmet>
+					<title>{`${title} | WH Projects`}</title>
+					<meta property="og:title" content={title} />
+					<meta property="og:image" content={getImageUrl(previewImageURL, 'small')} />
+					<meta property="description" content={contentPreview} />
+					<meta property="og:url" content={`https://williamhuang.ca/projects/${urlString}`} />
+				</Helmet>
+
 				<ProjectHeroImageWrapper bg={heroURL} />
 
 				<div className="container">
@@ -117,7 +118,7 @@ class ProjectDetail extends React.Component {
 					</div>
 				</ProjectDetailContentWrapper>
 
-				<RichTextEditor editorState={content} readOnly={true} />
+				<RichTextEditor editorState={contentToFill} readOnly={true} />
 
 				<Button
 					center
