@@ -108,7 +108,8 @@ const RichTextEditor = ({ editorState, changeEditorState = () => {}, readOnly = 
     const editorRef = useRef(null);
     const linkInputRef = useRef(null);
     const focus = () => {
-        editorRef.current.focus();
+        // todo this line is broken
+        // editorRef.current.focus();
     };
 
     const _promptForLink = (e) => {

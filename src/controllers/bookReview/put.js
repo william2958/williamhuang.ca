@@ -49,6 +49,7 @@ const updateBookReview = ({ BookReview }) => async (req, res) => {
         })
     } catch (e) {
 
+        console.error('couldn update book review: ', e);
         return res.status(400).send({
             message: "Could not update book review"
         });

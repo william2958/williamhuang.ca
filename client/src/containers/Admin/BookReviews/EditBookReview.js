@@ -5,46 +5,46 @@ import { EditorState, convertFromRaw } from 'draft-js';
 import BookReviewEditor from "./BookReviewEditor";
 
 import axios from '../../../utils/axios';
-import history from '../../../history';
 import {decoratorLink} from "../../../components/RichTextEditor/linkDecorator";
 import {IsValidJSONString} from "../../../utils/isValidJSON";
+import {getBookReviewDetails} from "../../../actions";
+import {withRouter} from "react-router-dom";
+import {connect} from "react-redux";
 
 class EditBookReview extends React.Component {
 
     state = {
-        bookReviewData: null,
         editorState: EditorState.createEmpty(decoratorLink)
     };
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.bookReviewDetails.content !== this.props.bookReviewDetails.content) {
+            let contentToFill;
+            if (IsValidJSONString(this.props.bookReviewDetails.content)) {
+
+                const dbEditorState = convertFromRaw(JSON.parse(this.props.bookReviewDetails.content));
+                contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
+
+            } else {
+                contentToFill = EditorState.createEmpty(decoratorLink)
+            }
+            this.setState({
+                editorState: contentToFill
+            })
+        }
+    }
 
     componentDidMount() {
         const reviewId = this.props.match.params.reviewId;
         if (reviewId) {
-            axios.get(`/bookReview/getBookReview?bookReviewId=${reviewId}`)
-                .then(({data}) => {
-                    const bookReview = data.bookReview;
-                    let contentToFill;
-                    if (IsValidJSONString(bookReview.content)) {
-
-                        const dbEditorState = convertFromRaw(JSON.parse(bookReview.content));
-                        contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
-
-                    } else {
-                        contentToFill = EditorState.createEmpty(decoratorLink)
-                    }
-                    bookReview.content = contentToFill;
-                    this.setState({
-                        bookReviewData: bookReview,
-                    });
-                })
-                .catch(e => {
-                    console.error('Error getting book review: ', e)
-                })
+            this.props.getBookReviewDetails(reviewId, true, true);
         } else {
-            history.push('/admin');
+            this.props.history.push('/admin');
         }
     }
 
     saveBookReview = async (reviewData) => {
+        console.log('saving book review: ', reviewData);
         const dataToUpdate = {
             ...reviewData,
             bookReviewId: reviewData._id
@@ -72,13 +72,29 @@ class EditBookReview extends React.Component {
     };
 
     render() {
+        const bookReviewDetails = {
+            ...this.props.bookReviewDetails,
+            content: this.state.editorState
+        }
         return (
             <div>
-                <BookReviewEditor save={this.saveBookReview} delete={this.deleteBookReview} bookReviewData={this.state.bookReviewData} />
+                <BookReviewEditor save={this.saveBookReview} delete={this.deleteBookReview} bookReviewData={bookReviewDetails} />
             </div>
         )
     }
 
 }
 
-export default EditBookReview;
+const mapStateToProps = (state) => ({
+    bookReviewDetails: state.bookReviews.editBookReviewDetails
+})
+
+function loadData(store, match) {
+    const id = match.params.id;
+    return store.dispatch(getBookReviewDetails(id, true, true));
+}
+
+export default {
+    component: connect(mapStateToProps, { getBookReviewDetails })(withRouter(EditBookReview)),
+    loadData
+};

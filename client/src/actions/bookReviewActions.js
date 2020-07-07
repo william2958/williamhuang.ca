@@ -3,7 +3,7 @@ import {toast} from "react-toastify";
 
 import {
 	GET_FIRST_PAGE_BOOK_REVIEWS,
-	GET_BOOK_REVIEW_DETAILS
+	GET_BOOK_REVIEW_DETAILS, GET_EDIT_BOOK_REVIEW_DETAILS, ADMIN_BOOK_REVIEW_LOADED
 } from "./types";
 import moment from "moment";
 
@@ -32,7 +32,7 @@ export const getFirstPageBookReviews = (option) => async (dispatch) => {
 
 };
 
-export const getBookReviewDetails = (id, isId) => async (dispatch) => {
+export const getBookReviewDetails = (id, isId, isEdit = false) => async (dispatch) => {
 	try {
 		const urlString = isId
 			? `/bookReview/getBookReview?bookReviewId=${id}`
@@ -40,18 +40,7 @@ export const getBookReviewDetails = (id, isId) => async (dispatch) => {
 		const response = (await axios.get(urlString)).data;
 		const bookReview = response.bookReview;
 
-		const {
-			title,
-			author,
-			category,
-			coverURL,
-			rating,
-			publishDate,
-			recommended,
-			content
-		} = bookReview;
-
-		const formattedDate = publishDate ? moment(publishDate).format('MMMM Do YYYY') : null;
+		const formattedDate = bookReview.publishDate ? moment(bookReview.publishDate).format('MMMM Do YYYY') : null;
 
 		// let contentToFill;
 		// if (IsValidJSONString(bookReview.content)) {
@@ -64,22 +53,41 @@ export const getBookReviewDetails = (id, isId) => async (dispatch) => {
 		// }
 
 		const bookReviewDetail = {
-			title,
-			author,
-			category,
-			coverURL,
-			rating,
-			publishDate: formattedDate,
-			content,
-			recommended
+			...bookReview,
+			publishDate: formattedDate
 		};
 
-		dispatch({
-			type: GET_BOOK_REVIEW_DETAILS,
-			payload: bookReviewDetail
-		})
+		if (isEdit) {
+			dispatch({
+				type: GET_EDIT_BOOK_REVIEW_DETAILS,
+				payload: bookReviewDetail
+			})
+		} else {
+			dispatch({
+				type: GET_BOOK_REVIEW_DETAILS,
+				payload: bookReviewDetail
+			})
+		}
 
 	} catch (err) {
 		console.error('There was an error fetching that book detail: ', err);
 	}
 };
+
+export const getAdminBookReview = (isPublished) => async (dispatch) => {
+	try {
+
+		const response = (await axios.get(`/bookReview/getBookReviewAdmin?isPublished=${isPublished}`)).data;
+
+		dispatch({
+			type: ADMIN_BOOK_REVIEW_LOADED,
+			payload: {
+				isPublished,
+				bookReviews: response.bookReviews
+			}
+		})
+
+	} catch (e) {
+		toast.error('Could not create published reviews.');
+	}
+}
