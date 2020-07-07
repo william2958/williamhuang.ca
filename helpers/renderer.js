@@ -8,6 +8,37 @@ import Routes from '../client/Routes';
 
 import { ServerStyleSheet } from "styled-components";
 
+const baseStyles = `
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+  display: block;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  background-color: #fff;
+}
+
+`;
+
 export default (req, store, context) => {
 	let content;
 	let styleTags;
@@ -51,6 +82,10 @@ export default (req, store, context) => {
 	    <meta property="og:image" content="https://storage.googleapis.com/global_images/Web_Preview/favicon.png" />
 	    <meta property="description" content="Explore my blog, reviews, guides, and more." />
 	    <meta property="og:url" content="https://www.williamhuang.ca" />
+	    
+	    <style>
+			   ${baseStyles} 
+		</style>
 	
 	    <title>Will H.</title>
 	</head>

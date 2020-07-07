@@ -7,11 +7,12 @@ import {ThemeProvider} from "styled-components";
 import './react-toast.css';
 import './App.css';
 import {fetchCurrentUser} from "./src/actions/authActions";
+import {BootStrapBasicStyles} from "./BootStrapBasicStyles";
 
 const App = ({ route }) => {
 	return (
 		<ThemeProvider theme={theme}>
-			{/*<IndexStyles>*/}
+			<BootStrapBasicStyles>
 				{/*<Header />*/}
 				{renderRoutes(route.routes)}
 				<ToastContainer
@@ -19,7 +20,7 @@ const App = ({ route }) => {
 					autoClose={1000}
 					transition={Zoom}
 				/>
-			{/*</IndexStyles>*/}
+			</BootStrapBasicStyles>
 		</ThemeProvider>
 	)
 };

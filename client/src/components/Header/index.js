@@ -16,7 +16,7 @@ const Header = ({ sticky }) => {
 					<span className="navbar-toggler-icon"></span>
 				</button>
 
-				<div className="collapse navbar-collapse" id="navbarSupportedContent">
+				<div className="navbar-collapse" id="navbarSupportedContent">
 					<ul className="navbar-nav mr-auto">
 						<li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
 							<NavBarLink to="/projects">Projects</NavBarLink>
