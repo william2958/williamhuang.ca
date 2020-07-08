@@ -32,7 +32,7 @@ class EventDetail extends React.Component {
 		const searchableId = id || this.props.match.params.urlString;
 		this.props.getEventDetails(searchableId, !!id);
 
-		window.scrollTo(0, 0);
+		if (typeof window !== 'undefined') window.scrollTo(0, 0);
 	}
 
 	render() {

@@ -24,7 +24,7 @@ class MonthlyFivesPage extends React.Component {
 
 	componentDidMount() {
 		this.props.getYear(this.state.selectedYear);
-		window.scrollTo(0, 0);
+		if (typeof window !== 'undefined') window.scrollTo(0, 0);
 	}
 
 	selectYear = (year) => {

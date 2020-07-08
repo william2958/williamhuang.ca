@@ -1,5 +1,3 @@
-import axios from "../../utils/axios";
-import {toast} from "react-toastify";
 import {H4} from "../../styles/typography/Headers";
 import React from "react";
 import {
@@ -8,11 +6,9 @@ import {
 } from "./styles";
 import GuidePreview from "./GuidePreview";
 import {LoadMoreButtonContainer} from "../../styles/globalStyles";
-import {getFirstPageGuides} from "../../actions";
+import {getFirstPageGuides, getNextPageGuides} from "../../actions";
 import {connect} from "react-redux";
-import {NEXT_PAGE_GUIDES_LOADED} from "../../actions/types";
 import {Helmet} from "react-helmet";
-import {ProjectsPageWrapper} from "../Projects/styles";
 
 class GuidesPage extends React.Component {
 
@@ -21,26 +17,8 @@ class GuidesPage extends React.Component {
 		if (typeof window !== 'undefined') window.scrollTo(0, 0);
 	}
 
-	loadNextPage = async () => {
-		try {
-			const { guides, numToSkip } = this.props;
-
-			const newGuides = [...guides];
-			const response = (await axios.get(`/guide/getRecentGuides?numSkip=${numToSkip}`)).data;
-			newGuides.push(...response.allGuides);
-
-			this.props.dispatch({
-				type: NEXT_PAGE_GUIDES_LOADED,
-				payload: {
-					guides: newGuides,
-					anotherPage: response.anotherPage,
-					numToSkip: response.numToSkip
-				}
-			})
-
-		} catch (error) {
-			toast.error('There was an error getting the first page.')
-		}
+	loadNextPage = () => {
+		this.props.getNextPageGuides();
 	};
 
 	render() {
@@ -84,8 +62,7 @@ class GuidesPage extends React.Component {
 function mapStateToProps(state) {
 	return {
 		guides: state.guides.guides,
-		anotherPage: state.guides.anotherPage,
-		numToSkip: state.guides.numToSkip
+		anotherPage: state.guides.anotherPage
 	}
 }
 
@@ -94,6 +71,6 @@ function loadData(store) {
 }
 
 export default {
-	component: connect(mapStateToProps, { getFirstPageGuides })(GuidesPage),
+	component: connect(mapStateToProps, { getFirstPageGuides, getNextPageGuides })(GuidesPage),
 	loadData
 };

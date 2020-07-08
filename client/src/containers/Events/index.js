@@ -1,5 +1,3 @@
-import axios from "../../utils/axios";
-import {toast} from "react-toastify";
 import {H4} from "../../styles/typography/Headers";
 import React from "react";
 import {
@@ -9,11 +7,9 @@ import {
 import EventPreview from "./EventPreview";
 import {GutteredRow, HeroRow, LoadMoreButtonContainer} from "../../styles/globalStyles";
 import EventHero from "./EventHero";
-import {NEXT_PAGE_EVENTS_LOADED} from "../../actions/types";
-import {getFirstPageEvents} from "../../actions";
+import {getFirstPageEvents, getNextPageEvents} from "../../actions";
 import {connect} from "react-redux";
 import {Helmet} from "react-helmet";
-import {GuidesPageWrapper} from "../Guides/styles";
 
 class EventsPage extends React.Component {
 
@@ -22,31 +18,8 @@ class EventsPage extends React.Component {
 		if (typeof window !== 'undefined') window.scrollTo(0, 0);
 	}
 
-	loadNextPage = async () => {
-		try {
-			const {pastEvents, numToSkip} = this.props;
-
-			// let filteredCategory = this.state.filterCategory;
-			// if (filteredCategory === 'all') {
-			// 	filteredCategory = '';
-			// }
-
-			const newEvents = [...pastEvents];
-			const response = (await axios.get(`/event/getRecentEvents?numSkip=${numToSkip}&category=`)).data;
-			newEvents.push(...response.allEvents);
-
-			this.props.dispatch({
-				type: NEXT_PAGE_EVENTS_LOADED,
-				payload: {
-					pastEvents: newEvents,
-					anotherPage: response.anotherPage,
-					numToSkip: response.numToSkip
-				}
-			});
-
-		} catch (error) {
-			toast.error('There was an error getting the first page.')
-		}
+	loadNextPage = () => {
+		this.props.getNextPageEvents()
 	};
 
 	render() {
@@ -102,8 +75,7 @@ function mapStateToProps(state) {
 	return {
 		currentEvents: state.events.currentEvents,
 		pastEvents: state.events.pastEvents,
-		anotherPage: state.events.anotherPage,
-		numToSkip: state.events.numToSkip
+		anotherPage: state.events.anotherPage
 	}
 }
 
@@ -112,6 +84,6 @@ function loadData(store) {
 }
 
 export default {
-	component: connect(mapStateToProps, { getFirstPageEvents })(EventsPage),
+	component: connect(mapStateToProps, { getFirstPageEvents, getNextPageEvents })(EventsPage),
 	loadData
 };

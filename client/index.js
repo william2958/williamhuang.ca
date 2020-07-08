@@ -20,8 +20,6 @@ const store = createStore(
 	applyMiddleware(thunk.withExtraArgument(axiosInstance))
 );
 
-console.log('hydrating...');
-
 ReactDOM.hydrate(
 	<Provider store={store}>
 		<BrowserRouter>

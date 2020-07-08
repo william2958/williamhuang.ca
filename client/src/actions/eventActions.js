@@ -6,7 +6,7 @@ import {
 	GET_EVENT_DETAILS,
 	GET_EDIT_EVENT_DETAILS,
 	ADMIN_EVENT_LOADED,
-	NUM_RECENT_EVENTS_LOADED
+	NUM_RECENT_EVENTS_LOADED, NEXT_PAGE_EVENTS_LOADED
 } from "./types";
 import moment from "moment";
 
@@ -44,6 +44,31 @@ export const getFirstPageEvents = (option) => async (dispatch) => {
 	}
 
 };
+
+export const getNextPageEvents = () => async (dispatch, getState) => {
+	try {
+
+		const state = getState().events;
+		const pastEvents = state.pastEvents;
+		const numToSkip = state.numToSkip;
+
+		const newPastEvents = [...pastEvents];
+		const response = (await axios.get(`/event/getRecentEvents?numSkip=${numToSkip}&category=`)).data;
+		newPastEvents.push(...response.allEvents);
+
+		dispatch({
+			type: NEXT_PAGE_EVENTS_LOADED,
+			payload: {
+				pastEvents: newPastEvents,
+				anotherPage: response.anotherPage,
+				numToSkip: response.numToSkip
+			}
+		});
+
+	} catch (error) {
+		toast.error('There was an error getting the next page.');
+	}
+}
 
 export const getEventDetails = (id, isId, isEdit = false) => async (dispatch) => {
 	try {

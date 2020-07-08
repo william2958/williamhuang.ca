@@ -58,7 +58,7 @@ const config = {
 		path: path.resolve(__dirname, 'build')
 	},
 
-	externals: [webpackNodeExternals()]
+	externals: [webpackNodeExternals(), 'react-helmet']
 };
 
 // module.exports = merge(baseConfig, config);

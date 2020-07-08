@@ -1,6 +1,4 @@
-import axios from "../../utils/axios";
 import { connect } from 'react-redux';
-import {toast} from "react-toastify";
 import {H4} from "../../styles/typography/Headers";
 import Dropdown from "../../components/Dropdown";
 import {PROJECT_CATEGORY_OPTIONS} from "../../constants";
@@ -14,10 +12,8 @@ import {
 import ProjectPreview from "./ProjectPreview";
 import {GutteredRow, LoadMoreButtonContainer} from "../../styles/globalStyles";
 import ProjectHero from "./ProjectHero";
-import {getFirstPageProjects, getSpotlightProject} from "../../actions";
-import {NEXT_PAGE_PROJECTS_LOADED} from "../../actions/types";
+import {getFirstPageProjects, getNextPageProjects, getSpotlightProject} from "../../actions";
 import {Helmet} from "react-helmet";
-import {BookReviewsWrapper} from "../BookReviews/styles";
 
 class ProjectsPage extends React.Component {
 
@@ -28,34 +24,15 @@ class ProjectsPage extends React.Component {
 	componentDidMount() {
 		this.props.getFirstPageProjects('all');
 		this.props.getSpotlightProject();
-		window.scrollTo(0, 0);
+		if (typeof window !== 'undefined') window.scrollTo(0, 0);
 	}
 
-	loadNextPage = async () => {
-		try {
-			const {projects, numToSkip} = this.props;
-
-			let filteredCategory = this.state.filterCategory;
-			if (filteredCategory === 'all') {
-				filteredCategory = '';
-			}
-
-			const newProjects = [...projects];
-			const response = (await axios.get(`/project/getRecentProjects?numSkip=${numToSkip}&category=${filteredCategory}`)).data;
-			newProjects.push(...response.allProjects);
-
-			this.props.dispatch({
-				type: NEXT_PAGE_PROJECTS_LOADED,
-				payload: {
-					projects: newProjects,
-					anotherPage: response.anotherPage,
-					numToSkip: response.numToSkip
-				}
-			});
-
-		} catch (error) {
-			toast.error('There was an error getting the first page.')
+	loadNextPage = () => {
+		let filteredCategory = this.state.filterCategory;
+		if (filteredCategory === 'all') {
+			filteredCategory = '';
 		}
+		this.props.getNextPageProjects(filteredCategory);
 	};
 
 	selectFilter = async (option) => {
@@ -138,6 +115,6 @@ function loadData(store) {
 }
 
 export default {
-	component: connect(mapStateToProps, {getFirstPageProjects, getSpotlightProject})(ProjectsPage),
+	component: connect(mapStateToProps, {getFirstPageProjects, getSpotlightProject, getNextPageProjects})(ProjectsPage),
 	loadData
 };

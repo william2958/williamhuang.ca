@@ -5,7 +5,7 @@ import {
 	ADMIN_PROJECT_LOADED,
 	GET_EDIT_PROJECT_DETAILS,
 	GET_FIRST_PAGE_PROJECTS,
-	GET_PROJECT_DETAILS,
+	GET_PROJECT_DETAILS, NEXT_PAGE_PROJECTS_LOADED,
 	NUM_RECENT_PROJECTS_LOADED, PROJECT_SPOTLIGHT_LOADED
 } from "./types";
 import moment from "moment";
@@ -34,6 +34,29 @@ export const getFirstPageProjects = (option) => async (dispatch) => {
 		toast.error('There was an error getting the first page.')
 	}
 };
+
+export const getNextPageProjects = (option) => async (dispatch, getState) => {
+	try {
+		const state = getState().projects;
+		const currProjects = state.projects;
+		const numToSkip = state.numToSkip;
+
+		const newProjects = [...currProjects];
+		const response = (await axios.get(`/project/getRecentProjects?numSkip=${numToSkip}&category=${option}`)).data;
+		newProjects.push(...response.allProjects);
+
+		dispatch({
+			type: NEXT_PAGE_PROJECTS_LOADED,
+			payload: {
+				projects: newProjects,
+				anotherPage: response.anotherPage,
+				numToSkip: response.numToSkip
+			}
+		})
+	} catch (error) {
+		toast.error('There was an error getting the next page.')
+	}
+}
 
 export const getProjectDetails = (id, isId, isEdit = false) => async (dispatch) => {
 	try {

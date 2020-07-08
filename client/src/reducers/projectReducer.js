@@ -3,7 +3,7 @@ import {
 	ADMIN_PROJECT_LOADED,
 	GET_EDIT_PROJECT_DETAILS,
 	GET_FIRST_PAGE_PROJECTS,
-	GET_PROJECT_DETAILS,
+	GET_PROJECT_DETAILS, NEXT_PAGE_PROJECTS_LOADED,
 	NUM_RECENT_PROJECTS_LOADED,
 	PROJECT_SPOTLIGHT_LOADED
 } from "../actions/types";
@@ -30,6 +30,11 @@ export default (state = INITIAL_STATE, action) => {
 				...state,
 				...action.payload
 			};
+		case NEXT_PAGE_PROJECTS_LOADED:
+			return {
+				...state,
+				...action.payload
+			}
 		case GET_PROJECT_DETAILS:
 			return {
 				...state,

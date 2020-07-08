@@ -3,10 +3,13 @@ import {toast} from "react-toastify";
 
 import {
 	GET_FIRST_PAGE_BOOK_REVIEWS,
-	GET_BOOK_REVIEW_DETAILS, GET_EDIT_BOOK_REVIEW_DETAILS, ADMIN_BOOK_REVIEW_LOADED, NUM_RECENT_BOOK_REVIEWS_LOADED
+	GET_BOOK_REVIEW_DETAILS,
+	GET_EDIT_BOOK_REVIEW_DETAILS,
+	ADMIN_BOOK_REVIEW_LOADED,
+	NUM_RECENT_BOOK_REVIEWS_LOADED,
+	NEXT_PAGE_BOOK_REVIEWS_LOADED,
 } from "./types";
 import moment from "moment";
-import {sizes} from "../styles";
 
 export const getFirstPageBookReviews = (option) => async (dispatch) => {
 
@@ -32,6 +35,35 @@ export const getFirstPageBookReviews = (option) => async (dispatch) => {
 	}
 
 };
+
+export const getNextPageBookReviews = (option = '') => async (dispatch, getState) => {
+	try {
+
+		let filteredCategory = option;
+		if (filteredCategory === 'all') {
+			filteredCategory = '';
+		}
+
+		const state = getState().bookReviews;
+		const currBookReviews = state.bookReviews;
+		const numToSkip = state.numToSkip;
+
+		const newBookReviews = [...currBookReviews];
+		const response = (await axios.get(`/bookReview/getRecentBookReviews?numSkip=${numToSkip}&category=${filteredCategory}`)).data;
+		newBookReviews.push(...response.allReviews);
+
+		dispatch({
+			type: NEXT_PAGE_BOOK_REVIEWS_LOADED,
+			payload: {
+				bookReviews: newBookReviews,
+				anotherPage: response.anotherPage,
+				numToSkip: response.numToSkip
+			}
+		})
+	} catch (error) {
+		toast.error('There was an error getting the next page.')
+	}
+}
 
 export const getBookReviewDetails = (id, isId, isEdit = false) => async (dispatch) => {
 	try {
