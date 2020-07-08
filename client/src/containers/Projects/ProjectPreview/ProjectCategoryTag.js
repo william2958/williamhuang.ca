@@ -5,8 +5,8 @@ const ProjectCategoryTagWrapper = styled.div`
 	padding: 4px 8px;
 	background-color: ${({ color }) => color};
 	position: absolute;
-	top: 16px;
-	right: 16px;
+	top: 24px;
+	right: 24px;
 	text-transform: uppercase;
 	border-radius: 5px;
 	

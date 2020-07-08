@@ -17,6 +17,19 @@ export const BookReviewsWrapper = styled.div`
         }
 	}
 	
+	.bookReviewDescription {
+	    margin-top: 12px;
+        @media only screen and (min-width: ${sizes.phone}px) {
+        	margin-top: 0;
+        	margin-bottom: 12px;
+        }
+        
+        @media only screen and (max-width: ${sizes.phone}px) {
+            margin-left: 0;
+            margin-right: 0;
+        }
+	}
+	
 	.bookReviewFilters {
 	    display: flex;
 	}

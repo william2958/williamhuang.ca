@@ -180,17 +180,18 @@ export const NavbarContainer = styled.div`
 	.navbar-toggler {
 		outline: none;
 		border: 0;
+		padding-right: 0;
 	}
 	
-	// .navbar-toggler > .navbar-toggler-icon {
-	// 	background-image: url(${downCaret});
-	//     transform: rotate(180deg);
-	//   	transition: transform 0.3s;
-	// }
+	.navbar-toggler > .navbar-toggler-icon {
+		background-image: url("${downCaret}");
+	    transform: rotate(180deg);
+	  	transition: transform 0.3s;
+	}
 	
-	//.navbar-toggler.collapsed > .navbar-toggler-icon {
-	//	transform: rotate(0deg);
-	//}
+	.navbar-toggler.collapsed > .navbar-toggler-icon {
+		transform: rotate(0deg);
+	}
 	
 	
 	@media only screen and (max-width: ${sizes.phone}px) {

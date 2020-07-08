@@ -22,7 +22,7 @@ const HomePageBanner = ({ type, highlight, getHomeHighlight }) => {
 				heroToRender = <EventHero event={highlight} fit />;
 				break;
 			case 'monthlyFive':
-				heroToRender = <MonthlyFiveHero monthlyFive={highlight} fit />;
+				heroToRender = <MonthlyFiveHero monthlyFive={highlight} fit noTitle />;
 				break;
 			case 'project':
 				heroToRender = <ProjectHero project={highlight} fit />
@@ -31,7 +31,7 @@ const HomePageBanner = ({ type, highlight, getHomeHighlight }) => {
 				heroToRender = <HomePageBannerPlaceholder />
 		}
 	} else {
-		heroToRender = <HomePageBannerPlaceholder />
+		heroToRender = <HomePageBannerPlaceholder empty />
 	}
 
 	return (

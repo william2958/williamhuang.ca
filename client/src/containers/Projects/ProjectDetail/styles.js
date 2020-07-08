@@ -26,7 +26,7 @@ export const ProjectHeroImageWrapper = styled.div`
     height: 30vh;
     
 	@media only screen and (max-width: ${sizes.phone}px) {
-		display: none;
+		//display: none;
 	}
 `;
 
@@ -61,6 +61,7 @@ export const ProjectDetailContentWrapper = styled.div`
 		flex-direction: column;
 		margin-bottom: 0;
 		margin-top: 0;
+		background-color: transparent;
 		
 		.seeItLiveContainer {
 			position: relative;

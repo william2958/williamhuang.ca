@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 import BookReviewPreview from "./BookReviewPreview";
 import Dropdown from "../../components/Dropdown";
 import {BOOK_REVIEW_CATEGORY_OPTIONS} from "../../constants";
-import {H4, H5} from "../../styles/typography/Headers";
+import {H4, H5, H6} from "../../styles/typography/Headers";
 import {BookReviewsEmpty, BookReviewsWrapper} from "./styles";
 import {GutteredRow, LoadMoreButtonContainer} from "../../styles/globalStyles";
 import {getFirstPageBookReviews, getNextPageBookReviews} from "../../actions";
 import {Helmet} from "react-helmet";
+import {LeadParagraph} from "../../styles/typography/P";
 
 class BookReviews extends Component {
 
@@ -56,11 +57,25 @@ class BookReviews extends Component {
                     <meta property="og:url" content={`https://williamhuang.ca/bookReviews`} />
                 </Helmet>
                 <div className="bookReviewHeader row">
-                    <H4>All Books</H4>
+                    <div>
+                        <H4>Find a Book</H4>
+                    </div>
+
                     <div className="bookReviewFilters">
                         <Dropdown value={filterCategory} options={['all', ...BOOK_REVIEW_CATEGORY_OPTIONS]} onChange={this.selectFilter} />
                     </div>
                 </div>
+                <div className="bookReviewDescription row">
+                    <div>
+                        <LeadParagraph>
+                            A collection of books I've read or listened to, and whether or not I think it's worth reading.
+                        </LeadParagraph>
+                        <LeadParagraph>
+                            Hopefully you can find something to pick up for yourself :)
+                        </LeadParagraph>
+                    </div>
+                </div>
+
                 <GutteredRow className="row no-gutters">
                     {
                         bookReviews.length ? bookReviews.map(bookReview => (

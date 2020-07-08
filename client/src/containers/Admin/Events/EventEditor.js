@@ -249,7 +249,7 @@ class EventEditor extends React.Component {
 								<span>{item}</span>
 							</div>
 						))}
-						<InputSimple label="New Item" name="newKeyInfo" value={newKeyInfo} onChange={this.handleInputChange} />
+						<InputSimple label="New Item" name="newKeyInfo" value={newKeyInfo} onChange={this.handleInputChange} fullWidth />
 						<Button onClick={this.addNewKeyInfoItem}>Add</Button>
 
 						<hr/>

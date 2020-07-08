@@ -5,7 +5,7 @@
         <g id="Icons" transform="translate(-72.000000, -312.000000)">
             <g id="keyboard_arrow_left-24px" transform="translate(72.000000, 312.000000)">
                 <polygon id="Path" points="0 0 24 0 24 24 0 24"></polygon>
-                <polygon id="Path" fill="currentColor" fill-rule="nonzero" points="15.41 16.59 10.83 12 15.41 7.41 14 6 8 12 14 18"></polygon>
+                <polygon id="Path" fill="#A1AEB7" fill-rule="nonzero" points="15.41 16.59 10.83 12 15.41 7.41 14 6 8 12 14 18"></polygon>
             </g>
         </g>
     </g>

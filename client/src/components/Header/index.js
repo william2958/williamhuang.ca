@@ -22,7 +22,7 @@ const Header = ({ sticky }) => {
 							<NavBarLink to="/projects">Projects</NavBarLink>
 						</li>
 						<li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-							<NavBarLink to="/bookReviews">Book Reviews</NavBarLink>
+							<NavBarLink to="/bookReviews">Find a Book</NavBarLink>
 						</li>
 						<li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
 							<NavBarLink to="/monthlyFives">The Monthly 5</NavBarLink>

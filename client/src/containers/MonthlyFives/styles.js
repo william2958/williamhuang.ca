@@ -38,6 +38,7 @@ export const MostRecentMonthlyFiveWrapper = styled.div`
 	margin-right: -15px;
 	
 	height: 30vh;
+	min-height: 200px;
 	max-height: 300px;
 	position: relative;
 	

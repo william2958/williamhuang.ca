@@ -17,6 +17,10 @@ export const BookReviewPreviewWrapper = styled.div`
     h6 {
     	margin-top: 4px;
     }
+    
+    @media only screen and (max-width: ${sizes.tablet}px) {
+		flex-direction: row;	
+	}
 `;
 
 export const BookPreviewCover = styled.div`
@@ -29,9 +33,21 @@ export const BookPreviewCover = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    
+	
+    @media only screen and (max-width: ${sizes.tablet}px) {
+		height: 130px;
+		width: 130px;
+		min-width: 130px;
+		padding-top: 0;
+		margin-right: 12px;
+	}
+	
+	
     @media only screen and (max-width: ${sizes.phone}px) {
 		background-image: url(${({bg}) => bg ? getImageUrl(bg, 'small') : DEFAULT_BOOK_REVIEW_ICON});
+		height: 100px;
+		width: 100px;
+		min-width: 100px;
 	}
 `;
 
@@ -46,5 +62,9 @@ export const BookPreviewTypeAndRating = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
+    @media only screen and (max-width: ${sizes.tablet}px) {
+		margin-top: 0;
+	}
     
 `;

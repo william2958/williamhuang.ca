@@ -80,6 +80,10 @@ export const EventHeroContent = styled.div`
 
 export const EventHeroTitle = styled.div`
 	margin: 40px;
+	
+	@media only screen and (max-width: ${sizes.phone}px) {
+		margin: 8px;
+	}
 `;
 
 export const EventHeroTime = styled.div`

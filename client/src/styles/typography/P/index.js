@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import {sizes} from "../../index";
 
 export const paragraphStyles = css`
   font-family: Roboto, sans-serif;
@@ -48,6 +49,9 @@ export const LeadParagraph = styled.p`
   font-size: 16px;
   letter-spacing: 0.32px;
   line-height: 24px;
+  @media only screen and (max-width: ${sizes.phone}px) {
+    font-size: 13px;
+  }
 `;
 
 export const BodyParagraph = styled.p`

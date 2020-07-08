@@ -20,12 +20,13 @@ const Footer = ({ history }) => {
 						<FooterSocialIcons>
 							<SvgIcon size={24} icon='Github' hover
 							         onClick={() => window.open("https://github.com/william2958", "_blank")}/>
-							{/*<SvgIcon size={24} icon='Twitter' />*/}
+							<SvgIcon size={24} icon='Twitter' hover
+									onClick={() => window.open("https://twitter.com/will_huangg", "_blank")}/>
 							{/*<SvgIcon size={24} icon='Medium' />*/}
 							<SvgIcon size={24} icon='AngelList' hover
-							         onClick={() => window.open("https://angel.co/u/william-huang-18")}/>
+							         onClick={() => window.open("https://angel.co/u/william-huang-18", "_blank")}/>
 							<SvgIcon size={24} icon='LinkedIn' hover
-							         onClick={() => window.open("https://www.linkedin.com/in/william-h-902213139/")}/>
+							         onClick={() => window.open("https://www.linkedin.com/in/william-h-902213139/", "_blank")}/>
 						</FooterSocialIcons>
 					</div>
 					<div className="col-sm-2">

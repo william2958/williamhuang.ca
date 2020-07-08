@@ -6,10 +6,11 @@ import {BookPreviewContent, BookPreviewCover, BookPreviewTypeAndRating, BookRevi
 import {BodyParagraph} from "../../../styles/typography/P";
 import {BookReviewRatingWrapper} from "../styles";
 import {withRouter} from "react-router-dom";
+import SvgIcon from "../../../components/SvgIcon";
 
 const BookReviewPreview = ({bookReview, editable, history}) => {
 
-	const {title, coverURL, category, contentPreview, author, recommended} = bookReview;
+	const {title, coverURL, category, contentPreview, author, recommended, rating} = bookReview;
 
 	const goToDetails = () => {
 		if (editable) {
@@ -32,8 +33,8 @@ const BookReviewPreview = ({bookReview, editable, history}) => {
 					<BookPreviewTypeAndRating>
 						<TypeLabel type={category} author={author}/>
 						<BookReviewRatingWrapper>
-							{/*{recommended && (<SvgIcon icon='Star' title="Recommended" size={16}/>)}*/}
-							{/*<H5>{rating} / 5</H5>*/}
+							{recommended && (<SvgIcon icon='Star' title="Highly Recommended" size={16}/>)}
+							<H5>{rating}&nbsp;/&nbsp;5</H5>
 						</BookReviewRatingWrapper>
 					</BookPreviewTypeAndRating>
 					<H5>{title}</H5>

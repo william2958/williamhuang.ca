@@ -15,6 +15,7 @@ import {getYear} from "../../actions";
 import {connect} from "react-redux";
 import {Helmet} from "react-helmet";
 import {BookReviewsWrapper} from "../BookReviews/styles";
+import {LeadParagraph} from "../../styles/typography/P";
 
 class MonthlyFivesPage extends React.Component {
 
@@ -65,7 +66,7 @@ class MonthlyFivesPage extends React.Component {
 				<MonthlyFivesPageHeader className="row">
 					<div className="headerDescription">
 						<H4>The Monthly Five</H4>
-						<H6 color="secondary">No structure, no template. Just five things, every month. Enjoy :)</H6>
+						<LeadParagraph>Once a month I'll share five things I think are great.</LeadParagraph>
 					</div>
 					<div className="headerDropdown">
 						<Dropdown value={selectedYear} options={VALID_YEARS} onChange={this.selectYear} />

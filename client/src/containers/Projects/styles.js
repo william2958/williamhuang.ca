@@ -38,6 +38,7 @@ export const ProjectHeroWrapper = styled.div`
 	margin-bottom: 24px;
 	width: 100%;
 	height: 30vh;
+	min-height: 200px;
 	max-height: 300px;
 	position: relative;
 	@media only screen and (max-width: ${sizes.phone}px) {
