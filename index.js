@@ -1,5 +1,5 @@
 require ('./envSetup');
-
+console.log('booting up application')
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -14,6 +14,12 @@ const cors = require('cors');
 
 const port = process.env.PORT || 8000;
 
+// Server side rendering stuff
+import { matchRoutes } from 'react-router-config';
+import createStore from './helpers/createStore';
+import Routes from './client/Routes';
+import renderer from './helpers/renderer';
+
 // Connect to the mongodb
 mongoManager
     .connect()
@@ -24,6 +30,7 @@ mongoManager
         console.error('connection error', e);
     });
 
+app.use(cookieParser());
 // Use the json middleware
 app.use(
     bodyParser.json({
@@ -50,16 +57,11 @@ app.use(cors());
 
 app.use(passport.init());
 
-app.use(cookieParser());
 
 app.use('/api/', api(config));
 
 app.get('/api/', (req, res) => {
     res.send('Successfully hit endpoint.');
-});
-
-app.get('/', (req, res) => {
-    res.status(200).send('DEFAULT ENDPOINT');
 });
 
 app.get('/_ah/stop', (req, res) => {
@@ -68,6 +70,39 @@ app.get('/_ah/stop', (req, res) => {
 
 app.get('/_ah/start', (req, res) => {
     res.status(200).send()
+});
+
+app.use(express.static('public'));
+
+app.get('*', (req, res) => {
+    const store = createStore(req);
+
+    // load data to store
+    const promises = matchRoutes(Routes, req.path).map(({ route, match }) => {
+        return route.loadData ? route.loadData(store, match) : null;
+    }).map(promise => {
+        if (promise) {
+            return new Promise((resolve, reject) => {
+                promise.then(resolve).catch(resolve);
+            })
+        }
+    });
+
+    Promise.all(promises).then(() => {
+
+        const context = {};
+        const content = renderer(req, store, context);
+
+        if (context.url) {
+            return res.redirect(301, context.url);
+        }
+        if (context.notFound) {
+            res.status(404);
+        }
+
+        res.send(content);
+    })
+
 });
 
 app.listen(port, () => console.log(`App is listening on ${port}`));

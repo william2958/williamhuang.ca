@@ -18,8 +18,6 @@ const setEventUpdated = ({ Event }) => async (req, res) => {
 			}
 		);
 
-		console.log('event id: ', eventId);
-
 		return res.status(200).send({
 			event: newEvent
 		})

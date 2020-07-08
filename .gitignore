@@ -2,3 +2,6 @@ ServiceAccountKey.json
 node_modules/
 
 app.yaml
+build/
+public/
+.idea/

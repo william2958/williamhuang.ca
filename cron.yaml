@@ -1,5 +1,5 @@
 cron:
 - description: "Keep primary instance running"
-  url: /
+  url: /api/
   target: default
   schedule: every 5 mins
