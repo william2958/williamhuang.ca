@@ -24,7 +24,7 @@ const config = {
 			{
 				test: /\.css$/,
 				use: {
-					loader: "ignore-loader"
+					loader: "css-loader"
 				}
 			},
 			{
@@ -58,7 +58,12 @@ const config = {
 		path: path.resolve(__dirname, 'build')
 	},
 
-	externals: [webpackNodeExternals(), 'react-helmet']
+	externals: [webpackNodeExternals({
+
+		whitelist: [
+			/\.(?!(?:jsx?|json)$).{1,5}$/i,
+			'react-datetime-picker'],
+	}), 'react-helmet']
 };
 
 // module.exports = merge(baseConfig, config);

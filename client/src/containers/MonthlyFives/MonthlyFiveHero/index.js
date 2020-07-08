@@ -27,7 +27,7 @@ const MonthlyFiveHero = ({ monthlyFive, editable, fit, noTitle, history }) => {
 			<MonthlyFiveSpotlightImage bg={monthlyFive.heroURL} fit={fit}>
 				<MonthlyFiveSpotlightContent>
 					<H5 color="highlight">{monthlyFive.title}</H5>
-					<H6 color="secondary">{monthlyFive.contentPreview}</H6>
+					{noTitle && <H6 color="secondary">{parseMonthAndYear(monthlyFive.month, monthlyFive.year)}</H6>}
 				</MonthlyFiveSpotlightContent>
 			</MonthlyFiveSpotlightImage>
 		</MonthlyFiveHeroWrapper>

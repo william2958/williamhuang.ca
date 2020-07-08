@@ -19,7 +19,6 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {Helmet} from "react-helmet";
 import {getImageUrl} from "../../../utils/getImageUrl";
-import {BookReviewDetailWrapper} from "../../BookReviews/BookReviewDetail/styles";
 
 class EventDetail extends React.Component {
 

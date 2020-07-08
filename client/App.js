@@ -4,7 +4,7 @@ import {ToastContainer, Zoom} from "react-toastify";
 import theme from "./src/styles/mainTheme";
 import {ThemeProvider} from "styled-components";
 
-import './react-toast.css';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import {fetchCurrentUser} from "./src/actions/authActions";
 import {Helmet} from "react-helmet";

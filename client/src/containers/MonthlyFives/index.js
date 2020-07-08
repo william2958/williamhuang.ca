@@ -53,7 +53,7 @@ class MonthlyFivesPage extends React.Component {
 
 				{mostRecentMonthlyFive ? (
 					<MostRecentMonthlyFiveWrapper>
-						<MonthlyFiveHero monthlyFive={mostRecentMonthlyFive} fit />
+						<MonthlyFiveHero monthlyFive={mostRecentMonthlyFive} fit noTitle />
 					</MostRecentMonthlyFiveWrapper>
 				) : (
 					<>

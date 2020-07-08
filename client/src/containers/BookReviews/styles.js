@@ -23,6 +23,10 @@ export const BookReviewsWrapper = styled.div`
 
 `;
 
+export const BookReviewsEmpty = styled.div`
+  padding: 12px;
+`;
+
 export const BookReviewRatingWrapper = styled.div`
     display: flex;
     width: fit-content;

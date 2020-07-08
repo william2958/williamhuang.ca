@@ -4,29 +4,24 @@ import { connect } from 'react-redux';
 import BookReviewPreview from "./BookReviewPreview";
 import Dropdown from "../../components/Dropdown";
 import {BOOK_REVIEW_CATEGORY_OPTIONS} from "../../constants";
-import {H4} from "../../styles/typography/Headers";
-import {BookReviewsWrapper} from "./styles";
+import {H4, H5} from "../../styles/typography/Headers";
+import {BookReviewsEmpty, BookReviewsWrapper} from "./styles";
 import {GutteredRow, LoadMoreButtonContainer} from "../../styles/globalStyles";
 import {getFirstPageBookReviews, getNextPageBookReviews} from "../../actions";
 import {Helmet} from "react-helmet";
 
 class BookReviews extends Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            filterCategory: 'all'
-        };
-
-    }
+    state = {
+        filterCategory: 'all'
+    };
 
     componentDidMount() {
         this.props.getFirstPageBookReviews('all');
         if (typeof window !== 'undefined') window.scrollTo(0, 0);
     }
 
-    loadNextPage = async () => {
+    loadNextPage = () => {
         let filteredCategory = this.state.filterCategory;
         if (filteredCategory === 'all') {
             filteredCategory = '';
@@ -35,7 +30,7 @@ class BookReviews extends Component {
         this.props.getNextPageBookReviews(filteredCategory);
     };
 
-    selectFilter(option) {
+    selectFilter = (option) => {
         if (option === this.state.filterCategory) {
             return;
         } else {
@@ -68,9 +63,13 @@ class BookReviews extends Component {
                 </div>
                 <GutteredRow className="row no-gutters">
                     {
-                        bookReviews.map(bookReview => (
+                        bookReviews.length ? bookReviews.map(bookReview => (
                             <BookReviewPreview bookReview={bookReview} key={bookReview._id} />
-                        ))
+                        )) : (
+                            <BookReviewsEmpty>
+                                <H5>No reviews for this category yet. Sorry!</H5>
+                            </BookReviewsEmpty>
+                        )
                     }
                 </GutteredRow>
                 {anotherPage && (

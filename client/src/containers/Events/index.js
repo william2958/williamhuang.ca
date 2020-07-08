@@ -50,9 +50,13 @@ class EventsPage extends React.Component {
 					}
 				</HeroRow>
 
-				<PastEventsHeader className="row">
-					<H4>Past Events:</H4>
-				</PastEventsHeader>
+				{pastEvents.length ? (
+					<PastEventsHeader className="row">
+						<H4>Past Events:</H4>
+					</PastEventsHeader>
+				) : (
+					<div />
+				)}
 				<GutteredRow className="row no-gutters">
 					{
 						pastEvents.map(event => (

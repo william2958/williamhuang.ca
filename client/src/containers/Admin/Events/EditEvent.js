@@ -91,7 +91,8 @@ class EditEvent extends React.Component {
 		const eventDetails = {
 			...this.props.eventDetails,
 			content: contentToFill,
-			recap: recapToFill
+			recap: recapToFill,
+			eventDate: new Date(this.props.eventDetails.eventDate)
 		}
 
 		return (
