@@ -22,6 +22,11 @@ export const EventEditorWrapper = styled.div`
     		margin-left: 12px;
     	}
     }
+    
+    .react-datetime-picker {
+    	max-height: 40px;
+    	height: 40px;
+    }
 `;
 
 export const EventRecapToggle = styled.div`

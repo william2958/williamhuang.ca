@@ -60,7 +60,8 @@ export const MonthlyFiveSpotlightContent = styled.div`
 	background-color: ${({theme}) => theme.primary};
 	
 	width: fit-content;
-	max-width: 200px;
+	max-width: 300px;
+	display: table;
 	
 	padding: 12px;
 	

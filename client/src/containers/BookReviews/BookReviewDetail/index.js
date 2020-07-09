@@ -51,7 +51,8 @@ class BookReviewDetail extends React.Component {
             category,
             contentPreview,
             content,
-            urlString
+            urlString,
+            rating
         } = this.props.bookReviewDetails;
 
         let contentToFill;
@@ -88,7 +89,7 @@ class BookReviewDetail extends React.Component {
                             <TypeLabel type={category} />
                             <BookReviewRatingWrapper className="ratingWrapper">
                                 {recommended && (<SvgIcon icon='Star' title="Recommended" size={16}/>)}
-                                {/*<H5>{rating} / 5</H5>*/}
+                                <H5>{rating} / 5</H5>
                             </BookReviewRatingWrapper>
                         </div>
                     </BookReviewDetailContent>

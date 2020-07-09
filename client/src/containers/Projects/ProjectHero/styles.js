@@ -79,12 +79,10 @@ export const ProjectsPageSpotlightContent = styled.div`
 	background-color: ${({theme}) => theme.primary};
 	
 	width: fit-content;
+	display: table;
+	max-width: 300px;
 	
 	padding: 12px;
-	
-	h6 {
-		max-width: 200px;
-	}
 	
 	@media only screen and (max-width: ${sizes.phone}px) {
 		top: 12px;

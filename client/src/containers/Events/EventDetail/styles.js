@@ -54,8 +54,7 @@ export const KeyInfoBox = styled.div`
 	
 	@media only screen and (max-width: 1400px) {
     	position: relative;
-    	margin: 0 15px 24px;
-    	width: auto;
+    	width: 95%;
     	max-width: 780px !important;
     	left: 50%;
     	transform: translateX(-50%);

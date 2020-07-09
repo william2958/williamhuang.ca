@@ -12,20 +12,20 @@ const Footer = ({ history }) => {
 			<div className="container">
 				<div className="row footerInfoRow">
 					<div className="col-sm-8">
-						<H3 color="highlight" onClick={() => history.push('/')}>The blog of Will</H3>
+						<H3 color="highlight" onClick={() => history.push('/')}>Will's Blog</H3>
 						<BodyParagraph color="highlight">
 							A Brain Dump
 						</BodyParagraph>
 
 						<FooterSocialIcons>
-							<SvgIcon size={24} icon='Github' hover
+							<SvgIcon size={24} icon='Github' hover title={'Github'}
 							         onClick={() => window.open("https://github.com/william2958", "_blank")}/>
-							<SvgIcon size={24} icon='Twitter' hover
+							<SvgIcon size={24} icon='Twitter' hover title={'Twitter'}
 									onClick={() => window.open("https://twitter.com/will_huangg", "_blank")}/>
 							{/*<SvgIcon size={24} icon='Medium' />*/}
-							<SvgIcon size={24} icon='AngelList' hover
+							<SvgIcon size={24} icon='AngelList' hover title={'AngelList'}
 							         onClick={() => window.open("https://angel.co/u/william-huang-18", "_blank")}/>
-							<SvgIcon size={24} icon='LinkedIn' hover
+							<SvgIcon size={24} icon='LinkedIn' hover title={'LinkedIn'}
 							         onClick={() => window.open("https://www.linkedin.com/in/william-h-902213139/", "_blank")}/>
 						</FooterSocialIcons>
 					</div>
@@ -63,8 +63,10 @@ const Footer = ({ history }) => {
 				</div>
 				<div className="row">
 					<div className="col-sm-12 terms">
-						<h5>TERMS AND CONDITIONS</h5>
-						<h5>&copy;2020 - WILLIAMHUANG.CA | ALL RIGHTS RESERVED</h5>
+						<div />
+						{/*<h5>TERMS AND CONDITIONS</h5>*/}
+						{/*<h5>&copy;2020 - WILLIAMHUANG.CA | ALL RIGHTS RESERVED</h5>*/}
+						<h5>WILLIAMHUANG.CA</h5>
 					</div>
 				</div>
 			</div>
