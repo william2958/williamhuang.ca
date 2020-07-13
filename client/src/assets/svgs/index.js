@@ -29,6 +29,7 @@ import Star from './ui/Star.svg';
 import BackCaret from './ui/BackCaret.svg';
 import Close from './ui/Close.svg';
 import OpenInNew from './ui/OpenInNew.svg';
+import OpenInNewDark from './ui/OpenInNewDark.svg';
 import DownCaret from './ui/DownCaret.svg';
 
 export default {
@@ -58,5 +59,6 @@ export default {
 	BackCaret,
 	Close,
 	OpenInNew,
+	OpenInNewDark,
 	DownCaret
 }

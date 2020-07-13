@@ -68,7 +68,7 @@ class BookReviewDetail extends React.Component {
         return (
             <BookReviewDetailWrapper>
                 <Helmet>
-                    <title>{`${title} | WH Book Reviews`}</title>
+                    <title>{`${title} | WH Books`}</title>
                     <meta property="og:title" content={title} />
                     <meta property="og:image" content={getImageUrl(coverURL, 'small')} />
                     <meta property="description" content={contentPreview} />
@@ -77,7 +77,7 @@ class BookReviewDetail extends React.Component {
                 <div className="container">
                     <BackArrow onClick={this.goBack}>
                         <SvgIcon icon="BackCaret" />
-                        <h6>All Reviews</h6>
+                        <h6>Books</h6>
                     </BackArrow>
                 </div>
                 <BookReviewDetailContentWrapper className="container">

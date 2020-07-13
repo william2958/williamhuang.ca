@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import {sizes} from "../../styles";
 
 export const EditorPanelWrapper = styled.div`
 	
@@ -13,6 +14,14 @@ export const EditorPanelWrapper = styled.div`
     text-align: center;
 
     z-index: 5;
+    
+    @media only screen and (max-width: ${sizes.tablet}px) {
+    	transform: none;
+    	left: 0;
+    	right: 0;
+    	bottom: 0;
+    	padding: 8px;
+    }
     
 `;
 

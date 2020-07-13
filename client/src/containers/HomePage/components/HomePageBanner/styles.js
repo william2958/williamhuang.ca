@@ -17,6 +17,8 @@ export const HomePageBannerWrapper = styled.div`
     	left: 24px;
     	
     	padding: 12px;
+    	
+    	z-index: 10;
     }
     
     @media only screen and (max-width: ${sizes.phone}px) {

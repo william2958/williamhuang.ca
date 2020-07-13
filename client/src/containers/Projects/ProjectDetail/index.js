@@ -112,7 +112,7 @@ class ProjectDetail extends React.Component {
 							onClick={() => window.open(liveLink, "_blank")}
 						>
 							<div className="buttonContent">
-								<span>See Live</span> <SvgIcon icon='OpenInNew' />
+								<span>See Live</span> <SvgIcon icon='OpenInNewDark' />
 							</div>
 						</Button>
 					</div>

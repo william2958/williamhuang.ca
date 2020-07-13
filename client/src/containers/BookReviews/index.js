@@ -50,10 +50,10 @@ class BookReviews extends Component {
         return (
             <BookReviewsWrapper className="container">
                 <Helmet>
-                    <title>{`Book Reviews | WH`}</title>
-                    <meta property="og:title" content={`Book Reviews | WH`} />
+                    <title>{`Books | WH`}</title>
+                    <meta property="og:title" content={`Books | WH`} />
                     <meta property="og:image" content="https://storage.googleapis.com/global_images/Web_Preview/favicon.png" />
-                    <meta property="description" content="Explore my blog, reviews, guides, and more." />
+                    <meta property="description" content="Find a book to read." />
                     <meta property="og:url" content={`https://williamhuang.ca/bookReviews`} />
                 </Helmet>
                 <div className="bookReviewHeader row">
