@@ -18,6 +18,7 @@ const DEFAULT_FORM_VALUES = {
 	_id: '',
 	title: '',
 	urlString: '',
+	num: '000',
 	contentPreview: '',
 
 	content: EditorState.createEmpty(decoratorLink),
@@ -175,6 +176,7 @@ class BlogEditor extends React.Component {
 	render() {
 		const {
 			title,
+			num,
 			contentPreview,
 			urlString,
 
@@ -193,8 +195,9 @@ class BlogEditor extends React.Component {
 			<BlogEditorWrapper className="container">
 				<div className="row metadata">
 					<div className="col-md-6">
-						<InputSimple label="Title" name="title" value={title} onChange={this.handleInputChange} />
-						<InputSimple label="URL String" name="urlString" value={urlString} onChange={this.handleInputChange} />
+						<InputSimple label="Title" name="title" value={title} onChange={this.handleInputChange} fullWidth />
+						<InputSimple label="Blog Num" name="num" value={num} onChange={this.handleInputChange} fullWidth />
+						<InputSimple label="URL String" name="urlString" value={urlString} onChange={this.handleInputChange} fullWidth />
 
 						<TextBoxSimple
 							label="contentPreview"

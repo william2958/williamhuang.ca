@@ -35,4 +35,6 @@ const NewBlog = ({ history }) => {
 
 };
 
-export default NewBlog;
+export default {
+	component: NewBlog
+};

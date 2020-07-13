@@ -5,6 +5,7 @@ module.exports = {
 	propertiesToProject: {
 		created: 1,
 		title: 1,
+		num: 1,
 		contentPreview: 1,
 		urlString: 1,
 

@@ -6,6 +6,7 @@ import guideReducer from "./guideReducer";
 import homeReducer from "./homeReducer";
 import monthlyFiveReducer from "./monthlyFiveReducer";
 import eventReducer from "./eventReducer";
+import blogReducer from "./blogReducer";
 
 export default combineReducers({
 	bookReviews: bookReviewReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
 	guides: guideReducer,
 	home: homeReducer,
 	monthlyFives: monthlyFiveReducer,
-	events: eventReducer
+	events: eventReducer,
+	blogs: blogReducer
 })

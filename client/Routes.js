@@ -42,6 +42,10 @@ import EventDetail from './src/containers/Events/EventDetail';
 import EventsPage from './src/containers/Events';
 import MonthlyFiveDetail from './src/containers/MonthlyFives/MonthlyFiveDetail';
 import MonthlyFivesPage from './src/containers/MonthlyFives';
+import PublishedBlogs from "./src/containers/Admin/Blogs/PublishedBlogs";
+import DraftBlogs from "./src/containers/Admin/Blogs/DraftBlogs";
+import NewBlog from "./src/containers/Admin/Blogs/NewBlog";
+import EditBlog from "./src/containers/Admin/Blogs/EditBlog";
 
 export default [
 	{
@@ -138,7 +142,24 @@ export default [
 					},
 					{
 						...EditMonthlyFive,
-						path: '/admin/monthlyFive/edit/:monthlyFiveId'
+						path: '/admin/monthlyFive/edit/:blogId'
+					},
+
+					{
+						...PublishedBlogs,
+						path: '/admin/blog/published'
+					},
+					{
+						...DraftBlogs,
+						path: '/admin/blog/drafts'
+					},
+					{
+						...NewBlog,
+						path: '/admin/blog/new'
+					},
+					{
+						...EditBlog,
+						path: '/admin/blog/edit/:blogId'
 					}
 				]
 			},

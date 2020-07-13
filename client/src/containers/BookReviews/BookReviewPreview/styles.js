@@ -63,8 +63,13 @@ export const BookPreviewTypeAndRating = styled.div`
     justify-content: space-between;
     align-items: center;
     
+    h6 {
+        margin-top: 0;
+    }
+    
     @media only screen and (max-width: ${sizes.tablet}px) {
 		margin-top: 0;
+	    align-items: flex-start; 
 	}
     
 `;

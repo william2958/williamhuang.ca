@@ -1,35 +1,22 @@
-import React, {useEffect, useState} from 'react';
-import axios from '../../../utils/axios';
-import { toast } from 'react-toastify'
-import history from "../../../history";
+import React, {useEffect} from 'react';
 import {ListBlogsWrapper} from "./styles";
+import {getAdminBlog} from "../../../actions";
+import {connect} from "react-redux";
+import BlogPreview from "../../Blogs/BlogPreview";
 
-const PublishedBlogs = () => {
-
-	const [publishedBlogs, setPublishedBlogs] = useState([]);
+const PublishedBlogs = ({ published, getAdminBlog }) => {
 
 	useEffect(() => {
-		async function getPublishedBlogs() {
-			try {
-
-				const response = (await axios.get('/blog/getBlogAdmin?isPublished=true')).data;
-
-				setPublishedBlogs(response.blogs);
-
-			} catch (e) {
-				toast.error('Could not find published blogs.');
-			}
-		}
-		getPublishedBlogs();
+		getAdminBlog(true)
 	}, []);
 
 	return (
 		<ListBlogsWrapper className="container">
 			<div className="">
 				{
-					publishedBlogs.map(blog => (
-						<div key={blog._id} onClick={() => history.push('/admin/blog/edit/' + blog._id)}>
-							{blog.title}
+					published.map(blog => (
+						<div className="col-md-12" key={blog._id}>
+							<BlogPreview blog={blog} editable />
 						</div>
 					))
 				}
@@ -39,4 +26,11 @@ const PublishedBlogs = () => {
 
 };
 
-export default PublishedBlogs;
+const mapStateToProps = (state) => ({
+	published: state.blogs.publishedBlogs
+})
+
+export default {
+	component: connect(mapStateToProps, { getAdminBlog })(PublishedBlogs),
+	loadData: ({ dispatch }) => dispatch(getAdminBlog(true))
+};

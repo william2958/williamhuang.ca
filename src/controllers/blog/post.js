@@ -2,6 +2,7 @@ const createBlog = ({ Blog }) => async (req, res) => {
 
 	const {
 		title,
+		num,
 		contentPreview,
 
 		content,
@@ -15,6 +16,7 @@ const createBlog = ({ Blog }) => async (req, res) => {
 	try {
 		const reviewData = {
 			title,
+			num,
 			contentPreview,
 
 			content,

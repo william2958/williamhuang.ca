@@ -16,6 +16,7 @@ const schema = new Schema({
 
 	title: String,
 	contentPreview: String,
+	num: String,
 
 	heroURL: String,
 	previewImageURL: String,

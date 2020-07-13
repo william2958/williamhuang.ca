@@ -2,6 +2,7 @@ const updateBlog = ({ Blog }) => async (req, res) => {
 
 	const {
 		title,
+		num,
 		contentPreview,
 
 		content,
@@ -20,6 +21,7 @@ const updateBlog = ({ Blog }) => async (req, res) => {
 
 		const updateData = {
 			...(title && { title }),
+			...(num && { num }),
 			...(contentPreview && { contentPreview }),
 
 			...(content && { content }),

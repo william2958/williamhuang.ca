@@ -1,43 +1,21 @@
 import React from 'react';
 import { toast } from 'react-toastify';
-import { EditorState, convertFromRaw } from 'draft-js';
 
 import axios from '../../../utils/axios';
-import history from '../../../history';
-import {decoratorLink} from "../../../components/RichTextEditor/linkDecorator";
-import {IsValidJSONString} from "../../../utils/isValidJSON";
 import BlogEditor from "./BlogEditor";
+import {IsValidJSONString} from "../../../utils/isValidJSON";
+import {convertFromRaw, EditorState} from "draft-js";
+import {decoratorLink} from "../../../components/RichTextEditor/linkDecorator";
+import {getBlogDetails} from "../../../actions";
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 class EditBlog extends React.Component {
-
-	state = {
-		blogData: null,
-		editorState: EditorState.createEmpty(decoratorLink)
-	};
 
 	componentDidMount() {
 		const blogId = this.props.match.params.blogId;
 		if (blogId) {
-			axios.get(`/blog/getBlog?blogId=${blogId}`)
-				.then(({data}) => {
-					const blog = data.blog;
-					let contentToFill;
-					if (IsValidJSONString(blog.content)) {
-
-						const dbEditorState = convertFromRaw(JSON.parse(blog.content));
-						contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
-
-					} else {
-						contentToFill = EditorState.createEmpty(decoratorLink)
-					}
-					blog.content = contentToFill;
-					this.setState({
-						blogData: blog,
-					});
-				})
-				.catch(e => {
-					console.error('Error getting blog: ', e)
-				})
+			this.props.getBlogDetails(blogId, true, true);
 		} else {
 			history.push('/admin');
 		}
@@ -71,13 +49,41 @@ class EditBlog extends React.Component {
 	};
 
 	render() {
+		let contentToFill;
+		if (IsValidJSONString(this.props.blogDetails.content)) {
+
+			const dbEditorState = convertFromRaw(JSON.parse(this.props.blogDetails.content));
+			contentToFill = EditorState.createWithContent(dbEditorState, decoratorLink);
+
+		} else {
+			contentToFill = EditorState.createEmpty(decoratorLink)
+		}
+		const blogDetails = {
+			...this.props.blogDetails,
+			content: contentToFill
+		}
 		return (
 			<div>
-				<BlogEditor save={this.saveBlog} delete={this.deleteBlog} blogData={this.state.blogData} />
+				<BlogEditor
+					save={this.saveBlog}
+					delete={this.deleteBlog}
+					blogData={blogDetails} />
 			</div>
 		)
 	}
 
 }
 
-export default EditBlog;
+const mapStateToProps = (state) => ({
+	blogDetails: state.blogs.editBlogDetails
+})
+
+function loadData(store, match) {
+	const id = match.params.blogId;
+	return store.dispatch(getBlogDetails(id, true, true));
+}
+
+export default {
+	component: connect(mapStateToProps, { getBlogDetails })(withRouter(EditBlog)),
+	loadData
+};

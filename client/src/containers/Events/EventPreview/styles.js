@@ -17,7 +17,6 @@ export const EventPreviewWrapper = styled.div`
 
 export const EventPreviewImage = styled.div`
 	background-image: url(${({bg}) => bg ? getImageUrl(bg, 'medium') : DEFAULT_PROJECT_PREVIEW_IMAGE});
-	border: 1px solid ${({theme}) => theme.secondary};
     position: relative;
 	
 	// Images are displayed as 7 x 10

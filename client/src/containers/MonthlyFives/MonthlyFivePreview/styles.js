@@ -15,7 +15,6 @@ export const MonthlyFivePreviewWrapper = styled.div`
 
 export const MonthlyFivePreviewImage = styled.div`
 	background-image: url(${({bg}) => bg ? getImageUrl(bg, 'medium') : DEFAULT_MONTHLY_FIVE_PREVIEW_IMAGE});
-	border: 1px solid ${({theme}) => theme.secondary};
 	
 	// Images are displayed as 7 x 10
 	width: 100%;
