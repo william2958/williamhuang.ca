@@ -105,17 +105,19 @@ class ProjectDetail extends React.Component {
 							<H6 color="secondary">Published: {formattedDate}</H6>
 						</div>
 					</ProjectDetailContent>
-					<div className="seeItLiveContainer">
-						<Button
-							small
-							variant="secondary"
-							onClick={() => window.open(liveLink, "_blank")}
-						>
-							<div className="buttonContent">
-								<span>See Live</span> <SvgIcon icon='OpenInNewDark' />
-							</div>
-						</Button>
-					</div>
+					{liveLink && (
+						<div className="seeItLiveContainer">
+							<Button
+								small
+								variant="secondary"
+								onClick={() => window.open(liveLink, "_blank")}
+							>
+								<div className="buttonContent">
+									<span>See Live</span> <SvgIcon icon='OpenInNewDark' />
+								</div>
+							</Button>
+						</div>
+					)}
 				</ProjectDetailContentWrapper>
 
 				<RichTextEditor editorState={contentToFill} readOnly={true} />

@@ -58,6 +58,8 @@ export const BlogHeaderRow = styled.div`
 
 export const BlogHeaderNum = styled.div`
 	width: fit-content;
+	min-width: 142px;
+	text-align: center;
 	
 	padding: 12px;
 	

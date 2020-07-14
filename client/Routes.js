@@ -142,7 +142,7 @@ export default [
 					},
 					{
 						...EditMonthlyFive,
-						path: '/admin/monthlyFive/edit/:blogId'
+						path: '/admin/monthlyFive/edit/:monthlyFiveId'
 					},
 
 					{

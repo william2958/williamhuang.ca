@@ -21,7 +21,7 @@ const Footer = ({ history }) => {
 							<SvgIcon size={24} icon='Github' hover title={'Github'}
 							         onClick={() => window.open("https://github.com/william2958", "_blank")}/>
 							<SvgIcon size={24} icon='Twitter' hover title={'Twitter'}
-									onClick={() => window.open("https://twitter.com/will_huangg", "_blank")}/>
+									onClick={() => window.open("https://twitter.com/_willhuang", "_blank")}/>
 							{/*<SvgIcon size={24} icon='Medium' />*/}
 							<SvgIcon size={24} icon='AngelList' hover title={'AngelList'}
 							         onClick={() => window.open("https://angel.co/u/william-huang-18", "_blank")}/>

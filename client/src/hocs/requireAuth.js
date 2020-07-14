@@ -7,7 +7,7 @@ export default (ChildComponent) => {
 		render() {
 			switch (this.props.auth.user) {
 				case false:
-					return <Redirect to="/" />;
+					return <Redirect to="/adminLogin" />;
 				case null:
 					return <div>Loading...</div>;
 				default:
