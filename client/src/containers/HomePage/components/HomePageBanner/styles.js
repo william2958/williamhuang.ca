@@ -27,6 +27,10 @@ export const HomePageBannerWrapper = styled.div`
 		h4 {
 			margin-left: 0;
 		}
+		.highlightBadge {
+			top: 12px;
+			left: 12px;
+		}
     }
     
 `;
