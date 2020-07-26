@@ -155,10 +155,13 @@ const ImageComponent = (props) => {
 			zoomed ? zoomOut() : zoomIn();
 		else {
 			if (!zoomed) {
-				setScrollPos(window.scrollY);
-				document.body.style.top = `-${window.scrollY}px`;
-				document.body.style.position = 'fixed';
 				zoomIn();
+				setTimeout(() => {
+					const scrollY = window.scrollY;
+					setScrollPos(scrollY);
+					document.body.style.top = `-${scrollY}px`;
+					document.body.style.position = 'fixed';
+				}, 400);
 			}
 		}
 
