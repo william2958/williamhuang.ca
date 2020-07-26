@@ -27,18 +27,25 @@ const Frame = styled(posed.div({
 		opacity: 1
 	}
 }))`
-	.frameClose {
-	    position: absolute;
-	    top: 24px;
-	    right: 24px;
-	    //display: none;
-	    & > img {
-	    	cursor: pointer;
-	    }
-	    @media only screen and (max-width: ${sizes.tablet}px) {
-	    	display: block;
-	    }
-	}
+`;
+
+const FrameCloseButton = styled.div`
+	position: fixed;
+    top: 24px;
+    right: 24px;
+    padding: 8px;
+    border-radius: 8px;
+    background-color: #fff;
+    z-index: 1034;
+    
+    ${({show}) => show ? css`display: block` : css`display: none;`};
+    
+    & > span > img {
+    	cursor: pointer;
+    }
+    @media only screen and (max-width: ${sizes.tablet}px) {
+    	${({show}) => show ? css`display: block` : css`display: none;`};
+    }
 `;
 
 const transition = {
@@ -178,9 +185,10 @@ const ImageComponent = (props) => {
 			{...elemProps}
 			onClick={toggleZoom}
 		>
-			<Frame pose={pose} className="frame">
-				<SvgIcon className='frameClose' size={24} icon='CloseThin' hover title={'Close'} onClick={zoomOut} />
-			</Frame>
+			<Frame pose={pose} className="frame" />
+			<FrameCloseButton onClick={zoomOut} show={zoomed}>
+				<SvgIcon size={18} icon='CloseThin' hover title={'Close'} />
+			</FrameCloseButton>
 			<Image
 				image={entity.src}
 				className={`${props.theme.props} ${props.className} image ${zoomed ? 'zoomed' : ''}`}
