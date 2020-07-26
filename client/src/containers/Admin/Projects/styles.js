@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {clearHeader} from "../../../styles/globalStyles";
+import {sizes} from "../../../styles";
 
 export const PublishedProjectsWrapper = styled.div`
 	${clearHeader}
