@@ -5,7 +5,8 @@ export const BOOK_REVIEW_CATEGORY_OPTIONS = [
 	'horror',
 	'memoir',
 	'self-help',
-	'analysis'
+	'analysis',
+	'fiction'
 ];
 
 export const PROJECT_CATEGORY_OPTIONS = [

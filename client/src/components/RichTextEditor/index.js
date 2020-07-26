@@ -23,6 +23,7 @@ import {EditorPanelWrapper, InsertLinkWrapper} from "./styles";
 import FileInput from "../UI/Inputs/FileInput";
 import {toast} from "react-toastify";
 import {EditorWrapper, RichTextEditorWrapper} from "./RichTextEditorStyles";
+import ImageComponent from "./EditorImage";
 
 const focusPlugin = createFocusPlugin();
 const resizeablePlugin = createResizeablePlugin();
@@ -36,7 +37,11 @@ const decorator = composeDecorators(
     focusPlugin.decorator,
     blockDndPlugin.decorator
 );
-const imagePlugin = createImagePlugin({ decorator });
+
+const imagePlugin = createImagePlugin({
+    decorator,
+    imageComponent: ImageComponent
+});
 
 const plugins = [
     blockDndPlugin,
@@ -45,6 +50,14 @@ const plugins = [
     resizeablePlugin,
     imagePlugin
 ];
+const editImagePlugin = createImagePlugin({decorator});
+const editPlugins = [
+    blockDndPlugin,
+    focusPlugin,
+    alignmentPlugin,
+    resizeablePlugin,
+    editImagePlugin
+]
 
 const RichTextEditor = ({ editorState, changeEditorState = () => {}, readOnly = false }) => {
 
@@ -73,15 +86,11 @@ const RichTextEditor = ({ editorState, changeEditorState = () => {}, readOnly = 
                 const response = (await axios.post('/bookReview/uploadBookImage', data)).data;
                 const { coverURL } = response;
 
-
-                const imageNameParts = coverURL.split('/');
-                const imageName = imageNameParts.pop();
-
                 const contentState = editorState.getCurrentContent();
                 const contentStateWithEntity = contentState.createEntity(
                     "image",
                     "IMMUTABLE",
-                    { src: `${imageNameParts.join('/')}/resize_1024_${imageName}` }
+                    { src: coverURL }
                 );
                 const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
                 const newEditorState = EditorState.set(
@@ -307,7 +316,7 @@ const RichTextEditor = ({ editorState, changeEditorState = () => {}, readOnly = 
                     placeholder="Your review here..."
                     spellCheck={true}
                     ref={editorRef}
-                    plugins={plugins}
+                    plugins={readOnly ? plugins : editPlugins}
                     readOnly={readOnly}
                 />
                 <AlignmentTool />

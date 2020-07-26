@@ -29,6 +29,9 @@ const TypeLabel = ({ type, author }) => {
 			// iconBackgroundColor = '#008ABA';
 			// icon = 'Fingerprint';
 			break;
+		case 'fiction':
+			text = 'Fiction';
+			break;
 		case 'self-help':
 			text = 'Self Help';
 			// backgroundColor = '#FECA57';

@@ -16,8 +16,6 @@ export const HomePageBannerWrapper = styled.div`
     	top: 24px;
     	left: 24px;
     	
-    	padding: 12px;
-    	
     	z-index: 10;
     }
     

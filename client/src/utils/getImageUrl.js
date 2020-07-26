@@ -4,6 +4,9 @@ export const getImageUrl = (url, size) => {
 		return url;
 	}
 
+	if (url.includes('resize'))
+		return url;
+
 	const imageNameParts = url.split('/');
 	const imageName = imageNameParts.pop();
 

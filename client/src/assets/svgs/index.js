@@ -28,6 +28,7 @@ import Search from './ui/Search.svg';
 import Star from './ui/Star.svg';
 import BackCaret from './ui/BackCaret.svg';
 import Close from './ui/Close.svg';
+import CloseThin from './ui/CloseThin.svg';
 import OpenInNew from './ui/OpenInNew.svg';
 import OpenInNewDark from './ui/OpenInNewDark.svg';
 import DownCaret from './ui/DownCaret.svg';
@@ -58,6 +59,7 @@ export default {
 	Star,
 	BackCaret,
 	Close,
+	CloseThin,
 	OpenInNew,
 	OpenInNewDark,
 	DownCaret
