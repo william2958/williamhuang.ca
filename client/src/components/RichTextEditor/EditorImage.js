@@ -143,10 +143,9 @@ const ImageComponent = (props) => {
 		if (window.innerWidth > sizes.tablet)
 			window.removeEventListener('scroll', zoomOut);
 		else {
-			const scrollY = document.body.style.top;
 			document.body.style.top = ``;
 			document.body.style.position = '';
-			window.scrollTo(0, parseInt(scrollY || '0') * -1);
+			window.scrollTo(0,scrollPos);
 		}
 		setZoomed(false);
 	}
