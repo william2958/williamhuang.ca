@@ -4,6 +4,8 @@ import {getImageUrl} from "../../../utils/getImageUrl";
 const DEFAULT_PROJECT_SPOTLIGHT_IMAGE = 'https://storage.googleapis.com/global_images/Default_Images/error404.jpg';
 
 export const ProjectsPageSpotlight = styled.div`
+
+	border-radius: inherit;
     
     ${({fit}) => fit && css`
 		position: absolute;
@@ -32,6 +34,7 @@ export const ProjectsPageSpotlightImage = styled.div`
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	border-radius: inherit;
 	
 	position: relative;
     

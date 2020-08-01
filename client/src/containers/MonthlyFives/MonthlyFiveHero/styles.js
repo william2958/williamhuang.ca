@@ -7,6 +7,7 @@ export const MonthlyFiveHeroWrapper = styled.div`
     flex-direction: column;
     text-align: left;
     position: relative;
+	border-radius: inherit;
 
     cursor: pointer;
     
@@ -31,6 +32,7 @@ export const MonthlyFiveSpotlightImage = styled.div`
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	border-radius: inherit;
 	
 	position: relative;
 	

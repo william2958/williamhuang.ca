@@ -65,8 +65,8 @@ const Footer = ({ history }) => {
 					<div className="col-sm-12 terms">
 						<div />
 						{/*<h5>TERMS AND CONDITIONS</h5>*/}
-						{/*<h5>&copy;2020 - WILLIAMHUANG.CA | ALL RIGHTS RESERVED</h5>*/}
-						<h5>WILLIAMHUANG.CA</h5>
+						<h5>&copy; {new Date().getFullYear()} - WILLIAMHUANG.CA</h5>
+						{/*<h5>WILLIAMHUANG.CA</h5>*/}
 					</div>
 				</div>
 			</div>

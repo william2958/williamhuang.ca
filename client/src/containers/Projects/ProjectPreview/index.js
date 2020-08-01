@@ -27,9 +27,9 @@ const ProjectPreview = ({ project, editable, history }) => {
 
 	return (
 		<div className="col-md-4">
-			<ProjectPreviewWrapper onClick={goToDetails}>
-				<ProjectPreviewImage bg={previewImageURL}>
-					<ProjectCategoryTag category={category} />
+			<ProjectPreviewWrapper>
+				<ProjectPreviewImage bg={previewImageURL} onClick={goToDetails}>
+					{/*<ProjectCategoryTag category={category} />*/}
 				</ProjectPreviewImage>
 				<ProjectPreviewContent>
 					<ProjectPreviewTitle>{title}</ProjectPreviewTitle>

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import {getImageUrl} from "../../../utils/getImageUrl";
 import {sizes} from "../../../styles";
+import {hoverShadow} from "../../../styles/shadows";
 export const DEFAULT_BOOK_REVIEW_ICON = 'https://storage.googleapis.com/global_images/Default_Images/error404.jpg';
 
 export const BookReviewPreviewWrapper = styled.div`
@@ -12,7 +13,6 @@ export const BookReviewPreviewWrapper = styled.div`
     max-width: 940px;
 
     border-radius: 5px;
-    cursor: pointer;
     
     h6 {
     	margin-top: 4px;
@@ -33,6 +33,8 @@ export const BookPreviewCover = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    
+    ${hoverShadow};
 	
     @media only screen and (max-width: ${sizes.tablet}px) {
 		height: 130px;

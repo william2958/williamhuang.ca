@@ -27,8 +27,8 @@ const BookReviewPreview = ({bookReview, editable, history}) => {
 
 	return (
 		<div className="col-md-3">
-			<BookReviewPreviewWrapper onClick={goToDetails}>
-				<BookPreviewCover bg={coverURL} />
+			<BookReviewPreviewWrapper>
+				<BookPreviewCover bg={coverURL} onClick={goToDetails} />
 				<BookPreviewContent>
 					<BookPreviewTypeAndRating>
 						<TypeLabel type={category} author={author}/>

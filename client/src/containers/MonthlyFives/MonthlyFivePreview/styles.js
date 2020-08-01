@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import {getImageUrl} from "../../../utils/getImageUrl";
 import {sizes} from "../../../styles";
+import {hoverShadow} from "../../../styles/shadows";
 const DEFAULT_MONTHLY_FIVE_PREVIEW_IMAGE = 'https://storage.googleapis.com/global_images/Default_Images/error404.jpg';
 
 export const MonthlyFivePreviewWrapper = styled.div`
@@ -23,6 +24,8 @@ export const MonthlyFivePreviewImage = styled.div`
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	
+	${hoverShadow};
 	
 	@media only screen and (max-width: ${sizes.phone}px) {
 		background-image: url(${({bg}) => bg ? getImageUrl(bg, 'small') : DEFAULT_MONTHLY_FIVE_PREVIEW_IMAGE});

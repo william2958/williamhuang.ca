@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import {clearHeader} from "../../styles/globalStyles";
 import {sizes} from "../../styles";
+import {hoverShadow} from "../../styles/shadows";
 
 export const MonthlyFivesPageWrapper = styled.div`
 	${clearHeader};
@@ -37,10 +38,12 @@ export const MostRecentMonthlyFiveWrapper = styled.div`
 	margin-left: -15px;
 	margin-right: -15px;
 	
-	height: 30vh;
+	height: 40vh;
 	min-height: 250px;
-	max-height: 300px;
+	max-height: 350px;
 	position: relative;
+	
+	${hoverShadow};
 	
 	@media only screen and (max-width: ${sizes.phone}px) {
 		h4 {
@@ -53,5 +56,7 @@ export const MonthlyFiveSpotlightPlaceholder = styled.div`
 	margin-top: 12px;
 	margin-bottom: 24px;
 	width: 100%;
-	height: 30vh;
+	height: 40vh;
+	min-height: 250px;
+	max-height: 350px;
 `;
