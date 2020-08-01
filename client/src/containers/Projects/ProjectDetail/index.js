@@ -22,7 +22,6 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {Helmet} from "react-helmet";
 import {getImageUrl} from "../../../utils/getImageUrl";
-import {BookReviewDetailWrapper} from "../../BookReviews/BookReviewDetail/styles";
 
 class ProjectDetail extends React.Component {
 

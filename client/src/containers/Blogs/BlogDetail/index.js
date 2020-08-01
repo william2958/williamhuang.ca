@@ -5,48 +5,48 @@ import RichTextEditor from "../../../components/RichTextEditor";
 import SvgIcon from "../../../components/SvgIcon";
 import {decoratorLink} from "../../../components/RichTextEditor/linkDecorator";
 import {IsValidJSONString} from "../../../utils/isValidJSON";
-import {MonthlyFiveDetailContent, MonthlyFiveDetailContentWrapper, MonthlyFiveDetailWrapper} from "./styles";
+import {BlogDetailContent, BlogDetailContentWrapper, BlogDetailWrapper} from "./styles";
 import {H2, H5} from "../../../styles/typography/Headers";
-import {parseMonthAndYear} from "../helpers";
 import {BackArrow} from "../../../styles/globalStyles";
 import Button from "../../../components/UI/Button";
-import {MonthlyFiveSpotlightImage} from "../MonthlyFiveHero/styles";
-import {getMonthlyFiveDetails} from "../../../actions";
+import {BlogSpotlightImage} from "../BlogHero/styles";
+import {getBlogDetails} from "../../../actions";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {Helmet} from "react-helmet";
 import {getImageUrl} from "../../../utils/getImageUrl";
+import {BodyParagraph} from "../../../styles/typography/P";
+import {BlogDetailsRow} from "../BlogPreview/styles";
 
-class MonthlyFiveDetail extends React.Component {
+class BlogDetail extends React.Component {
 
 	componentDidMount() {
 		const id = this.props.match.params.id;
 		const searchableId = id || this.props.match.params.urlString;
-		this.props.getMonthlyFiveDetails(searchableId, !!id);
+		this.props.getBlogDetails(searchableId, !!id);
 		if (typeof window !== 'undefined') window.scrollTo(0, 0);
 	}
 
 	goBack = () => {
-		this.props.history.push('/monthlyFives');
+		this.props.history.push('/blogs');
 	};
 
 	render() {
 
-		if (!this.props.monthlyFiveDetails)
-			return <MonthlyFiveDetailWrapper>Loading...</MonthlyFiveDetailWrapper>;
+		if (!this.props.blogDetails)
+			return <BlogDetailWrapper>Loading...</BlogDetailWrapper>;
 
 		const {
 			title,
 			contentPreview,
-
-			year,
-			month,
+			num,
 
 			content,
+			publishDate,
 
 			heroURL,
 			urlString
-		} = this.props.monthlyFiveDetails;
+		} = this.props.blogDetails;
 
 		let contentToFill;
 		if (IsValidJSONString(content)) {
@@ -59,31 +59,36 @@ class MonthlyFiveDetail extends React.Component {
 		}
 
 		return (
-			<MonthlyFiveDetailWrapper>
+			<BlogDetailWrapper>
 
 				<Helmet>
-					<title>{`${title} | WH Monthly Fives`}</title>
+					<title>{`${title} | WH Blogs`}</title>
 					<meta property="og:title" content={title} />
 					<meta property="og:image" content={getImageUrl(heroURL, 'small')} />
 					<meta property="description" content={contentPreview} />
-					<meta property="og:url" content={`https://williamhuang.ca/monthlyFives/${urlString}`} />
+					<meta property="og:url" content={`https://williamhuang.ca/blogs/${urlString}`} />
 				</Helmet>
 
 				<div className="container">
 					<BackArrow onClick={this.goBack}>
 						<SvgIcon icon="BackCaret" />
-						<h6>All MonthlyFives</h6>
+						<h6>All Blogs</h6>
 					</BackArrow>
 				</div>
-				<MonthlyFiveDetailContentWrapper className="container">
+				<BlogDetailContentWrapper className="container">
 
-					<MonthlyFiveSpotlightImage bg={heroURL} rounded />
+					<BlogSpotlightImage bg={heroURL} rounded />
 
-					<MonthlyFiveDetailContent>
-						<H2>{parseMonthAndYear(month, year)} - {title}</H2>
-						<H5 color="secondary">{contentPreview}</H5>
-					</MonthlyFiveDetailContent>
-				</MonthlyFiveDetailContentWrapper>
+					<BlogDetailsRow>
+						<H5 color="secondary">{publishDate}</H5>
+						<H5 color="secondary">{`WILL'S BLOG #${num}`}</H5>
+					</BlogDetailsRow>
+
+					<BlogDetailContent>
+						<H2>{title}</H2>
+						<BodyParagraph>{contentPreview}</BodyParagraph>
+					</BlogDetailContent>
+				</BlogDetailContentWrapper>
 				<RichTextEditor editorState={contentToFill} readOnly={true} />
 
 				<Button
@@ -96,7 +101,7 @@ class MonthlyFiveDetail extends React.Component {
 					})}
 					style={{ marginTop: '35px' }}
 				>Back To Top</Button>
-			</MonthlyFiveDetailWrapper>
+			</BlogDetailWrapper>
 		)
 	}
 
@@ -104,17 +109,17 @@ class MonthlyFiveDetail extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		monthlyFiveDetails: state.monthlyFives.monthlyFiveDetails
+		blogDetails: state.blogs.blogDetails
 	}
 }
 
 function loadData(store, match) {
 	const id = match.params.id;
 	const searchableId = id || match.params.urlString;
-	return store.dispatch(getMonthlyFiveDetails(searchableId, !!id));
+	return store.dispatch(getBlogDetails(searchableId, !!id));
 }
 
 export default {
-	component: connect(mapStateToProps, { getMonthlyFiveDetails })(withRouter(MonthlyFiveDetail)),
+	component: connect(mapStateToProps, { getBlogDetails })(withRouter(BlogDetail)),
 	loadData
 };

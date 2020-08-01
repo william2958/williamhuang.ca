@@ -46,6 +46,8 @@ import PublishedBlogs from "./src/containers/Admin/Blogs/PublishedBlogs";
 import DraftBlogs from "./src/containers/Admin/Blogs/DraftBlogs";
 import NewBlog from "./src/containers/Admin/Blogs/NewBlog";
 import EditBlog from "./src/containers/Admin/Blogs/EditBlog";
+import BlogsPage from './src/containers/Blogs';
+import BlogDetail from './src/containers/Blogs/BlogDetail';
 
 export default [
 	{
@@ -226,6 +228,19 @@ export default [
 					{
 						...EventsPage,
 						path: '/events'
+					},
+
+					{
+						...BlogDetail,
+						path: '/blog/id/:id'
+					},
+					{
+						...BlogDetail,
+						path: '/blog/:urlString'
+					},
+					{
+						...BlogsPage,
+						path: '/blog'
 					},
 
 

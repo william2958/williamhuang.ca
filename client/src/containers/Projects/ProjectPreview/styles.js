@@ -10,7 +10,6 @@ export const ProjectPreviewWrapper = styled.div`
     flex-direction: column;
     text-align: left;
 
-    border-radius: 5px;
     //cursor: pointer;
 `;
 

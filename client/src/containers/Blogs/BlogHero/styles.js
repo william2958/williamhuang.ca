@@ -3,7 +3,7 @@ import {getImageUrl} from "../../../utils/getImageUrl";
 import {sizes} from "../../../styles";
 import {defaultShadow} from "../../../styles/shadows";
 
-export const MonthlyFiveHeroWrapper = styled.div`
+export const BlogHeroWrapper = styled.div`
 	display: flex;
     flex-direction: column;
     text-align: left;
@@ -22,7 +22,7 @@ export const MonthlyFiveHeroWrapper = styled.div`
 `;
 
 
-export const MonthlyFiveSpotlightImage = styled.div`
+export const BlogSpotlightImage = styled.div`
 
 	background-image: url(${({bg}) => bg ? getImageUrl(bg, 'medium') : ''});
 	
@@ -57,7 +57,7 @@ export const MonthlyFiveSpotlightImage = styled.div`
 `;
 
 
-export const MonthlyFiveSpotlightContent = styled.div`
+export const BlogSpotlightContent = styled.div`
 	position: absolute;
 	bottom: 12px;
 	left: 12px;

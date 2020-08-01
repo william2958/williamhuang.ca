@@ -3,6 +3,7 @@ import {clearHeader} from "../../../styles/globalStyles";
 import {sizes} from "../../../styles";
 import {getImageUrl} from "../../../utils/getImageUrl";
 import {DEFAULT_BOOK_REVIEW_ICON} from "../BookReviewPreview/styles";
+import {defaultShadow} from "../../../styles/shadows";
 
 export const BookReviewDetailWrapper = styled.div`
 	${clearHeader};
@@ -38,6 +39,8 @@ export const BookReviewDetailImage = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    
+    ${defaultShadow};
     
     @media only screen and (max-width: ${sizes.phone}px) {
     	margin: 0 auto;

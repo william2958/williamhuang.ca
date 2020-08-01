@@ -141,19 +141,19 @@ const ImageComponent = (props) => {
 	const [scrollPos, setScrollPos] = useState(0);
 
 	const zoomIn = () => {
-		if (window.innerWidth > sizes.tablet)
-			window.addEventListener('scroll', zoomOut);
+		// if (window.innerWidth > sizes.tablet)
+		window.addEventListener('scroll', zoomOut);
 		setZoomed(true);
 	}
 
 	const zoomOut = () => {
-		if (window.innerWidth > sizes.tablet)
-			window.removeEventListener('scroll', zoomOut);
-		else {
-			document.body.style.top = ``;
-			document.body.style.position = '';
-			window.scrollTo(0,scrollPos);
-		}
+		// if (window.innerWidth > sizes.tablet)
+		window.removeEventListener('scroll', zoomOut);
+		// else {
+		// 	document.body.style.top = ``;
+		// 	document.body.style.position = '';
+		// 	window.scrollTo(0,scrollPos);
+		// }
 		setZoomed(false);
 	}
 
@@ -163,12 +163,12 @@ const ImageComponent = (props) => {
 		else {
 			if (!zoomed) {
 				zoomIn();
-				setTimeout(() => {
-					const scrollY = window.scrollY;
-					setScrollPos(scrollY);
-					document.body.style.top = `-${scrollY}px`;
-					document.body.style.position = 'fixed';
-				}, 400);
+				// setTimeout(() => {
+				// 	const scrollY = window.scrollY;
+				// 	setScrollPos(scrollY);
+				// 	document.body.style.top = `-${scrollY}px`;
+				// 	document.body.style.position = 'fixed';
+				// }, 400);
 			}
 		}
 

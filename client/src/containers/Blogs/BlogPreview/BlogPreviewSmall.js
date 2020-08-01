@@ -1,23 +1,18 @@
 import React from 'react';
 import moment from 'moment';
-import {
-	BlogDetailsRow, BlogPreviewContent,
-	BlogPreviewImage, BlogPreviewImageLarge,
-	BlogPreviewWrapper
-} from "./styles";
-import {H3, H6} from "../../../styles/typography/Headers";
-import {withRouter} from "react-router-dom";
+
+import { withRouter } from 'react-router-dom';
+import {BlogDetailsRow, BlogPreviewImage, BlogPreviewWrapper} from "./styles";
+import {H3, H4, H6} from "../../../styles/typography/Headers";
 import {BodyParagraph} from "../../../styles/typography/P";
 
-const BlogPreview = ({ blog, editable, history }) => {
+const BlogPreviewSmall = ({ blog, editable, history }) => {
 
 	const {
 		title,
 		num,
 		contentPreview,
-
 		publishDate,
-
 		heroURL
 	} = blog;
 
@@ -36,21 +31,19 @@ const BlogPreview = ({ blog, editable, history }) => {
 	}
 
 	return (
-		<BlogPreviewWrapper className="row">
-			<BlogPreviewImageLarge bg={heroURL} onClick={goToDetails} className="col-md-6" />
-			<div className="col-md-6">
+		<div className="col-md-4">
+			<BlogPreviewWrapper>
+				<BlogPreviewImage bg={heroURL} onClick={goToDetails} />
 				<BlogDetailsRow>
 					<H6 color="secondary">{formattedDate}</H6>
 					<H6 color="secondary">{`WILL'S BLOG #${num}`}</H6>
 				</BlogDetailsRow>
-				<BlogPreviewContent>
-					<H3>{title}</H3>
-					<BodyParagraph>{contentPreview}</BodyParagraph>
-				</BlogPreviewContent>
-			</div>
-		</BlogPreviewWrapper>
+				<H3>{title}</H3>
+				<BodyParagraph>{contentPreview}</BodyParagraph>
+			</BlogPreviewWrapper>
+		</div>
 	)
 
 }
 
-export default withRouter(BlogPreview);
+export default withRouter(BlogPreviewSmall);

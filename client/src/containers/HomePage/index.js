@@ -37,10 +37,10 @@ class HomePage extends React.Component {
                 <HomePageBanner />
                 <Header sticky />
                 <RecentProjects />
-                <RecentMonthlyFive />
-                <RecentBookReviews />
+                {/*<RecentMonthlyFive />*/}
+                {/*<RecentBookReviews />*/}
 
-                <RecentGuides />
+                {/*<RecentGuides />*/}
             </HomePageWrapper>
         )
     }

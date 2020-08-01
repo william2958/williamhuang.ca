@@ -36,7 +36,7 @@ const Header = ({ sticky }) => {
 					</ul>
 					<ul className="navbar-nav navbar-right">
 						<li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-							<NavBarLink to="/events">Events</NavBarLink>
+							<NavBarLink to="/blog">Blog</NavBarLink>
 						</li>
 					</ul>
 				</div>
