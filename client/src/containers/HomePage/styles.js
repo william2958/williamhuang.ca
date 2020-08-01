@@ -29,6 +29,12 @@ export const HomePageSection = styled.div`
     	padding: 0;
     }
     
+    .blogList {
+    	& > * + * {
+    		margin-top: 32px;
+    	}
+    }
+    
     ${({dark}) =>
 		dark && css`
 			background-color: ${({theme}) => theme.primary};

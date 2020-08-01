@@ -17,7 +17,7 @@ class BlogsPage extends React.Component {
 	}
 
 	loadNextPage = () => {
-		this.props.getNextPageProjects();
+		this.props.getNextPageBlogs();
 	};
 
 	render() {

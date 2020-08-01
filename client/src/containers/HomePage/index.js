@@ -4,6 +4,7 @@ import {HomePageWrapper} from "./styles";
 import Header from "../../components/Header";
 import RecentBookReviews from "./components/RecentBookReviews";
 import {
+    getFirstPageBlogs,
     getNumRecentBookReviews,
     getNumRecentGuides,
     getNumRecentMonthlyFives,
@@ -16,6 +17,7 @@ import HomePageBanner from "./components/HomePageBanner";
 import RecentMonthlyFive from "./components/RecentMonthlyFive";
 import {Helmet} from "react-helmet";
 import {ThemeProvider} from "styled-components";
+import RecentBlogs from "./components/RecentBlogs";
 
 class HomePage extends React.Component {
 
@@ -37,10 +39,11 @@ class HomePage extends React.Component {
                 <HomePageBanner />
                 <Header sticky />
                 <RecentProjects />
+                <RecentBlogs />
                 {/*<RecentMonthlyFive />*/}
                 {/*<RecentBookReviews />*/}
 
-                {/*<RecentGuides />*/}
+                <RecentGuides />
             </HomePageWrapper>
         )
     }
@@ -49,11 +52,12 @@ class HomePage extends React.Component {
 
 function loadData(store) {
     return Promise.all([
-        store.dispatch(getNumRecentBookReviews(4)),
+        // store.dispatch(getNumRecentBookReviews(4)),
         store.dispatch(getNumRecentGuides(4)),
         store.dispatch(getNumRecentProjects(3)),
         store.dispatch(getHomeHighlight()),
-        store.dispatch(getNumRecentMonthlyFives())
+        store.dispatch(getNumRecentMonthlyFives()),
+        store.dispatch(getFirstPageBlogs())
     ])
 }
 

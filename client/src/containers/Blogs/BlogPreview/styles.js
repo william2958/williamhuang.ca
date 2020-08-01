@@ -8,8 +8,15 @@ export const BlogPreviewWrapper = styled.div`
 	padding: 12px;
 	position: relative;
 	
+	.content {
+		padding-left: 24px;
+	}
+	
 	@media only screen and (max-width: ${sizes.tablet}px) {
 		& > * {
+			padding: 0;
+		}
+		.content {
 			padding: 0;
 		}
 	}

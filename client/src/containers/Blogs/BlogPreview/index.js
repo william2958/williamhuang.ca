@@ -36,17 +36,19 @@ const BlogPreview = ({ blog, editable, history }) => {
 	}
 
 	return (
-		<BlogPreviewWrapper className="row">
-			<BlogPreviewImageLarge bg={heroURL} onClick={goToDetails} className="col-md-6" />
-			<div className="col-md-6">
-				<BlogDetailsRow>
-					<H6 color="secondary">{formattedDate}</H6>
-					<H6 color="secondary">{`WILL'S BLOG #${num}`}</H6>
-				</BlogDetailsRow>
-				<BlogPreviewContent>
-					<H3>{title}</H3>
-					<BodyParagraph>{contentPreview}</BodyParagraph>
-				</BlogPreviewContent>
+		<BlogPreviewWrapper className="col-sm-12">
+			<div className="row no-gutters">
+				<BlogPreviewImageLarge bg={heroURL} onClick={goToDetails} className="col-md-6" />
+				<div className="col-md-6 content">
+					<BlogDetailsRow>
+						<H6 color="secondary">{formattedDate}</H6>
+						<H6 color="secondary">{`WILL'S BLOG #${num}`}</H6>
+					</BlogDetailsRow>
+					<BlogPreviewContent>
+						<H3>{title}</H3>
+						<BodyParagraph>{contentPreview}</BodyParagraph>
+					</BlogPreviewContent>
+				</div>
 			</div>
 		</BlogPreviewWrapper>
 	)
