@@ -14,7 +14,6 @@ import MonthlyFiveHero from "./MonthlyFiveHero";
 import {getYear} from "../../actions";
 import {connect} from "react-redux";
 import {Helmet} from "react-helmet";
-import {BookReviewsWrapper} from "../BookReviews/styles";
 import {LeadParagraph} from "../../styles/typography/P";
 
 class MonthlyFivesPage extends React.Component {
@@ -39,7 +38,7 @@ class MonthlyFivesPage extends React.Component {
 		} = this.state;
 		const {
 			monthlyFives,
-			mostRecentMonthlyFive
+			// mostRecentMonthlyFive
 		} = this.props;
 
 		return (
@@ -52,16 +51,16 @@ class MonthlyFivesPage extends React.Component {
 					<meta property="og:url" content={`https://williamhuang.ca/monthlyFives`} />
 				</Helmet>
 
-				{mostRecentMonthlyFive ? (
-					<MostRecentMonthlyFiveWrapper>
-						<MonthlyFiveHero monthlyFive={mostRecentMonthlyFive} fit noTitle />
-					</MostRecentMonthlyFiveWrapper>
-				) : (
-					<>
-						<H4> </H4>
-						<MonthlyFiveSpotlightPlaceholder />
-					</>
-				)}
+				{/*{mostRecentMonthlyFive ? (*/}
+				{/*	<MostRecentMonthlyFiveWrapper>*/}
+				{/*		<MonthlyFiveHero monthlyFive={mostRecentMonthlyFive} fit noTitle />*/}
+				{/*	</MostRecentMonthlyFiveWrapper>*/}
+				{/*) : (*/}
+				{/*	<>*/}
+				{/*		<H4> </H4>*/}
+				{/*		<MonthlyFiveSpotlightPlaceholder />*/}
+				{/*	</>*/}
+				{/*)}*/}
 
 				<MonthlyFivesPageHeader className="row">
 					<div className="headerDescription">

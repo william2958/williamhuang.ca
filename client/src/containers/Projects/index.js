@@ -64,7 +64,7 @@ class ProjectsPage extends React.Component {
 
 				{spotlightProject ? (
 					<div className="row">
-						{/*<H4 className="spotlightTitle">Spotlight</H4>*/}
+						<H4 className="spotlightTitle">Spotlight</H4>
 						<ProjectHeroWrapper>
 							<ProjectHero project={spotlightProject} fit />
 						</ProjectHeroWrapper>

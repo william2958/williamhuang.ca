@@ -17,9 +17,9 @@ export const getYear = (year) => async (dispatch) => {
 
 		let mostRecentMonthlyFive = null;
 		let monthlyFives = response.allMonthlyFives;
-		if (response.allMonthlyFives.length) {
-			mostRecentMonthlyFive = monthlyFives.shift();
-		}
+		// if (response.allMonthlyFives.length) {
+		// 	mostRecentMonthlyFive = monthlyFives.shift();
+		// }
 
 		dispatch({
 			type: GET_FIRST_PAGE_MONTHLY_FIVES,

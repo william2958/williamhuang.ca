@@ -7,9 +7,9 @@ export const MonthlyFivesPageWrapper = styled.div`
 	${clearHeader};
     min-height: 80vh;
     
-    @media only screen and (max-width: ${sizes.phone}px) {
-    	padding-top: 0;
-    }
+    // @media only screen and (max-width: ${sizes.phone}px) {
+    // 	padding-top: 0;
+    // }
 `;
 
 export const MonthlyFivesPageHeader = styled.div`

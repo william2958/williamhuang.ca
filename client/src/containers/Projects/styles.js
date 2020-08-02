@@ -11,19 +11,20 @@ export const ProjectsPageWrapper = styled.div`
 	    .spotlightTitle {
 	        margin-left: 12px;
 	    }
+	    padding-top: 12px;
     }
 `;
 
 export const ProjectsPageHeader = styled.div`
 	
-	    display: flex;
-	    align-content: center;
-	    justify-content: space-between;
-	    
-	    @media only screen and (max-width: ${sizes.phone}px) {
-	    	margin-left: 0;
-	    	margin-right: 0;
-	    }
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    
+    @media only screen and (max-width: ${sizes.phone}px) {
+        margin-left: 0;
+        margin-right: 0;
+    }
 	    
 `;
 
@@ -47,5 +48,6 @@ export const ProjectHeroWrapper = styled.div`
 	${defaultShadow};
 	@media only screen and (max-width: ${sizes.phone}px) {
 		margin-top: 24px;
+		border-radius: 0;
 	}
 `;

@@ -6,7 +6,6 @@ import {LoadMoreButtonContainer} from "../../../../styles/globalStyles";
 import {connect} from "react-redux";
 import {getFirstPageBlogs, getNextPageBlogs} from "../../../../actions";
 import {withRouter} from "react-router-dom";
-import Header from "../../../../components/Header";
 import RecentProjects from "../RecentProjects";
 import RecentBookReviews from "../RecentBookReviews";
 
@@ -18,11 +17,12 @@ const RecentBlogs = ({ history, blogs, anotherPage, getFirstPageBlogs, getNextPa
 
 	}, []);
 
-	if (!blogs.length) {
-		return null;
-	}
-
 	const firstSection = () => {
+
+		if (!blogs.length) {
+			return null;
+		}
+
 		return (
 			<HomePageSection>
 				<div className="container">

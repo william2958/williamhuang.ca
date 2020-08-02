@@ -26,7 +26,7 @@ const MonthlyFivePreview = ({ monthlyFive, editable, history }) => {
 	};
 
 	return (
-		<div className="col-md-4">
+		<div className="col-md-6">
 			<MonthlyFivePreviewWrapper>
 				<MonthlyFivePreviewImage bg={heroURL} onClick={goToDetails} />
 				<MonthlyFivePreviewContent>
