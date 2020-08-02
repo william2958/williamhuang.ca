@@ -29,17 +29,19 @@ const RecentBookReviews = ({ history, getNumRecentBookReviews, recentBookReviews
 	}
 
 	return (
-		<HomePageSection className="container">
-			<HomePageSectionHeader>
-				<H4 left underline>Latest Book Reviews</H4>
-				<H5 className="seeAllLink" onClick={viewAllBookReviews}>See All</H5>
-			</HomePageSectionHeader>
-			<div className="row no-gutters">
-				{
-					recentBookReviews.map(bookReview => (
-						<BookReviewPreview bookReview={bookReview} key={bookReview._id} />
-					))
-				}
+		<HomePageSection dark>
+			<div className="container">
+				<HomePageSectionHeader>
+					<H4 left underline color="highlight">Latest Book Reviews</H4>
+					<H5 className="seeAllLink" color="highlight" onClick={viewAllBookReviews}>See All</H5>
+				</HomePageSectionHeader>
+				<div className="row no-gutters">
+					{
+						recentBookReviews.map(bookReview => (
+							<BookReviewPreview light bookReview={bookReview} key={bookReview._id} />
+						))
+					}
+				</div>
 			</div>
 		</HomePageSection>
 	)

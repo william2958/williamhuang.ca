@@ -38,6 +38,10 @@ export const ProjectPreviewContent = styled.div`
 	width: 100%;
 	position: relative;
 	
+	& > * {
+		margin-top: 12px;
+	}
+	
 	.metadata {
 	    color: ${({theme}) => theme.secondary};
 	    font-size: 11px;

@@ -38,7 +38,6 @@ class HomePage extends React.Component {
 
                 <HomePageBanner />
                 <Header sticky />
-                <RecentProjects />
                 <RecentBlogs />
                 {/*<RecentMonthlyFive />*/}
                 {/*<RecentBookReviews />*/}
@@ -52,7 +51,7 @@ class HomePage extends React.Component {
 
 function loadData(store) {
     return Promise.all([
-        // store.dispatch(getNumRecentBookReviews(4)),
+        store.dispatch(getNumRecentBookReviews(4)),
         store.dispatch(getNumRecentGuides(4)),
         store.dispatch(getNumRecentProjects(3)),
         store.dispatch(getHomeHighlight()),

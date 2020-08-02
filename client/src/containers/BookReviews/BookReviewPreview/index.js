@@ -8,7 +8,7 @@ import {BookReviewRatingWrapper} from "../styles";
 import {withRouter} from "react-router-dom";
 import SvgIcon from "../../../components/SvgIcon";
 
-const BookReviewPreview = ({bookReview, editable, history}) => {
+const BookReviewPreview = ({bookReview, editable, history, light}) => {
 
 	const {title, coverURL, category, contentPreview, author, recommended, rating} = bookReview;
 
@@ -25,6 +25,8 @@ const BookReviewPreview = ({bookReview, editable, history}) => {
 		}
 	};
 
+	const color = light ? 'highlight' : 'primary';
+
 	return (
 		<div className="col-md-3">
 			<BookReviewPreviewWrapper>
@@ -34,12 +36,12 @@ const BookReviewPreview = ({bookReview, editable, history}) => {
 						<TypeLabel type={category} author={author}/>
 						<BookReviewRatingWrapper>
 							{recommended && (<SvgIcon icon='Star' title="Highly Recommended" size={16}/>)}
-							<H5>{rating}&nbsp;/&nbsp;5</H5>
+							<H5 color={color}>{rating}&nbsp;/&nbsp;5</H5>
 						</BookReviewRatingWrapper>
 					</BookPreviewTypeAndRating>
-					<H5>{title}</H5>
+					<H5 color={color}>{title}</H5>
 					{/*<H6 color="secondary">{author}</H6>*/}
-					<BodyParagraph>{contentPreview}</BodyParagraph>
+					<BodyParagraph color={color}>{contentPreview}</BodyParagraph>
 
 				</BookPreviewContent>
 			</BookReviewPreviewWrapper>

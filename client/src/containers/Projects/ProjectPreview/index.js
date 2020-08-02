@@ -2,8 +2,9 @@ import React from 'react';
 import {ProjectPreviewContent, ProjectPreviewImage, ProjectPreviewTitle, ProjectPreviewWrapper} from "./styles";
 import ProjectCategoryTag from "./ProjectCategoryTag";
 import {withRouter} from "react-router-dom";
+import {H4} from "../../../styles/typography/Headers";
 
-const ProjectPreview = ({ project, editable, history }) => {
+const ProjectPreview = ({ project, editable, history, light }) => {
 
 	const {
 		title,
@@ -32,7 +33,7 @@ const ProjectPreview = ({ project, editable, history }) => {
 					{/*<ProjectCategoryTag category={category} />*/}
 				</ProjectPreviewImage>
 				<ProjectPreviewContent>
-					<ProjectPreviewTitle>{title}</ProjectPreviewTitle>
+					<H4 color={light ? 'highlight' : 'primary'}>{title}</H4>
 					<h5 className="metadata">{contentPreview}</h5>
 					{/*<ButtonRow top={16}>*/}
 					{/*	<Button small>Read</Button>*/}

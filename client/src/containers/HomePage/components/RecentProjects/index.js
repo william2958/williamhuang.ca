@@ -21,17 +21,19 @@ const RecentProjects = ({ history, getNumRecentProjects, recentProjects }) => {
 	}
 
 	return (
-		<HomePageSection className="container">
-			<HomePageSectionHeader>
-				<H4 left underline>Latest Projects</H4>
-				<H5 className="seeAllLink" onClick={() => history.push('/projects')}>See All</H5>
-			</HomePageSectionHeader>
-			<div className="row no-gutters">
-				{
-					recentProjects.map(project => (
-						<ProjectPreview project={project} key={project._id} />
-					))
-				}
+		<HomePageSection dark>
+			<div className="container">
+				<HomePageSectionHeader>
+					<H4 left color="highlight" underline>Latest Projects</H4>
+					<H5 className="seeAllLink" color="highlight" onClick={() => history.push('/projects')}>See All</H5>
+				</HomePageSectionHeader>
+				<div className="row no-gutters">
+					{
+						recentProjects.map(project => (
+							<ProjectPreview project={project} key={project._id} light />
+						))
+					}
+				</div>
 			</div>
 		</HomePageSection>
 	)

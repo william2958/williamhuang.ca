@@ -28,7 +28,7 @@ class BlogDetail extends React.Component {
 	}
 
 	goBack = () => {
-		this.props.history.push('/blogs');
+		this.props.history.push('/blog');
 	};
 
 	render() {
@@ -66,7 +66,7 @@ class BlogDetail extends React.Component {
 					<meta property="og:title" content={title} />
 					<meta property="og:image" content={getImageUrl(heroURL, 'small')} />
 					<meta property="description" content={contentPreview} />
-					<meta property="og:url" content={`https://williamhuang.ca/blogs/${urlString}`} />
+					<meta property="og:url" content={`https://williamhuang.ca/blog/${urlString}`} />
 				</Helmet>
 
 				<div className="container">
