@@ -50,7 +50,7 @@ export const LeadParagraph = styled.p`
   letter-spacing: 0.32px;
   line-height: 24px;
   @media only screen and (max-width: ${sizes.phone}px) {
-    font-size: 13px;
+    font-size: 15px;
   }
 `;
 
