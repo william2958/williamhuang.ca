@@ -46,7 +46,7 @@ export const paragraphStyles = css`
 
 export const LeadParagraph = styled.p`
   ${paragraphStyles};
-  font-size: 16px;
+  font-size: 18px;
   letter-spacing: 0.32px;
   line-height: 24px;
   @media only screen and (max-width: ${sizes.phone}px) {

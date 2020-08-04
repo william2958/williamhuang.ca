@@ -15,7 +15,7 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {Helmet} from "react-helmet";
 import {getImageUrl} from "../../../utils/getImageUrl";
-import {BodyParagraph} from "../../../styles/typography/P";
+import {LeadParagraph} from "../../../styles/typography/P";
 import {BlogDetailsRow} from "../BlogPreview/styles";
 
 class BlogDetail extends React.Component {
@@ -86,7 +86,7 @@ class BlogDetail extends React.Component {
 
 					<BlogDetailContent>
 						<H2>{title}</H2>
-						<BodyParagraph>{contentPreview}</BodyParagraph>
+						<LeadParagraph>{contentPreview}</LeadParagraph>
 					</BlogDetailContent>
 				</BlogDetailContentWrapper>
 				<RichTextEditor editorState={contentToFill} readOnly={true} />

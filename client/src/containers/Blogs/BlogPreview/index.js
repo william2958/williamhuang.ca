@@ -2,12 +2,12 @@ import React from 'react';
 import moment from 'moment';
 import {
 	BlogDetailsRow, BlogPreviewContent,
-	BlogPreviewImage, BlogPreviewImageLarge,
+	BlogPreviewImageLarge,
 	BlogPreviewWrapper
 } from "./styles";
 import {H3, H6} from "../../../styles/typography/Headers";
 import {withRouter} from "react-router-dom";
-import {BodyParagraph} from "../../../styles/typography/P";
+import {LeadParagraph} from "../../../styles/typography/P";
 
 const BlogPreview = ({ blog, editable, history }) => {
 
@@ -46,7 +46,7 @@ const BlogPreview = ({ blog, editable, history }) => {
 					</BlogDetailsRow>
 					<BlogPreviewContent>
 						<H3>{title}</H3>
-						<BodyParagraph>{contentPreview}</BodyParagraph>
+						<LeadParagraph>{contentPreview}</LeadParagraph>
 					</BlogPreviewContent>
 				</div>
 			</div>

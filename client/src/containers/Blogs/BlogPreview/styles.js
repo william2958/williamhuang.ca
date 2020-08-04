@@ -69,7 +69,7 @@ export const BlogDetailsRow = styled.div`
 `;
 
 export const BlogPreviewContent = styled.div`
-	margin-top: 24px;
+	margin-top: 12px;
     @media only screen and (max-width: ${sizes.tablet}px) {
     	margin-top: 0;
     }
