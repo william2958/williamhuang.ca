@@ -1,3 +1,1 @@
-# To Deploy:
-
-`npm run deploy`
+# Server Side Rendered Personal Blog Website
