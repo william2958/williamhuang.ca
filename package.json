@@ -40,7 +40,7 @@
     "draft-js-plugins-editor": "^2.1.1",
     "draft-js-resizeable-plugin": "^2.0.9",
     "express": "^4.17.1",
-    "express-jwt": "^5.3.3",
+    "express-jwt": "^6.0.0",
     "file-loader": "^6.0.0",
     "fs": "0.0.1-security",
     "immutable": "^3.8.2",
