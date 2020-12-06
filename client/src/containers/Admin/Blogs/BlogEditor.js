@@ -221,6 +221,9 @@ class BlogEditor extends React.Component {
 						<EditBlogImagePreview src={heroURL} alt="" />
 						<FileInput title="Select Hero Image" onChange={this.selectHeroImage} name="selectHeroImage" />
 						{ imageError && <div>{imageError}</div>}
+
+						<Button onClick={() => this.props.setHighlight(this.state.editingBlog)}>Set as highlight</Button>
+
 					</div>
 					<div className="col-md-3">
 						<H4>Preview Image</H4>

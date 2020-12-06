@@ -1,9 +1,10 @@
 const { propertiesToProject: eventPropertiesToProject } = require('../event/constants');
 const { propertiesToProject: monthlyFivePropertiesToProject } = require('../monthlyFive/constants');
 const { propertiesToProject: projectPropertiesToProject } = require('../projects/constants');
+const { propertiesToProject: blogPropertiesToProject } = require('../blog/constants');
 
 
-const getHighlight = ({ Highlight, Event, MonthlyFive, Project }) => async (req, res) => {
+const getHighlight = ({ Highlight, Event, MonthlyFive, Project, Blog }) => async (req, res) => {
 
 	try {
 
@@ -40,6 +41,16 @@ const getHighlight = ({ Highlight, Event, MonthlyFive, Project }) => async (req,
 						},
 						{
 							$project: projectPropertiesToProject
+						}
+					]);
+					break;
+				case 'blog':
+					highlightObject = await Blog.aggregate([
+						{
+							$match: {_id: highlight.dataRef}
+						},
+						{
+							$project: blogPropertiesToProject
 						}
 					]);
 					break;

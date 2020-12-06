@@ -1,5 +1,5 @@
 import React from 'react';
-import {H5} from "../../../styles/typography/Headers";
+import {H5, H6} from "../../../styles/typography/Headers";
 import {
 	BlogHeroWrapper, BlogSpotlightContent, BlogSpotlightImage,
 } from "./styles";
@@ -19,12 +19,12 @@ const BlogHero = ({ blog, editable, fit, history }) => {
 			}
 		}
 	};
-
 	return (
 		<BlogHeroWrapper onClick={goToDetails} fit={fit}>
 			<BlogSpotlightImage bg={blog.heroURL} fit={fit}>
 				<BlogSpotlightContent>
 					<H5 color="highlight">{blog.title}</H5>
+					<H6 color="secondary">#{blog.num}</H6>
 				</BlogSpotlightContent>
 			</BlogSpotlightImage>
 		</BlogHeroWrapper>

@@ -6,6 +6,7 @@ import MonthlyFiveHero from "../../../MonthlyFives/MonthlyFiveHero";
 import ProjectHero from "../../../Projects/ProjectHero";
 import {getHomeHighlight} from "../../../../actions/homeActions";
 import {connect} from "react-redux";
+import BlogHero from "../../../Blogs/BlogHero";
 
 const HomePageBanner = ({ type, highlight, getHomeHighlight }) => {
 
@@ -25,7 +26,10 @@ const HomePageBanner = ({ type, highlight, getHomeHighlight }) => {
 				heroToRender = <MonthlyFiveHero monthlyFive={highlight} fit noTitle />;
 				break;
 			case 'project':
-				heroToRender = <ProjectHero project={highlight} fit />
+				heroToRender = <ProjectHero project={highlight} fit highlight />
+				break;
+			case 'blog':
+				heroToRender = <BlogHero blog={highlight} fit highlight />
 				break;
 			default:
 				heroToRender = <HomePageBannerPlaceholder />
@@ -34,11 +38,21 @@ const HomePageBanner = ({ type, highlight, getHomeHighlight }) => {
 		heroToRender = <HomePageBannerPlaceholder empty />
 	}
 
+	const renderHighlightBadge = () => {
+		if (type === 'project')
+			return null;
+		else {
+			return (
+				<div className="highlightBadge">
+					<H5 color="#fff">Highlight</H5>
+				</div>
+			)
+		}
+	}
+
 	return (
 		<HomePageBannerWrapper bg={null}>
-			<div className="highlightBadge">
-				<H5 color="#fff">Highlight</H5>
-			</div>
+			{renderHighlightBadge()}
 			{heroToRender}
 		</HomePageBannerWrapper>
 	)

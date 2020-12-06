@@ -5,7 +5,7 @@ import SvgIcon from "../../../components/SvgIcon";
 import {ProjectsPageSpotlight, ProjectsPageSpotlightContent, ProjectsPageSpotlightImage} from "./styles";
 import {withRouter} from "react-router-dom";
 
-const ProjectHero = ({ project, fit, staticHero, editable, history }) => {
+const ProjectHero = ({ project, fit, staticHero, editable, history, highlight }) => {
 
 	const {
 		heroURL,
@@ -34,11 +34,18 @@ const ProjectHero = ({ project, fit, staticHero, editable, history }) => {
 		}
 	};
 
+	const renderTitle = () => {
+		if (highlight)
+			return `Highlight Project: ${title}`;
+		else
+			return title;
+	}
+
 	return (
 		<ProjectsPageSpotlight fit={fit}>
 			<ProjectsPageSpotlightImage bg={heroURL} fit={fit}>
 				<ProjectsPageSpotlightContent>
-					<H5 color="highlight">{title}</H5>
+					<H5 color="highlight">{renderTitle()}</H5>
 					<H6 color="secondary">{contentPreview}</H6>
 				</ProjectsPageSpotlightContent>
 				<div className="liveButton">

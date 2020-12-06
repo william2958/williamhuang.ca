@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const HIGHLIGHT_TYPES = ['event', 'project', 'monthlyFive'];
+const HIGHLIGHT_TYPES = ['event', 'project', 'monthlyFive', 'blog'];
 const updateHighlight =
-	({ Highlight, Event, Project, MonthlyFive }) => async (req, res) => {
+	({ Highlight, Event, Project, MonthlyFive, Blog }) => async (req, res) => {
 
 	const {
 		type,
@@ -28,6 +28,9 @@ const updateHighlight =
 				break;
 			case 'project':
 				highlightObject = await Project.findOne({ _id: id });
+				break;
+			case 'blog':
+				highlightObject = await Blog.findOne({ _id: id });
 				break;
 		}
 

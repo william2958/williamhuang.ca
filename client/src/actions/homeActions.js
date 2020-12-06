@@ -6,7 +6,6 @@ import {HOME_HIGHLIGHT_LOADED} from "./types";
 export const getHomeHighlight = () => async (dispatch) => {
 	try {
 		const response = (await axios.get('/highlight/getHighlight')).data;
-
 		if (response && response.highlightObject) {
 			dispatch({
 				type: HOME_HIGHLIGHT_LOADED,

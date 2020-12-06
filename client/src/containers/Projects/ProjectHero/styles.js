@@ -88,7 +88,7 @@ export const ProjectsPageSpotlightContent = styled.div`
 	padding: 12px;
 	
 	@media only screen and (max-width: ${sizes.phone}px) {
-		top: 12px;
+		top: 24px;
 		bottom: auto;
 	}
 `;

@@ -48,6 +48,15 @@ class EditBlog extends React.Component {
 		}
 	};
 
+	setHighlight = async (blogData) => {
+		try {
+			await axios.put('/highlight/updateHighlight', { type: 'blog', id: blogData._id });
+			toast.success('Updated highlight.');
+		} catch (e) {
+			toast.error('Could not update the highlight');
+		}
+	};
+
 	render() {
 		let contentToFill;
 		if (IsValidJSONString(this.props.blogDetails.content)) {
@@ -67,7 +76,8 @@ class EditBlog extends React.Component {
 				<BlogEditor
 					save={this.saveBlog}
 					delete={this.deleteBlog}
-					blogData={blogDetails} />
+					blogData={blogDetails}
+					setHighlight={this.setHighlight}/>
 			</div>
 		)
 	}
