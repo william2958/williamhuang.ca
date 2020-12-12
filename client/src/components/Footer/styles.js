@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {sizes} from "../../styles";
+import {Link} from "react-router-dom";
 
 export const FooterWrapper = styled.div`
 
@@ -80,3 +81,17 @@ export const FooterLink = styled.a`
     	color: ${({highlight}) => highlight ? '#c00' : '#A1AEB7'};
     }
 `;
+
+export const InternalFooterLink = styled(Link)`
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: ${({highlight}) => highlight ? '#c00' : '#A1AEB7'};
+  text-transform: uppercase;
+  margin: 8px 0;
+
+  &:hover {
+    text-decoration: none;
+    color: ${({highlight}) => highlight ? '#c00' : '#A1AEB7'};
+  }
+`

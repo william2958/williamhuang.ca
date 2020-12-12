@@ -2,7 +2,7 @@ import React from 'react';
 import SvgIcon from "../SvgIcon";
 import {H3, H5} from "../../styles/typography/Headers";
 import {BodyParagraph} from "../../styles/typography/P";
-import {FooterLink, FooterLinksColumn, FooterSocialIcons, FooterWrapper} from "./styles";
+import {FooterLink, FooterLinksColumn, FooterSocialIcons, FooterWrapper, InternalFooterLink} from "./styles";
 import {withRouter} from "react-router-dom";
 
 const Footer = ({ history }) => {
@@ -29,17 +29,17 @@ const Footer = ({ history }) => {
 							         onClick={() => window.open("https://www.linkedin.com/in/william-h-902213139/", "_blank")}/>
 						</FooterSocialIcons>
 					</div>
-					<div className="col-sm-2">
-						{/*<h4 className="footerTitle">*/}
-						{/*	Other Cool Things*/}
-						{/*</h4>*/}
-						{/*<Link to="/examplePage" className="footerLink">Example</Link>*/}
+					<FooterLinksColumn className="col-sm-2">
+						<H5 color="highlight">
+							Other Cool Things
+						</H5>
+						<InternalFooterLink to="/monthlyFives" className="footerLink">The Monthly 5</InternalFooterLink>
 
 						{/*<h4 className="footerTitle">*/}
 						{/*	Admin*/}
 						{/*</h4>*/}
 						{/*<Link to="/adminLogin" className="footerLink highlight">Login</Link>*/}
-					</div>
+					</FooterLinksColumn>
 					<FooterLinksColumn className="col-sm-2">
 						<H5 color="highlight">
 							Contact

@@ -63,7 +63,7 @@ class MonthlyFiveDetail extends React.Component {
 
 				<Helmet>
 					<title>{`${title} | WH Monthly Fives`}</title>
-					<meta property="og:title" content={title} />
+					<meta property="og:title" content={parseMonthAndYear(month, year)} />
 					<meta property="og:image" content={getImageUrl(heroURL, 'small')} />
 					<meta property="description" content={contentPreview} />
 					<meta property="og:url" content={`https://williamhuang.ca/monthlyFives/${urlString}`} />
@@ -80,7 +80,7 @@ class MonthlyFiveDetail extends React.Component {
 					<MonthlyFiveSpotlightImage bg={heroURL} rounded />
 
 					<MonthlyFiveDetailContent>
-						<H2>{parseMonthAndYear(month, year)} - {title}</H2>
+						<H2>{parseMonthAndYear(month, year)}</H2>
 						<H5 color="secondary">{contentPreview}</H5>
 					</MonthlyFiveDetailContent>
 				</MonthlyFiveDetailContentWrapper>

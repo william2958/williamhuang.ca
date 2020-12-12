@@ -30,7 +30,7 @@ const MonthlyFivePreview = ({ monthlyFive, editable, history }) => {
 			<MonthlyFivePreviewWrapper>
 				<MonthlyFivePreviewImage bg={heroURL} onClick={goToDetails} />
 				<MonthlyFivePreviewContent>
-					<MonthlyFivePreviewTitle>{parseMonthAndYear(month, year)} - {title}</MonthlyFivePreviewTitle>
+					<MonthlyFivePreviewTitle>{parseMonthAndYear(month, year)}</MonthlyFivePreviewTitle>
 					<h5 className="metadata">{contentPreview}</h5>
 				</MonthlyFivePreviewContent>
 			</MonthlyFivePreviewWrapper>
