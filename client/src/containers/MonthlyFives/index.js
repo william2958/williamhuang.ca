@@ -60,7 +60,7 @@ class MonthlyFivesPage extends React.Component {
 				{/*)}*/}
 
 				<div className="row">
-					<MonthlyFivesPageHeader className="col-sm-6">
+					<MonthlyFivesPageHeader className="col-md-6">
 						<div className="headerDescription">
 							<H4>Monthly Bullets</H4>
 							<LeadParagraph>Once a month I'll share a few things I think are great.</LeadParagraph>
