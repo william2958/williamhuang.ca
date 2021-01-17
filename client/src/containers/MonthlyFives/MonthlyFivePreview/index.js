@@ -3,7 +3,7 @@ import {MonthlyFivePreviewContent, MonthlyFivePreviewImage, MonthlyFivePreviewTi
 import {parseMonthAndYear} from "../helpers";
 import {withRouter} from "react-router-dom";
 
-const MonthlyFivePreview = ({ monthlyFive, editable, history }) => {
+const MonthlyFivePreview = ({ monthlyFive, editable, history, fullWidth=false }) => {
 
 	const {
 		title,
@@ -18,16 +18,16 @@ const MonthlyFivePreview = ({ monthlyFive, editable, history }) => {
 			history.push('/admin/monthlyFive/edit/' + monthlyFive._id);
 		} else {
 			if (monthlyFive.urlString) {
-				history.push('/monthlyRecap/' + monthlyFive.urlString);
+				history.push('/monthlyBullets/' + monthlyFive.urlString);
 			} else {
-				history.push('/monthlyRecap/id/' + monthlyFive._id);
+				history.push('/monthlyBullets/id/' + monthlyFive._id);
 			}
 		}
 	};
 
 	return (
-		<div className="col-md-6">
-			<MonthlyFivePreviewWrapper onClick={goToDetails}>
+		<div className={fullWidth ? '' : 'col-md-6'}>
+			<MonthlyFivePreviewWrapper onClick={goToDetails} fullWidth>
 				{/*<MonthlyFivePreviewImage bg={heroURL} onClick={goToDetails} />*/}
 				<MonthlyFivePreviewContent>
 					<MonthlyFivePreviewTitle>{parseMonthAndYear(month, year)}</MonthlyFivePreviewTitle>

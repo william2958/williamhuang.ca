@@ -41,7 +41,7 @@ export const MonthlyFivesPageHeader = styled.div`
 
 export const MonthlyRecapList = styled.div`
 	& > * + * {
-		border-top: 1px solid ${({theme}) => theme.primary};
+		border-top: 1px solid ${({theme}) => theme.secondary}50;
 	}
 
   & > * {

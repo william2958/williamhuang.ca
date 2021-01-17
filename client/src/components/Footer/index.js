@@ -33,7 +33,7 @@ const Footer = ({ history }) => {
 						<H5 color="highlight">
 							Explore
 						</H5>
-						<InternalFooterLink to="/monthlyRecap" className="footerLink">The Monthly Recap</InternalFooterLink>
+						<InternalFooterLink to="/monthlyBullets" className="footerLink">Monthly Bullets</InternalFooterLink>
 
 						{/*<h4 className="footerTitle">*/}
 						{/*	Admin*/}

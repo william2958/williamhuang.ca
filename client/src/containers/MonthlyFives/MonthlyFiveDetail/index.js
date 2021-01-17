@@ -27,7 +27,7 @@ class MonthlyFiveDetail extends React.Component {
 	}
 
 	goBack = () => {
-		this.props.history.push('/monthlyRecap');
+		this.props.history.push('/monthlyBullets');
 	};
 
 	render() {
@@ -66,13 +66,13 @@ class MonthlyFiveDetail extends React.Component {
 					<meta property="og:title" content={parseMonthAndYear(month, year)} />
 					<meta property="og:image" content={getImageUrl(heroURL, 'small')} />
 					<meta property="description" content={contentPreview} />
-					<meta property="og:url" content={`https://williamhuang.ca/monthlyRecap/${urlString}`} />
+					<meta property="og:url" content={`https://williamhuang.ca/monthlyBullets/${urlString}`} />
 				</Helmet>
 
 				<div className="container">
 					<BackArrow onClick={this.goBack}>
 						<SvgIcon icon="BackCaret" />
-						<h6>The Monthly Recap</h6>
+						<h6>Monthly Bullets</h6>
 					</BackArrow>
 				</div>
 				<MonthlyFiveDetailContentWrapper className="container">

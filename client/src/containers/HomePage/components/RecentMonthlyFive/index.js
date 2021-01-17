@@ -9,12 +9,13 @@ import {parseMonthAndYear} from "../../../MonthlyFives/helpers";
 import {HomeMonthlyFiveHeroWrapper} from "./styles";
 import {connect} from "react-redux";
 import {getNumRecentMonthlyFives} from "../../../../actions";
+import MonthlyFivePreview from "../../../MonthlyFives/MonthlyFivePreview";
 
 const RecentMonthlyFive = ({ history, getNumRecentMonthlyFives, recentMonthlyFive }) => {
 
 	useEffect(() => {
 
-		getNumRecentMonthlyFives()
+		getNumRecentMonthlyFives(3)
 
 	}, []);
 
@@ -24,7 +25,7 @@ const RecentMonthlyFive = ({ history, getNumRecentMonthlyFives, recentMonthlyFiv
 		// 	action: 'View All Monthly Fives',
 		// 	transport: 'beacon'
 		// });
-		history.push('/monthlyRecap')
+		history.push('/monthlyBullets')
 	};
 
 	if (!recentMonthlyFive) {
@@ -34,11 +35,18 @@ const RecentMonthlyFive = ({ history, getNumRecentMonthlyFives, recentMonthlyFiv
 	return (
 		<HomePageSection className="container">
 			<HomePageSectionHeader>
-				<H4 left underline>{parseMonthAndYear(recentMonthlyFive.month, recentMonthlyFive.year)}</H4>
+				<H4 left underline>Monthly Bullets</H4>
 				<H5 uppercase className="seeAllLink" onClick={viewAllEvents}>See All</H5>
 			</HomePageSectionHeader>
 			<HomeMonthlyFiveHeroWrapper>
-				<MonthlyFiveHero monthlyFive={recentMonthlyFive} noTitle fit />
+				{recentMonthlyFive.map(monthlyBullets => (
+					<MonthlyFivePreview
+						key={monthlyBullets._id}
+						monthlyFive={monthlyBullets}
+						fullWidth
+					/>
+				))}
+				{/*<MonthlyFiveHero monthlyFive={recentMonthlyFive} noTitle fit />*/}
 			</HomeMonthlyFiveHeroWrapper>
 		</HomePageSection>
 	)

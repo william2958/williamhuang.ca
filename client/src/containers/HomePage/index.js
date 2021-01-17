@@ -39,7 +39,7 @@ class HomePage extends React.Component {
                 <HomePageBanner />
                 <Header sticky />
                 <RecentBlogs />
-                {/*<RecentMonthlyFive />*/}
+                <RecentMonthlyFive />
                 {/*<RecentBookReviews />*/}
 
                 <RecentGuides />
@@ -55,7 +55,7 @@ function loadData(store) {
         store.dispatch(getNumRecentGuides(4)),
         store.dispatch(getNumRecentProjects(3)),
         store.dispatch(getHomeHighlight()),
-        store.dispatch(getNumRecentMonthlyFives()),
+        store.dispatch(getNumRecentMonthlyFives(3)),
         store.dispatch(getFirstPageBlogs())
     ])
 }

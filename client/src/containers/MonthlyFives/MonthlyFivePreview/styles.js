@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import {getImageUrl} from "../../../utils/getImageUrl";
 import {sizes} from "../../../styles";
 import {hoverShadow} from "../../../styles/shadows";
@@ -10,6 +10,8 @@ export const MonthlyFivePreviewWrapper = styled.div`
   text-align: left;
 
   cursor: pointer;
+	
+	${({fullWidth}) => fullWidth && css`margin-bottom: 12px;`};
 `;
 
 export const MonthlyFivePreviewImage = styled.div`

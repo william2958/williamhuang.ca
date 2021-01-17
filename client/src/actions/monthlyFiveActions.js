@@ -85,14 +85,14 @@ export const getAdminMonthlyFive = (isPublished) => async (dispatch) => {
 	}
 }
 
-export const getNumRecentMonthlyFives = () => async (dispatch) => {
+export const getNumRecentMonthlyFives = (numRecent) => async (dispatch) => {
 	try {
-		const response = (await axios.get(`/monthlyFive/getNumRecentMonthlyFives?numMonthlyFives=1`)).data;
+		const response = (await axios.get(`/monthlyFive/getNumRecentMonthlyFives?numMonthlyFives=${numRecent}`)).data;
 
 		if (response.allMonthlyFives.length) {
 			dispatch({
 				type: NUM_RECENT_MONTHLY_FIVES_LOADED,
-				payload: response.allMonthlyFives[0]
+				payload: response.allMonthlyFives
 			})
 		} else {
 			dispatch({

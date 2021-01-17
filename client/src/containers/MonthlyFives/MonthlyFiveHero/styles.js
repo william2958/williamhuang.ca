@@ -5,19 +5,19 @@ import {defaultShadow} from "../../../styles/shadows";
 
 export const MonthlyFiveHeroWrapper = styled.div`
 	display: flex;
-    flex-direction: column;
-    text-align: left;
-    position: relative;
+  flex-direction: column;
+  text-align: left;
+  position: relative;
 	border-radius: inherit;
 
-    cursor: pointer;
-    
-    ${({fit}) => fit && css`
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
+  cursor: pointer;
+  
+  ${({fit}) => fit && css`
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 	`};
 `;
 

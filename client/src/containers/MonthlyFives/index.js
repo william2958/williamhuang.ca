@@ -45,7 +45,7 @@ class MonthlyFivesPage extends React.Component {
 					<meta property="og:title" content={`Monthly Recap | WH`} />
 					<meta property="og:image" content="https://storage.googleapis.com/global_images/Web_Preview/favicon.png" />
 					<meta property="description" content="Explore my blog, reviews, guides, and more." />
-					<meta property="og:url" content={`https://williamhuang.ca/monthlyRecap`} />
+					<meta property="og:url" content={`https://williamhuang.ca/monthlyBullets`} />
 				</Helmet>
 
 				{/*{mostRecentMonthlyFive ? (*/}
@@ -62,7 +62,7 @@ class MonthlyFivesPage extends React.Component {
 				<div className="row">
 					<MonthlyFivesPageHeader className="col-sm-6">
 						<div className="headerDescription">
-							<H4>The Monthly Recap</H4>
+							<H4>Monthly Bullets</H4>
 							<LeadParagraph>Once a month I'll share a few things I think are great.</LeadParagraph>
 						</div>
 						<div className="headerDropdown">
