@@ -100,7 +100,7 @@ class ProjectDetail extends React.Component {
 						<H1>{title}</H1>
 						<BodyParagraph>{contentPreview}</BodyParagraph>
 						<div className="publishDate">
-							<H5 color="secondary">Written With: {techStack.join(', ')}</H5>
+							<H5 uppercase color="secondary">Written With: {techStack.join(', ')}</H5>
 							<H6 color="secondary">Published: {formattedDate}</H6>
 						</div>
 					</ProjectDetailContent>

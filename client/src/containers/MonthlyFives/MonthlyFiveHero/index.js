@@ -11,12 +11,12 @@ const MonthlyFiveHero = ({ monthlyFive, editable, fit, noTitle, history }) => {
 
 	const goToDetails = () => {
 		if (editable) {
-			history.push('/admin/monthlyFives/edit/' + monthlyFive._id);
+			history.push('/admin/monthlyRecap/edit/' + monthlyFive._id);
 		} else {
 			if (monthlyFive.urlString) {
-				history.push('/monthlyFives/' + monthlyFive.urlString);
+				history.push('/monthlyRecap/' + monthlyFive.urlString);
 			} else {
-				history.push('/monthlyFives/id/' + monthlyFive._id);
+				history.push('/monthlyRecap/id/' + monthlyFive._id);
 			}
 		}
 	};
@@ -26,7 +26,7 @@ const MonthlyFiveHero = ({ monthlyFive, editable, fit, noTitle, history }) => {
 			{!noTitle && <H4>{parseMonthAndYear(monthlyFive.month, monthlyFive.year)}</H4>}
 			<MonthlyFiveSpotlightImage bg={monthlyFive.heroURL} fit={fit}>
 				<MonthlyFiveSpotlightContent>
-					<H5 color="highlight">{monthlyFive.title}</H5>
+					<H5 uppercase color="highlight">{monthlyFive.title}</H5>
 					{noTitle && <H6 color="secondary">{parseMonthAndYear(monthlyFive.month, monthlyFive.year)}</H6>}
 				</MonthlyFiveSpotlightContent>
 			</MonthlyFiveSpotlightImage>

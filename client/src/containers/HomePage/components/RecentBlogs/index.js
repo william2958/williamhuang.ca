@@ -28,7 +28,7 @@ const RecentBlogs = ({ history, blogs, anotherPage, getFirstPageBlogs, getNextPa
 				<div className="container">
 					<HomePageSectionHeader>
 						<H4 underline>Blog</H4>
-						<H5
+						<H5 uppercase
 							className="seeAllLink"
 							onClick={() => history.push('/blog')}
 						>See All</H5>

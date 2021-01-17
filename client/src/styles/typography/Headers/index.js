@@ -59,6 +59,10 @@ const HeaderStyles = css`
       border-bottom: 3px solid;
       width: fit-content;
 	`};
+	
+	${({serif}) => serif && css`font-family: 'Georgia', serif;`};
+
+  ${({uppercase}) => uppercase && css`text-transform: uppercase;`};
 `;
 
 export const Hero = styled.h1`
@@ -116,7 +120,6 @@ export const H3 = styled.h3`
 export const H4 = styled.h4`
   ${HeaderStyles};
   font-size: 20px;
-  text-transform: uppercase;
   margin-bottom: 0;
   padding-top: 5px;
   display: block;
@@ -125,7 +128,6 @@ export const H4 = styled.h4`
 export const H5 = styled.h5`
   ${HeaderStyles};
   font-size: 16px;
-  text-transform: uppercase;
   margin-bottom: 0;
   display: block;
   padding-top: 2px
@@ -135,7 +137,6 @@ export const H6 = styled.h6`
   ${HeaderStyles};
   font-size: 12px;
   letter-spacing: -0.3px;
-  text-transform: uppercase;
   line-height: 16px;
   margin-bottom: 0;
 `;

@@ -4,18 +4,19 @@ import {sizes} from "../../styles";
 
 export const GuidesPageWrapper = styled.div`
 	${clearHeader};
-    min-height: 80vh;
-    
-    .guidesRow {
-    	& > * {
-    		display: block;
-    		width: 100%;
-    		margin: 12px auto;
-    	}
-    	& > * + * {
-    		border-top: 1px solid ${({theme}) => theme.secondary}50;
-    	}
+  min-height: 80vh;
+  
+  .guidesRow {
+    & > * {
+      display: block;
+      width: 100%;
+      margin: 12px auto;
+	    padding: 0;
     }
+    & > * + * {
+      border-top: 1px solid ${({theme}) => theme.secondary}50;
+    }
+  }
     
 	@media only screen and (max-width: ${sizes.phone}px) {
 		.guidesRow {
@@ -30,7 +31,7 @@ export const GuidesPageWrapper = styled.div`
 `;
 
 export const GuidesPageHeader = styled.div`
-    display: flex;
-    align-content: center;
-    justify-content: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 `;

@@ -45,7 +45,7 @@ const EventPreview = ({ event, editable, history }) => {
 						<H4 color="highlight">{contentPreview}</H4>
 					</EventPreviewTitle>
 					<EventPreviewDate>
-						<H5 color="highlight"> Took Place {formattedDate}</H5>
+						<H5 uppercase color="highlight"> Took Place {formattedDate}</H5>
 					</EventPreviewDate>
 					{/*<ButtonRow top={16}>*/}
 					{/*	<Button small>Read</Button>*/}

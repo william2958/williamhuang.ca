@@ -15,5 +15,6 @@ export const PROJECT_CATEGORY_OPTIONS = [
 ];
 
 export const VALID_YEARS = [
+	2021,
 	2020
 ];

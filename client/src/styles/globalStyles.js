@@ -29,10 +29,9 @@ export const GutteredRow = styled.div`
 	margin-left: -27px;
 	margin-right: -27px;
 	
-    
-    @media only screen and (max-width: ${sizes.phone}px) {
-	    margin-left: -12px;
-	    margin-right: -12px;
+  @media only screen and (max-width: ${sizes.phone}px) {
+    margin-left: -12px;
+    margin-right: -12px;
 	}
 `;
 

@@ -23,7 +23,7 @@ const RecentGuides = ({ history, getNumRecentGuides, recentGuides }) => {
 			<div className="container">
 				<HomePageSectionHeader>
 					<H4 left color="highlight" underline>Recent Guides</H4>
-					<H5
+					<H5 uppercase
 						color="highlight"
 						className="seeAllLink"
 						onClick={() => history.push('/guides')}

@@ -27,7 +27,7 @@ class MonthlyFiveDetail extends React.Component {
 	}
 
 	goBack = () => {
-		this.props.history.push('/monthlyFives');
+		this.props.history.push('/monthlyRecap');
 	};
 
 	render() {
@@ -62,26 +62,26 @@ class MonthlyFiveDetail extends React.Component {
 			<MonthlyFiveDetailWrapper>
 
 				<Helmet>
-					<title>{`${title} | WH Monthly Fives`}</title>
+					<title>{`${title} | WH Monthly Recap`}</title>
 					<meta property="og:title" content={parseMonthAndYear(month, year)} />
 					<meta property="og:image" content={getImageUrl(heroURL, 'small')} />
 					<meta property="description" content={contentPreview} />
-					<meta property="og:url" content={`https://williamhuang.ca/monthlyFives/${urlString}`} />
+					<meta property="og:url" content={`https://williamhuang.ca/monthlyRecap/${urlString}`} />
 				</Helmet>
 
 				<div className="container">
 					<BackArrow onClick={this.goBack}>
 						<SvgIcon icon="BackCaret" />
-						<h6>All MonthlyFives</h6>
+						<h6>The Monthly Recap</h6>
 					</BackArrow>
 				</div>
 				<MonthlyFiveDetailContentWrapper className="container">
 
-					<MonthlyFiveSpotlightImage bg={heroURL} rounded />
+					{/*<MonthlyFiveSpotlightImage bg={heroURL} rounded />*/}
 
 					<MonthlyFiveDetailContent>
-						<H2>{parseMonthAndYear(month, year)}</H2>
-						<H5 color="secondary">{contentPreview}</H5>
+						<H2 serif>{parseMonthAndYear(month, year)}</H2>
+						<H5 thin serif>{contentPreview}</H5>
 					</MonthlyFiveDetailContent>
 				</MonthlyFiveDetailContentWrapper>
 				<RichTextEditor editorState={contentToFill} readOnly={true} />

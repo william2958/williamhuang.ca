@@ -73,7 +73,6 @@ export const FooterLink = styled.a`
     font-size: 13px;
     font-weight: 500;
     color: ${({highlight}) => highlight ? '#c00' : '#A1AEB7'};
-    text-transform: uppercase;
     margin: 8px 0;
     
     &:hover {
@@ -87,7 +86,6 @@ export const InternalFooterLink = styled(Link)`
   font-size: 13px;
   font-weight: 500;
   color: ${({highlight}) => highlight ? '#c00' : '#A1AEB7'};
-  text-transform: uppercase;
   margin: 8px 0;
 
   &:hover {

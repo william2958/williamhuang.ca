@@ -36,10 +36,10 @@ const BookReviewPreview = ({bookReview, editable, history, light}) => {
 						<TypeLabel type={category} author={author}/>
 						<BookReviewRatingWrapper>
 							{recommended && (<SvgIcon icon='Star' title="Highly Recommended" size={16}/>)}
-							<H5 color={color}>{rating}&nbsp;/&nbsp;5</H5>
+							<H5 uppercase color={color}>{rating}&nbsp;/&nbsp;5</H5>
 						</BookReviewRatingWrapper>
 					</BookPreviewTypeAndRating>
-					<H5 color={color}>{title}</H5>
+					<H5 uppercase color={color}>{title}</H5>
 					{/*<H6 color="secondary">{author}</H6>*/}
 					<BodyParagraph color={color}>{contentPreview}</BodyParagraph>
 

@@ -37,7 +37,7 @@ const GuidePreview = ({ guide, editable, history }) => {
 				<div className="iconAndDetails">
 					<GuidePreviewIcon bg={iconURL} />
 					<GuidePreviewContent>
-						<H5>{title}</H5>
+						<H5 uppercase>{title}</H5>
 						<H6 color="secondary">{technology.join(', ')} - {formattedDate}</H6>
 					</GuidePreviewContent>
 				</div>

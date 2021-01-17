@@ -78,9 +78,9 @@ class GuideDetail extends React.Component {
 					<GuideDetailIcon bg={iconURL} />
 					<GuideDetailMetadata className="metadata">
 						<H2>{title}</H2>
-						<H5 color="secondary" className="desktopMetadata">{technology.join(', ')} - Published {formattedDate}</H5>
-						<H5 color="secondary" className="mobileMetadata">{technology.join(', ')}</H5>
-						<H5 color="secondary" className="mobileMetadata">Published {formattedDate}</H5>
+						<H5 uppercase color="secondary" className="desktopMetadata">{technology.join(', ')} - Published {formattedDate}</H5>
+						<H5 uppercase color="secondary" className="mobileMetadata">{technology.join(', ')}</H5>
+						<H5 uppercase color="secondary" className="mobileMetadata">Published {formattedDate}</H5>
 						<BodyParagraph className="desktopMetadata">{contentPreview}</BodyParagraph>
 					</GuideDetailMetadata>
 				</GuideDetailContentWrapper>

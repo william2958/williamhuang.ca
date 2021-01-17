@@ -31,9 +31,9 @@ const Footer = ({ history }) => {
 					</div>
 					<FooterLinksColumn className="col-sm-2">
 						<H5 color="highlight">
-							Other Cool Things
+							Explore
 						</H5>
-						<InternalFooterLink to="/monthlyFives" className="footerLink">The Monthly 5</InternalFooterLink>
+						<InternalFooterLink to="/monthlyRecap" className="footerLink">The Monthly Recap</InternalFooterLink>
 
 						{/*<h4 className="footerTitle">*/}
 						{/*	Admin*/}

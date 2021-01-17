@@ -1,16 +1,13 @@
-import {H4, H6} from "../../styles/typography/Headers";
+import {H4} from "../../styles/typography/Headers";
 import React from "react";
 import {
 	MonthlyFivesPageHeader,
 	MonthlyFivesPageWrapper,
-	MonthlyFiveSpotlightPlaceholder,
-	MostRecentMonthlyFiveWrapper
+	MonthlyRecapList,
 } from "./styles";
 import MonthlyFivePreview from "./MonthlyFivePreview";
 import {VALID_YEARS} from "../../constants";
 import Dropdown from "../../components/Dropdown";
-import {GutteredRow} from "../../styles/globalStyles";
-import MonthlyFiveHero from "./MonthlyFiveHero";
 import {getYear} from "../../actions";
 import {connect} from "react-redux";
 import {Helmet} from "react-helmet";
@@ -44,11 +41,11 @@ class MonthlyFivesPage extends React.Component {
 		return (
 			<MonthlyFivesPageWrapper className="container">
 				<Helmet>
-					<title>{`Monthly Fives | WH`}</title>
-					<meta property="og:title" content={`Monthly Fives | WH`} />
+					<title>{`Monthly Recap | WH`}</title>
+					<meta property="og:title" content={`Monthly Recap | WH`} />
 					<meta property="og:image" content="https://storage.googleapis.com/global_images/Web_Preview/favicon.png" />
 					<meta property="description" content="Explore my blog, reviews, guides, and more." />
-					<meta property="og:url" content={`https://williamhuang.ca/monthlyFives`} />
+					<meta property="og:url" content={`https://williamhuang.ca/monthlyRecap`} />
 				</Helmet>
 
 				{/*{mostRecentMonthlyFive ? (*/}
@@ -62,22 +59,24 @@ class MonthlyFivesPage extends React.Component {
 				{/*	</>*/}
 				{/*)}*/}
 
-				<MonthlyFivesPageHeader className="row">
-					<div className="headerDescription">
-						<H4>The Monthly Five</H4>
-						<LeadParagraph>Once a month I'll share five things I think are great.</LeadParagraph>
-					</div>
-					<div className="headerDropdown">
-						<Dropdown value={selectedYear} options={VALID_YEARS} onChange={this.selectYear} />
-					</div>
-				</MonthlyFivesPageHeader>
-				<GutteredRow className="row no-gutters">
+				<div className="row">
+					<MonthlyFivesPageHeader className="col-sm-6">
+						<div className="headerDescription">
+							<H4>The Monthly Recap</H4>
+							<LeadParagraph>Once a month I'll share a few things I think are great.</LeadParagraph>
+						</div>
+						<div className="headerDropdown">
+							<Dropdown value={selectedYear} options={VALID_YEARS} onChange={this.selectYear} />
+						</div>
+					</MonthlyFivesPageHeader>
+				</div>
+				<MonthlyRecapList>
 					{
 						monthlyFives.map(monthlyFive => (
 							<MonthlyFivePreview monthlyFive={monthlyFive} key={monthlyFive._id} />
 						))
 					}
-				</GutteredRow>
+				</MonthlyRecapList>
 			</MonthlyFivesPageWrapper>
 		)
 	}

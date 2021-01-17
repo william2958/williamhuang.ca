@@ -44,7 +44,7 @@ const HomePageBanner = ({ type, highlight, getHomeHighlight }) => {
 		else {
 			return (
 				<div className="highlightBadge">
-					<H5 color="#fff">Highlight</H5>
+					<H5 uppercase color="#fff">Highlight</H5>
 				</div>
 			)
 		}

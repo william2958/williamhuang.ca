@@ -45,7 +45,7 @@ const ProjectHero = ({ project, fit, staticHero, editable, history, highlight })
 		<ProjectsPageSpotlight fit={fit}>
 			<ProjectsPageSpotlightImage bg={heroURL} fit={fit}>
 				<ProjectsPageSpotlightContent>
-					<H5 color="highlight">{renderTitle()}</H5>
+					<H5 uppercase color="highlight">{renderTitle()}</H5>
 					<H6 color="secondary">{contentPreview}</H6>
 				</ProjectsPageSpotlightContent>
 				<div className="liveButton">

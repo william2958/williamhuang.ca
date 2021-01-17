@@ -246,15 +246,15 @@ export default [
 
 					{
 						...MonthlyFiveDetail,
-						path: '/monthlyFives/id/:id'
+						path: '/monthlyRecap/id/:id'
 					},
 					{
 						...MonthlyFiveDetail,
-						path: '/monthlyFives/:urlString'
+						path: '/monthlyRecap/:urlString'
 					},
 					{
 						...MonthlyFivesPage,
-						path: '/monthlyFives'
+						path: '/monthlyRecap'
 					},
 
 					{

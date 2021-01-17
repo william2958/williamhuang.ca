@@ -5,13 +5,11 @@ import {hoverShadow} from "../../../styles/shadows";
 const DEFAULT_MONTHLY_FIVE_PREVIEW_IMAGE = 'https://storage.googleapis.com/global_images/Default_Images/error404.jpg';
 
 export const MonthlyFivePreviewWrapper = styled.div`
-	padding: 12px;
-    display: flex;
-    flex-direction: column;
-    text-align: left;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 
-    border-radius: 5px;
-    cursor: pointer;
+  cursor: pointer;
 `;
 
 export const MonthlyFivePreviewImage = styled.div`
@@ -37,9 +35,9 @@ export const MonthlyFivePreviewContent = styled.div`
 	position: relative;
 	
 	.metadata {
-	    color: ${({theme}) => theme.secondary};
-	    font-size: 11px;
-	    text-transform: uppercase;
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+		margin-bottom: 0;
 	}
 	
 	.buttonRow {
@@ -48,7 +46,7 @@ export const MonthlyFivePreviewContent = styled.div`
 `;
 
 export const MonthlyFivePreviewTitle = styled.h3`
-	font-family: Montserrat, sans-serif;
+  font-family: 'Georgia', serif;
 	font-size: 20px;
 	line-height: 25px;
 	font-weight: bold;

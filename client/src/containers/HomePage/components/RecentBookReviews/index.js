@@ -33,7 +33,7 @@ const RecentBookReviews = ({ history, getNumRecentBookReviews, recentBookReviews
 			<div className="container">
 				<HomePageSectionHeader>
 					<H4 left underline color="highlight">Latest Book Reviews</H4>
-					<H5 className="seeAllLink" color="highlight" onClick={viewAllBookReviews}>See All</H5>
+					<H5 uppercase className="seeAllLink" color="highlight" onClick={viewAllBookReviews}>See All</H5>
 				</HomePageSectionHeader>
 				<div className="row no-gutters">
 					{

@@ -5,32 +5,52 @@ import {hoverShadow} from "../../styles/shadows";
 
 export const MonthlyFivesPageWrapper = styled.div`
 	${clearHeader};
-    min-height: 80vh;
-    
-    // @media only screen and (max-width: ${sizes.phone}px) {
-    // 	padding-top: 0;
-    // }
+  min-height: 80vh;
+  
+  // @media only screen and (max-width: ${sizes.phone}px) {
+  // 	padding-top: 0;
+  // }
 `;
 
 export const MonthlyFivesPageHeader = styled.div`
 
-    display: flex;
-    align-content: center;
-    justify-content: space-between;
-	    
-    @media only screen and (max-width: ${sizes.phone}px) {
-	    margin-left: 0;
-	    margin-right: 0;
-	    
-	    .headerDescription {
-	    	max-width: 60%;
-	    }
-	    
-	    .headerDropdown {
-	    	margin-top: 5px;
-	    }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+	margin: 12px auto;
+	padding: 0;
+
+  .headerDropdown {
+    height: fit-content;
+  }
+
+  @media only screen and (max-width: ${sizes.phone}px) {
+    margin-left: 0;
+    margin-right: 0;
+
+    .headerDescription {
+      max-width: 60%;
     }
+
+    .headerDropdown {
+      margin-top: 5px;
+    }
+  }
+	
 `;
+
+export const MonthlyRecapList = styled.div`
+	& > * + * {
+		border-top: 1px solid ${({theme}) => theme.primary};
+	}
+
+  & > * {
+    display: block;
+    width: 100%;
+    margin: 12px auto;
+	  padding: 0;
+  }
+`
 
 export const MostRecentMonthlyFiveWrapper = styled.div`
 	margin-bottom: 24px;

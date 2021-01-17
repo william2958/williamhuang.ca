@@ -24,7 +24,7 @@ const RecentMonthlyFive = ({ history, getNumRecentMonthlyFives, recentMonthlyFiv
 		// 	action: 'View All Monthly Fives',
 		// 	transport: 'beacon'
 		// });
-		history.push('/monthlyFives')
+		history.push('/monthlyRecap')
 	};
 
 	if (!recentMonthlyFive) {
@@ -35,7 +35,7 @@ const RecentMonthlyFive = ({ history, getNumRecentMonthlyFives, recentMonthlyFiv
 		<HomePageSection className="container">
 			<HomePageSectionHeader>
 				<H4 left underline>{parseMonthAndYear(recentMonthlyFive.month, recentMonthlyFive.year)}</H4>
-				<H5 className="seeAllLink" onClick={viewAllEvents}>See All</H5>
+				<H5 uppercase className="seeAllLink" onClick={viewAllEvents}>See All</H5>
 			</HomePageSectionHeader>
 			<HomeMonthlyFiveHeroWrapper>
 				<MonthlyFiveHero monthlyFive={recentMonthlyFive} noTitle fit />

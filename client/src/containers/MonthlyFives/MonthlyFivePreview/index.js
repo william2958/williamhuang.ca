@@ -18,20 +18,20 @@ const MonthlyFivePreview = ({ monthlyFive, editable, history }) => {
 			history.push('/admin/monthlyFive/edit/' + monthlyFive._id);
 		} else {
 			if (monthlyFive.urlString) {
-				history.push('/monthlyFives/' + monthlyFive.urlString);
+				history.push('/monthlyRecap/' + monthlyFive.urlString);
 			} else {
-				history.push('/monthlyFives/id/' + monthlyFive._id);
+				history.push('/monthlyRecap/id/' + monthlyFive._id);
 			}
 		}
 	};
 
 	return (
 		<div className="col-md-6">
-			<MonthlyFivePreviewWrapper>
-				<MonthlyFivePreviewImage bg={heroURL} onClick={goToDetails} />
+			<MonthlyFivePreviewWrapper onClick={goToDetails}>
+				{/*<MonthlyFivePreviewImage bg={heroURL} onClick={goToDetails} />*/}
 				<MonthlyFivePreviewContent>
 					<MonthlyFivePreviewTitle>{parseMonthAndYear(month, year)}</MonthlyFivePreviewTitle>
-					<h5 className="metadata">{contentPreview}</h5>
+					<p className="metadata">{contentPreview}</p>
 				</MonthlyFivePreviewContent>
 			</MonthlyFivePreviewWrapper>
 		</div>

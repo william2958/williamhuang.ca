@@ -80,8 +80,8 @@ class BlogDetail extends React.Component {
 					<BlogSpotlightImage bg={heroURL} rounded />
 
 					<BlogDetailsRow>
-						<H5 color="secondary">{publishDate}</H5>
-						<H5 color="secondary">{`WILL'S BLOG #${num}`}</H5>
+						<H5 uppercase color="secondary">{publishDate}</H5>
+						<H5 uppercase color="secondary">{`WILL'S BLOG #${num}`}</H5>
 					</BlogDetailsRow>
 
 					<BlogDetailContent>

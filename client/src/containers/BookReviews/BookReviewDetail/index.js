@@ -84,12 +84,12 @@ class BookReviewDetail extends React.Component {
                     <BookReviewDetailImage bg={coverURL} />
                     <BookReviewDetailContent>
                         <H2>{title}</H2>
-                        <H5 color="secondary">{author} - {publishDate}</H5>
+                        <H5 uppercase color="secondary">{author} - {publishDate}</H5>
                         <div className="bookReviewMetadata">
                             <TypeLabel type={category} />
                             <BookReviewRatingWrapper className="ratingWrapper">
                                 {recommended && (<SvgIcon icon='Star' title="Recommended" size={16}/>)}
-                                <H5>{rating} / 5</H5>
+                                <H5 uppercase>{rating} / 5</H5>
                             </BookReviewRatingWrapper>
                         </div>
                     </BookReviewDetailContent>

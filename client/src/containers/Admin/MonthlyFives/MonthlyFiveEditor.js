@@ -21,7 +21,7 @@ const DEFAULT_FORM_VALUES = {
 	contentPreview: '',
 
 	month: 0,
-	year: 2020,
+	year: 2021,
 
 	content: EditorState.createEmpty(decoratorLink),
 	isPublished: false

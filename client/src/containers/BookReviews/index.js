@@ -82,7 +82,7 @@ class BookReviews extends Component {
                             <BookReviewPreview bookReview={bookReview} key={bookReview._id} />
                         )) : (
                             <BookReviewsEmpty>
-                                <H5>No reviews for this category yet. Sorry!</H5>
+                                <H5 uppercase>No reviews for this category yet. Sorry!</H5>
                             </BookReviewsEmpty>
                         )
                     }

@@ -25,7 +25,7 @@ const Header = ({ sticky }) => {
 							<NavBarLink to="/bookReviews">Find a Book</NavBarLink>
 						</li>
 						{/*<li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">*/}
-						{/*	<NavBarLink to="/monthlyFives">The Monthly 5</NavBarLink>*/}
+						{/*	<NavBarLink to="/monthlyRecap">The Monthly 5</NavBarLink>*/}
 						{/*</li>*/}
 						<li className="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
 							<NavBarLink to="/guides">Guides</NavBarLink>

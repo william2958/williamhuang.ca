@@ -103,7 +103,7 @@ class EventDetail extends React.Component {
 					</KeyInfoBox>
 
 					<EventExtraInfo>
-						<H5 color="secondary">Last Updated: {formattedDate}</H5>
+						<H5 uppercase color="secondary">Last Updated: {formattedDate}</H5>
 					</EventExtraInfo>
 
 					{expiredEvent && (

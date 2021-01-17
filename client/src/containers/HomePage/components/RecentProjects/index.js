@@ -25,7 +25,7 @@ const RecentProjects = ({ history, getNumRecentProjects, recentProjects }) => {
 			<div className="container">
 				<HomePageSectionHeader>
 					<H4 left color="highlight" underline>Latest Projects</H4>
-					<H5 className="seeAllLink" color="highlight" onClick={() => history.push('/projects')}>See All</H5>
+					<H5 uppercase className="seeAllLink" color="highlight" onClick={() => history.push('/projects')}>See All</H5>
 				</HomePageSectionHeader>
 				<div className="row no-gutters">
 					{
