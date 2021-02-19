@@ -7,7 +7,7 @@
     "start": "NODE_ENV=production node build/bundle.js",
     "local": "NODE_ENV=local nodemon build/bundle.js",
     "deploy_cron": "gcloud app deploy cron.yaml",
-    "deploy": "gcloud app deploy --promote --version=production",
+    "deploy": "gcloud app deploy --project williamhuang --promote --version=production",
     "dev": "npm-run-all --parallel dev:*",
     "build": "npm-run-all --parallel prod:*",
     "dev:server": "NODE_ENV=local nodemon --watch build --exec \"node build/bundle.js\"",
