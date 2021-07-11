@@ -5,3 +5,5 @@ app.yaml
 build/
 public/
 .idea/
+
+.DS_Store
